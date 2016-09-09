@@ -57,7 +57,7 @@ extension SrorageToSQLite {
 
 extension SrorageToSQLite {
     mutating func objectsToSQLite(_ tableName:String,filter:String = "",sorted:(String,Bool) = ("",false),limit:(Int,Int) = (0,10)) -> [[String : AnyObject]]? {
-        let selectSQL = "SELECT * FROM  \(tableName)) \(self.filter(filter));"
+        let selectSQL = "SELECT * FROM  \(tableName) \(self.filter(filter));"
         return sqliteManager.fetchArray(selectSQL)
     }
     

@@ -28,11 +28,18 @@ class ViewController: UIViewController {
             //            Storage().add(topicsssModelArray)
             
             print(type(of: topic))
-            var store = Storage<TopicsModel>()
-            store.add(topic, update: true)
             
             
-            store.objects()
+            var store = Storage()
+            store.objects(TopicsModel.self)
+            
+            return
+            if store.add(topic, update: true) {
+                
+            }
+            
+            
+            //store.objects()
         }
     }
 

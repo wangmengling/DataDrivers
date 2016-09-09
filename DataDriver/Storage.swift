@@ -8,9 +8,9 @@
 
 import Foundation
 
-typealias E = DataConversionProtocol
+
 public struct Storage {
-    //public
+    public typealias E = DataConversionProtocol
     fileprivate lazy var srorageToSQLite = SrorageToSQLite.instanceManager
     
 //    public static let instanceManager:Storage<E> = {
@@ -24,14 +24,14 @@ public struct Storage {
 }
 
 extension Storage {
-    mutating func objects<E:DataConversionProtocol>(_ filter:String = "",sorted:(String,Bool) = ("",false),limit:(Int,Int) = (0,10)) -> Array<E> {
-        if let object = E() {
-            let dicArray = srorageToSQLite.objectsToSQLite(self.tableName(object))
-            let data:DataConversion =  DataConversion<E>()
-            let objectArray = data.mapArray(dicArray!)
-            return objectArray!
+    mutating func objects<E:DataConversionProtocol>(_ type:E.Type,_ filter:String = "",sorted:(String,Bool) = ("",false),limit:(Int,Int) = (0,10)) -> Array<E> {
+        let dicArray = srorageToSQLite.objectsToSQLite(String(describing: type))
+        let data:DataConversion =  DataConversion<E>()
+        guard let dicArrays = dicArray else {
+            return Array<E>()
         }
-        return Array<E>()
+        let objectArray = data.mapArray(dicArrays)
+        return objectArray!
     }
     
     public mutating func object<E:DataConversionProtocol>(_ filter:String) -> E? {
@@ -95,8 +95,8 @@ extension Storage {
 }
 
 extension Storage {
-    public func tableName(_ object:E) -> String {
-        let objectsMirror = Mirror(reflecting: object)
+    public func tableName(_ objects:Any) -> String{
+        let objectsMirror = Mirror(reflecting: objects)
         return String(describing: objectsMirror.subjectType)
     }
 }

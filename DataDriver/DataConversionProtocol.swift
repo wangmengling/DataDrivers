@@ -24,6 +24,7 @@ extension DataConversionProtocol {
     func ignoredProperties() -> [String] {
         return []
     }
+
 }
 
 //extension DataConversionProtocol : CustomStringConvertible {
