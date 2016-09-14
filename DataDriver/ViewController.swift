@@ -21,26 +21,39 @@ class ViewController: UIViewController {
     }
 
     @IBAction func ceshiAction(_ sender: AnyObject) {
-        NetWork.request(.GET, url: "https://cnodejs.org/api/v1/topics") { (data, response, error) in
-            let dataArray = data?.object(forKey:"data") as AnyObject
-            let topicsssModelArray = DataConversion<TopicsModel>().mapArray(dataArray)
-            let topic = topicsssModelArray.last! as TopicsModel
-            //            Storage().add(topicsssModelArray)
-            
-            print(type(of: topic))
-            
-            
-            var store = Storage()
-            store.objects(TopicsModel.self)
-            
-            return
-            if store.add(topic, update: true) {
-                
-            }
-            
-            
-            //store.objects()
-        }
+        var store = Storage()
+        let topicsModel =  store.objects(TopicsModel.self)
+        //            if store.add(topic, update: false) {
+        //
+        //            }
+        
+//        let dd =  store.delete(topicsModel.last)
+        var topicModel = topicsModel.last
+        topicModel?.content = "w"
+        let ds = store.add(topicModel, update: true)
+//        NetWork.request(.GET, url: "https://cnodejs.org/api/v1/topics") { (data, response, error) in
+//            let dataArray = data?.object(forKey:"data") as AnyObject
+//            let topicsssModelArray = DataConversion<TopicsModel>().mapArray(dataArray)
+//            let topic = topicsssModelArray.last! as TopicsModel
+//            //            Storage().add(topicsssModelArray)
+//            
+//            print(type(of: topic))
+//            
+//            
+//            var store = Storage()
+////            let topicsModel =  store.objects(TopicsModel.self)
+////            if store.add(topic, update: false) {
+////                
+////            }
+//
+////            let dd =  store.delete(topic)
+////            print(topicsModel)
+////            return
+//            store.addArray(topicsssModelArray)
+//            
+//            
+//            //store.objects()
+//        }
     }
 
 }

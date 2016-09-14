@@ -29,7 +29,6 @@ public struct SQLiteManager {
     init(dbName:String = "StorageDb.db"){
         self.openDB(dbName)
     }
-    
 }
 
 extension SQLiteManager {
@@ -86,13 +85,6 @@ extension SQLiteManager {
 
 extension SQLiteManager {
     
-    func execSQL(_ sqlString : String) -> Bool {
-        var error:UnsafeMutablePointer<CChar>? = nil
-        if sqlite3_exec(db, sqlString.cString(using: String.Encoding.utf8)!, nil , nil, &error) != SQLITE_OK{
-            return false
-        }
-        return true
-    }
     
     mutating func fetchArray(_ sql:String) -> [[String : AnyObject]] {
         if sqlite3_prepare_v2(db, sql, -1, &stmt, nil) != SQLITE_OK {
@@ -138,8 +130,50 @@ extension SQLiteManager {
     }
 }
 
+extension SQLiteManager {
+    
+    //执行查询操作
+    func execSQL(_ sqlString : String) -> Bool {
+        var error:UnsafeMutablePointer<CChar>? = nil
+        if sqlite3_exec(db, sqlString.cString(using: String.Encoding.utf8)!, nil , nil, &error) != SQLITE_OK{
+            return false
+        }
+        return true
+    }
+
+    //执行更新操作
+    func execIOSQL(_ sqlString : String) -> (Bool,OpaquePointer?) {
+        var stmt : OpaquePointer? = nil
+        var error:UnsafeMutablePointer<CChar>? = nil
+        if sqlite3_exec(db, sqlString.cString(using: String.Encoding.utf8)!, nil, &stmt, &error) != SQLITE_OK{
+            print(error)
+            return (false,stmt)
+        }
+        return (true,stmt)
+    }
+}
+
 // MARK: - column
 extension SQLiteManager {
+    
+    // Get column
+    fileprivate func getColumn(stmt:OpaquePointer) -> [String] {
+        let count = sqlite3_column_count(stmt)
+        var columnArray = [String]()
+        for i in 0..<count {
+            // 2.取出字典对应的key
+            let cKey = sqlite3_column_name(stmt, i)
+            guard let cKeys = cKey else {
+                continue
+            }
+            guard let key = String(cString: cKeys, encoding: String.Encoding.utf8) else {
+                continue
+            }
+            columnArray.append(key)
+        }
+        return columnArray
+    }
+    
     // Get column type
     fileprivate func getColumnType(_ index:CInt, stmt:OpaquePointer)->CInt {
         var type:CInt = 0
@@ -215,8 +249,10 @@ extension SQLiteManager {
             return nil
         }
         // If nothing works, return a string representation
-        let buf = UnsafePointer(sqlite3_column_text(stmt, index))
-        let val = String(cString: buf!)
+        guard let buf = UnsafePointer(sqlite3_column_text(stmt, index)) else {
+            return nil
+        }
+        let val = String(cString: buf)
         return val as AnyObject?
     }
 }
@@ -279,3 +315,5 @@ extension SQLiteManager {
         return stmt
     }
 }
+
+

@@ -20,15 +20,10 @@ struct SrorageToSQLite {
     static let instanceManager:SrorageToSQLite = {
         return SrorageToSQLite()
     }()
-    
-    
-    
 }
 
 // MARK: - filter sorted
 extension SrorageToSQLite {
-    
-    
     func filter(_ predicate:String) -> String{
         var filter = ""
         if predicate.characters.count > 1 {
@@ -71,11 +66,33 @@ extension SrorageToSQLite {
 extension SrorageToSQLite {
     func update(_ object:E) -> Bool {
         
-        return true
-    }
-    
-    func delete() -> Bool {
-        return true
+        //获取主键
+        let primaryKey = object.primaryKey()
+        guard let primaryKeyValue = object.objectForKey(primaryKey) else {
+            return false
+        }
+        let filter = "Where \(primaryKey) = '\(primaryKeyValue)'"
+        
+        //设置值
+        let objectsMirror = Mirror(reflecting: object)
+        let property = objectsMirror.children
+        var values = ""
+        if let b = AnyBidirectionalCollection(property) {
+            
+            b.forEach({ (child) in
+                guard let columnValue:String = self.proToColumnValues(child.value) , primaryKey != child.label else  {
+                    return
+                }
+                values += "\(child.label!) = \(columnValue)"
+            })
+            
+            if values.characters.count > 0 {
+                values = values.subString(0, length: values.characters.count - 1)
+            }
+        }
+        //组装
+        let updateSql = "UPDATE \(self.tableName(object)) SET \(values) \(filter)"
+        return sqliteManager.execSQL(updateSql)
     }
 }
 
@@ -109,6 +126,9 @@ extension SrorageToSQLite {
         }
         
         let insertSQL = "INSERT INTO \(String(describing: objectsMirror.subjectType)) (\(columns))  VALUES (\(values));"
+        
+        sqliteManager.execIOSQL(insertSQL)
+        
         return sqliteManager.execSQL(insertSQL)
     }
     
@@ -149,6 +169,33 @@ extension SrorageToSQLite {
     }
 }
 
+
+// MARK: - Delete Object
+extension SrorageToSQLite {
+    
+    private func deleteWhere(_ tableName:String,filter:String) -> Bool {
+        let deleteSQL = "DELETE  FROM \(tableName)  WHERE \(filter);"
+        return sqliteManager.execSQL(deleteSQL)
+    }
+    
+    func delete(_ object:E) -> Bool {
+        let primaryKey = object.primaryKey()
+        guard let primaryKeyValue = object.objectForKey(primaryKey) else {
+            return false
+        }
+        let filter = "\(primaryKey) = '\(primaryKeyValue)'"
+        return self.delete(object, filter: filter)
+    }
+    
+    func delete(_ object:E,filter:String) -> Bool {
+        return self.deleteWhere(self.tableName(object), filter: filter)
+    }
+    
+    func deleteAll(_ type:E.Type) -> Bool {
+        let deleteSQL = "DELETE  FROM \(String(describing: type));"
+        return sqliteManager.execSQL(deleteSQL)
+    }
+}
 // MARK: - Create Table
 extension SrorageToSQLite {
     /**
@@ -258,5 +305,12 @@ extension SrorageToSQLite {
         }
         
         return ColumuType.NULL
+    }
+}
+
+extension SrorageToSQLite {
+    public func tableName(_ objects:Any) -> String{
+        let objectsMirror = Mirror(reflecting: objects)
+        return String(describing: objectsMirror.subjectType)
     }
 }

@@ -23,6 +23,7 @@ public struct Storage {
     }
 }
 
+// MARK: - Select Table Data
 extension Storage {
     mutating func objects<E:DataConversionProtocol>(_ type:E.Type,_ filter:String = "",sorted:(String,Bool) = ("",false),limit:(Int,Int) = (0,10)) -> Array<E> {
         let dicArray = srorageToSQLite.objectsToSQLite(String(describing: type))
@@ -45,6 +46,7 @@ extension Storage {
     }
 }
 
+// MARK: - Add Table Data
 extension Storage {
     
     /**
@@ -64,33 +66,35 @@ extension Storage {
         }
         //修改
         if update == true && srorageToSQLite.count(object) > 0{
-            _ = srorageToSQLite.update(object)
+            return srorageToSQLite.update(object)
         }
         return srorageToSQLite.insert(object)
     }
     
-    
-    //func add(_ object:E?,update:Bool = false)  {
-        //self.add(object, update: update)
-    //}
     
     mutating func addArray(_ objectArray:[E]?) {
         guard let objectArray = objectArray else {
             return
         }
         for (_,element) in objectArray.enumerated() {
-            self.add(element)
+            self.add(element,update: false)
         }
+        
     }
 }
 
+
+// MARK: - Delete Table
 extension Storage {
-    //public func delete(_ object:E?)  {
-        
-    //}
+    public mutating func delete(_ object:E?) -> Bool  {
+        guard let object = object else {
+            return false
+        }
+        return srorageToSQLite.delete(object)
+    }
     
-    public func deleteAll() {
-        
+    public mutating func deleteAll<E:DataConversionProtocol>(_ type:E.Type) -> Bool {
+        return srorageToSQLite.deleteAll(type)
     }
 }
 

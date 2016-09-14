@@ -17,16 +17,35 @@ public protocol DataConversionProtocol{
 
 extension DataConversionProtocol {
     func primaryKey() -> String {
-//        self.description = self.
         return ""
     }
     
     func ignoredProperties() -> [String] {
         return []
     }
+}
 
+extension DataConversionProtocol{
+    func objectForKey(_ key:String) -> Any? {
+        let objectsMirror = Mirror(reflecting: self)
+        let property = objectsMirror.children
+        
+        var value:Any?
+        
+        _ = property.map { (child) -> Mirror.Child? in
+            if child.label == self.primaryKey() {
+                value = child.value
+            }
+            return nil
+        }
+        
+        return value
+    }
 }
 
 //extension DataConversionProtocol : CustomStringConvertible {
 //    public var description: String
+
+//let objectsMirror = Mirror(reflecting: object)
+//let property = objectsMirror.children
 //}
