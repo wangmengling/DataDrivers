@@ -25,6 +25,19 @@ public func <-> <T>(field: inout T, right: DataMap) {
     dataConversion(&field, right: right)
 }
 
+public func <-> <T:Collection>(field: inout T, right: DataMap) {
+    dataConversion(&field, right: right)
+}
+
+public func <-> <T:Collection>(field: inout T!, right: DataMap) {
+    dataConversion(&field, right: right)
+}
+
+public func <-> <T:Collection>(field: inout T?, right: DataMap) {
+    dataConversion(&field, right: right)
+}
+
+
 //----------------- DataConversionProtocol
 public func <-> <T:DataConversionProtocol>(field: inout T, right: DataMap) {
     if right.dataConversionType == .FieldType {
@@ -58,6 +71,23 @@ public func <-> <T:DataConversionProtocol>(field: inout T?, right: DataMap) {
 
 //----------------- Array<TDataConversionProtocol>
 public func <-> <T:DataConversionProtocol>(field: inout Array<T>, right: DataMap) {
+    guard let object:Array<T> = DataConversion().mapArray(right.value()) else {
+        return
+    }
+    field = object
+}
+
+public func <-> <T:DataConversionProtocol>(field: inout Array<T>!, right: DataMap) {
+    if right.dataConversionType == .FieldType {
+        fieldType(field, map: right)
+    }
+    guard let object:Array<T> = DataConversion().mapArray(right.value()) else {
+        return
+    }
+    field = object
+}
+
+public func <-> <T:DataConversionProtocol>(field: inout Array<T>?, right: DataMap) {
     guard let object:Array<T> = DataConversion().mapArray(right.value()) else {
         return
     }
@@ -154,5 +184,6 @@ func toJSON<T>(_ field: T?, map: DataMap) {
 }
 
 func fieldType <T>(_ field: T?, map: DataMap){
-    print(type(of: field))
+    map.JSONDataDictionary[map.currentKey!] = type(of: field) as AnyObject?
+//    print(type(of: field))
 }

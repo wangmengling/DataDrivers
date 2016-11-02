@@ -42,6 +42,7 @@ struct TopicsModel:DataConversionProtocol {
 //    var reply_count: Int = 0
 //    var top:Bool = false
     var array:Array<String>!
+    var authorArray:Array<AuthorssModel>!
     
     func primaryKey() -> String {
         //        self.description = self.
@@ -60,6 +61,7 @@ struct TopicsModel:DataConversionProtocol {
         title <-> map["title"]
         visit_count <-> map["visit_count"]
         array <->  map["array"]
+        authorArray <-> map["authorArray"]
     }
 }
 
