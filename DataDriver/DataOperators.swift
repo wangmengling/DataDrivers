@@ -185,5 +185,4 @@ func toJSON<T>(_ field: T?, map: DataMap) {
 
 func fieldType <T>(_ field: T?, map: DataMap){
     map.JSONDataDictionary[map.currentKey!] = type(of: field) as AnyObject?
-//    print(type(of: field))
 }
