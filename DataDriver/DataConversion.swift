@@ -93,127 +93,17 @@ extension DataConversion {
 }
 
 
-
-
-
-//---------------- infix operator <-> {}
-//---------------- String Int ......
-public func <-> <T>(field: inout T!, right: DataMap) {
-    modelOrJson(&field, right: right)
-}
-
-public func <-> <T>(field: inout T?, right: DataMap) {
-    modelOrJson(&field, right: right)
-}
-
-public func <-> <T>(field: inout T, right: DataMap) {
-    modelOrJson(&field, right: right)
-}
-
-//----------------- DataConversionProtocol
-public func <-> <T:DataConversionProtocol>(field: inout T, right: DataMap) {
-    guard let object:T = DataConversion().map(right.value()) else {
-        return
-    }
-    field = object
-}
-
-public func <-> <T:DataConversionProtocol>(field: inout T!, right: DataMap) {
-    guard let object:T = DataConversion().map(right.value()) else {
-        return
-    }
-    field = object
-}
-
-public func <-> <T:DataConversionProtocol>(field: inout T?, right: DataMap) {
-    guard let object:T = DataConversion().map(right.value()) else {
-        return
-    }
-    field = object
-}
-
-//----------------- Array<TDataConversionProtocol>
-public func <-> <T:DataConversionProtocol>(field: inout Array<T>, right: DataMap) {
-    guard let object:Array<T> = DataConversion().mapArray(right.value()) else {
-        return
-    }
-    field = object
-}
-
-/// Object of Raw Representable type
-public func <-> <T: RawRepresentable>(left: inout T, right: DataMap) {
-    guard let raw = right.currentValue as? T.RawValue  else{
-        return
-    }
-    guard let value = T(rawValue: raw) else {
-        return
-    }
-    left = value
-}
-
-/// Optional Object of Raw Representable type
-public func <-> <T: RawRepresentable>(left: inout T?, right: DataMap) {
-    guard let raw = right.currentValue as? T.RawValue  else{
-        return
-    }
-    let value = T(rawValue: raw)
-    left = value
-}
-
-/// Implicitly Unwrapped Optional Object of Raw Representable type
-public func <-> <T: RawRepresentable>(left: inout T!, right: DataMap) {
-    guard let raw = right.currentValue as? T.RawValue  else{
-        return
-    }
-    guard let value = T(rawValue: raw) else {
-        return
-    }
-    left = value
-}
-
-infix operator <->
-
-func modelOrJson <T>(_ field: inout T, right: DataMap) {
-    if right.toJSON == false {
-        guard let object:T = right.value() else {
-            return
+extension DataConversion {
+    public func fieldsType() -> Void {
+        let dataMap = DataMap(fieldType: true)
+        if var object = E() {
+            object.mapping(dataMap)
         }
-        field = object
-    }else {
-        toJSON(field, map: right)
     }
 }
 
-func toJSON<T>(_ field: T?, map: DataMap) {
-    if map.toJSON == false {
-        return
-    }
-    guard let value = field else {
-        return
-    }
-    if let x = value as? AnyObject , false
-        || x is NSNumber // Basic types
-        || x is Bool
-        || x is Int
-        || x is Double
-        || x is Float
-        || x is String
-        || x is Array<NSNumber> // Arrays
-        || x is Array<Bool>
-        || x is Array<Int>
-        || x is Array<Double>
-        || x is Array<Float>
-        || x is Array<String>
-        || x is Array<AnyObject>
-        || x is Array<Dictionary<String, AnyObject>>
-        || x is Dictionary<String, NSNumber> // Dictionaries
-        || x is Dictionary<String, Bool>
-        || x is Dictionary<String, Int>
-        || x is Dictionary<String, Double>
-        || x is Dictionary<String, Float>
-        || x is Dictionary<String, String>
-        || x is Dictionary<String, AnyObject>
-    {
-        map.JSONDataDictionary[map.currentKey!] = x
-    }
-}
+
+
+
+
+

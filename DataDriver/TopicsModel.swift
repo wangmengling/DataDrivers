@@ -18,15 +18,30 @@ enum TopicVisitCountEnum: Int {
     case four = 1499
 }
 
+struct AuthorssModel:DataConversionProtocol {
+    var id:Int!
+    var name:String!
+    
+    init(){
+        
+    }
+    
+    mutating func mapping(_ map: DataMap) {
+        id <-> map["id"]
+        name <-> map["name"]
+    }
+}
+
 struct TopicsModel:DataConversionProtocol {
-//    var author: AuthorssModel?
+    var author: AuthorssModel?
     var author_id: String!
     var tab: String!
     var content: String?
     var title: String?
-    //var visit_count: TopicVisitCountEnum? = TopicVisitCountEnum.default
+    var visit_count: TopicVisitCountEnum? = TopicVisitCountEnum.default
 //    var reply_count: Int = 0
 //    var top:Bool = false
+    var array:Array<String>!
     
     func primaryKey() -> String {
         //        self.description = self.
@@ -38,12 +53,13 @@ struct TopicsModel:DataConversionProtocol {
     }
     
     mutating func mapping(_ map: DataMap) {
-//        author <-> map["author"]
+        author <-> map["author"]
         author_id <-> map["author_id"]
         tab <-> map["tab"]
         content <-> map["content"]
         title <-> map["title"]
-        //visit_count <-> map["visit_count"]
+        visit_count <-> map["visit_count"]
+        array <->  map["array"]
     }
 }
 

@@ -21,16 +21,22 @@ class ViewController: UIViewController {
     }
 
     @IBAction func ceshiAction(_ sender: AnyObject) {
-        var store = Storage()
-        let topicsModel =  store.objects(TopicsModel.self)
-        //            if store.add(topic, update: false) {
-        //
-        //            }
         
-//        let dd =  store.delete(topicsModel.last)
-        var topicModel = topicsModel.last
-        topicModel?.content = "w"
-        let ds = store.add(topicModel, update: true)
+        let topicsModel = TopicsModel()
+        
+        DataConversion<TopicsModel>().fieldsType()
+        
+//        var store = Storage()
+//        let topicsModel =  store.objects(TopicsModel.self)
+//        //            if store.add(topic, update: false) {
+//        //
+//        //            }
+//        
+////        let dd =  store.delete(topicsModel.last)
+//        var topicModel = topicsModel.last
+//        print(topicModel)
+//        topicModel?.content = "w"
+//        let ds = store.add(topicModel, update: true)
 //        NetWork.request(.GET, url: "https://cnodejs.org/api/v1/topics") { (data, response, error) in
 //            let dataArray = data?.object(forKey:"data") as AnyObject
 //            let topicsssModelArray = DataConversion<TopicsModel>().mapArray(dataArray)

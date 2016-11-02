@@ -13,17 +13,23 @@ open class DataMap {
     open var JSONDataDictionary: [String : AnyObject] = [:]
     open var currentValue: AnyObject?
     open var currentKey: String?
-    open var toJSON:Bool = false
+    
+    var dataConversionType:DataConversionTypeEnum! = .Model
     
     init(JSONDictionary:[String : AnyObject]?){
         guard let JSONDictionary = JSONDictionary else {
             return
         }
+        self.dataConversionType = .Model
         self.JSONDictionary = JSONDictionary
     }
     
     init(toJSON:Bool = false){
-        self.toJSON = toJSON
+        self.dataConversionType = .Json
+    }
+    
+    init(fieldType:Bool) {
+        self.dataConversionType = .FieldType
     }
     
     open subscript(key:String) -> DataMap  {

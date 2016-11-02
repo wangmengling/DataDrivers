@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1625E3361DC7752400CB71FF /* DataOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1625E3351DC7752400CB71FF /* DataOperators.swift */; };
+		1625E3381DC77FF900CB71FF /* DataConversionTypeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1625E3371DC77FF900CB71FF /* DataConversionTypeEnum.swift */; };
 		1864E1301D824C430042876C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1864E12F1D824C430042876C /* AppDelegate.swift */; };
 		1864E1321D824C430042876C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1864E1311D824C430042876C /* ViewController.swift */; };
 		1864E1351D824C430042876C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1864E1331D824C430042876C /* Main.storyboard */; };
@@ -54,6 +56,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1625E3351DC7752400CB71FF /* DataOperators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataOperators.swift; sourceTree = "<group>"; };
+		1625E3371DC77FF900CB71FF /* DataConversionTypeEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataConversionTypeEnum.swift; sourceTree = "<group>"; };
 		1864E12C1D824C430042876C /* DataDriver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DataDriver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1864E12F1D824C430042876C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1864E1311D824C430042876C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -203,8 +207,10 @@
 			isa = PBXGroup;
 			children = (
 				1864E16A1D824DE20042876C /* DataConversion.swift */,
+				1625E3351DC7752400CB71FF /* DataOperators.swift */,
 				1864E16B1D824DE20042876C /* DataConversionProtocol.swift */,
 				1864E16C1D824DE20042876C /* DataMap.swift */,
+				1625E3371DC77FF900CB71FF /* DataConversionTypeEnum.swift */,
 			);
 			name = DataConversion;
 			sourceTree = "<group>";
@@ -315,7 +321,7 @@
 				TargetAttributes = {
 					1864E12B1D824C430042876C = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = TKPTNL5H7G;
+						DevelopmentTeam = 5F9R5KPEXS;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
@@ -386,6 +392,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1864E1321D824C430042876C /* ViewController.swift in Sources */,
+				1625E3361DC7752400CB71FF /* DataOperators.swift in Sources */,
+				1625E3381DC77FF900CB71FF /* DataConversionTypeEnum.swift in Sources */,
 				1864E17F1D824E4B0042876C /* String+MD5.swift in Sources */,
 				1864E17A1D824E4B0042876C /* Image.swift in Sources */,
 				1864E16E1D824DE20042876C /* DataConversionProtocol.swift in Sources */,
@@ -557,7 +565,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = TKPTNL5H7G;
+				DEVELOPMENT_TEAM = 5F9R5KPEXS;
 				INFOPLIST_FILE = DataDriver/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -574,7 +582,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = TKPTNL5H7G;
+				DEVELOPMENT_TEAM = 5F9R5KPEXS;
 				INFOPLIST_FILE = DataDriver/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -662,6 +670,7 @@
 				1864E1561D824C430042876C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1864E1571D824C430042876C /* Build configuration list for PBXNativeTarget "DataDriverTests" */ = {
 			isa = XCConfigurationList;
@@ -670,6 +679,7 @@
 				1864E1591D824C430042876C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1864E15A1D824C430042876C /* Build configuration list for PBXNativeTarget "DataDriverUITests" */ = {
 			isa = XCConfigurationList;
@@ -678,6 +688,7 @@
 				1864E15C1D824C430042876C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
