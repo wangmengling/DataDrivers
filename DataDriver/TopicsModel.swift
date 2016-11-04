@@ -22,6 +22,10 @@ struct AuthorssModel:DataConversionProtocol {
     var id:Int!
     var name:String!
     
+    init?(map: DataMap) {
+        
+    }
+    
     init(){
         
     }
@@ -32,7 +36,8 @@ struct AuthorssModel:DataConversionProtocol {
     }
 }
 
-struct TopicsModel:DataConversionProtocol {
+class TopicsModel:DataConversionProtocol {
+    var num: Int = 0
     var author: AuthorssModel?
     var author_id: String!
     var tab: String!
@@ -49,11 +54,16 @@ struct TopicsModel:DataConversionProtocol {
         return "author_id"
     }
     
+    required init?(map: DataMap) {
+        
+    }
+    
     init(){
         
     }
     
-    mutating func mapping(_ map: DataMap) {
+    func mapping(_ map: DataMap) {
+        num <-> map["num"]
         author <-> map["author"]
         author_id <-> map["author_id"]
         tab <-> map["tab"]

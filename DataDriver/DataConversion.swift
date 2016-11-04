@@ -18,10 +18,19 @@ extension DataConversion {
     /// Maps a JSON dictionary to an object that conforms to Mappable
     public func map(_ JSONDictionary: [String : AnyObject]) -> E? {
         let dataMap = DataMap(JSONDictionary: JSONDictionary)
-        if var object = E() {
+        if var object = E(map:dataMap) {
             object.mapping(dataMap)
             return object
         }
+        //if let klass = E.self as? DataConversionProtocol.Type { // Check if object is Mappable
+        //    if var object = klass.init(map: dataMap) as? E {
+        //        object.mapping(dataMap)
+        //        return object
+        //    }
+        //} else {
+            // Ensure BaseMappable is not implemented directly
+        //    assert(false, "BaseMappable should not be implemented directly. Please implement Mappable, StaticMappable or ImmutableMappable")
+        //}
         return nil
     }
     
@@ -93,17 +102,23 @@ extension DataConversion {
 }
 
 
+
+
+
+
+// MARK: - OBJECT ->  TO JSON----------------------------------------------------------//
 extension DataConversion {
-    public func fieldsType() -> Void {
-        let dataMap = DataMap(fieldType: true)
-        if var object = E() {
-            object.mapping(dataMap)
-        }
-    }
+    
 }
 
 
-
-
-
+// MARK: - OBJECT ->  TO FeildType-----------------------------------------------------//
+extension DataConversion {
+    public func fieldsType(_ object: E) -> [String : Any.Type] {
+        var mutableObject = object
+        let map = DataMap(fieldType: true)
+        mutableObject.mapping(map)
+        return map.FeildTypeDictionary
+    }
+}
 

@@ -23,8 +23,10 @@ class ViewController: UIViewController {
     @IBAction func ceshiAction(_ sender: AnyObject) {
         
         let topicsModel = TopicsModel()
+        //topicsModel.author_id = "dsd"
         
-        DataConversion<TopicsModel>().fieldsType()
+        let dd = DataConversion<TopicsModel>().fieldsType(topicsModel)
+        print(dd)
         
 //        var store = Storage()
 //        let topicsModel =  store.objects(TopicsModel.self)

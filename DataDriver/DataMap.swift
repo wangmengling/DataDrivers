@@ -13,7 +13,8 @@ open class DataMap {
     open var JSONDataDictionary: [String : AnyObject] = [:]
     open var currentValue: AnyObject?
     open var currentKey: String?
-    open var ModelDictionary: [String : AnyObject] = [:]
+    
+    open var FeildTypeDictionary: [String : Any.Type] = [:]
     
     var dataConversionType:DataConversionTypeEnum! = .Model
     
