@@ -8,6 +8,7 @@
 
 import Foundation
 
+//public typealias E = DataConversionProtocol
 
 public struct DataConversion<Element:DataConversionProtocol> {
     public typealias E = Element
@@ -18,7 +19,7 @@ extension DataConversion {
     /// Maps a JSON dictionary to an object that conforms to Mappable
     public func map(_ JSONDictionary: [String : AnyObject]) -> E? {
         let dataMap = DataMap(JSONDictionary: JSONDictionary)
-        if var object = E(map:dataMap) {
+        if var object = E() {
             object.mapping(dataMap)
             return object
         }
@@ -114,7 +115,7 @@ extension DataConversion {
 
 // MARK: - OBJECT ->  TO FeildType-----------------------------------------------------//
 extension DataConversion {
-    public func fieldsType(_ object: E) -> [String : Any.Type] {
+    public func fieldsType(_ object: E) -> [String : Any] {
         var mutableObject = object
         let map = DataMap(fieldType: true)
         mutableObject.mapping(map)

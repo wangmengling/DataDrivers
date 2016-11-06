@@ -14,7 +14,8 @@ open class DataMap {
     open var currentValue: AnyObject?
     open var currentKey: String?
     
-    open var FeildTypeDictionary: [String : Any.Type] = [:]
+//    open var FeildTypeDictionary: [String : Any.Type] = [:]
+    open var FeildTypeDictionary: [String : Any] = [:]
     
     var dataConversionType:DataConversionTypeEnum! = .Model
     

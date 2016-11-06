@@ -36,7 +36,7 @@ extension Storage {
     }
     
     public mutating func object<E:DataConversionProtocol>(_ filter:String) -> E? {
-        if let object = E(map:DataMap()) {
+        if let object = E() {
             let dic = srorageToSQLite.objectToSQLite(self.tableName(object),filter: filter)
             let data:DataConversion =  DataConversion<E>()
             let object = data.map(dic!)

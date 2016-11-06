@@ -8,7 +8,7 @@
 
 import Foundation
 public protocol DataConversionProtocol{
-    init?(map:DataMap)
+    init?()
     /// This function is where all variable mappings should occur. It is executed by Mapper during the mapping (serialization and deserialization) process.
     mutating func mapping(_ map: DataMap)
     func primaryKey() -> String
@@ -40,6 +40,16 @@ extension DataConversionProtocol{
         }
         
         return value
+    }
+}
+
+struct BaseDataConversion:DataConversionProtocol {
+    init() {
+        
+    }
+    
+    func mapping(_ map: DataMap) {
+        
     }
 }
 

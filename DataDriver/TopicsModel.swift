@@ -58,7 +58,7 @@ class TopicsModel:DataConversionProtocol {
         
     }
     
-    init(){
+    required init(){
         
     }
     
