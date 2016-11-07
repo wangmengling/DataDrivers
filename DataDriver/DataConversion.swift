@@ -14,6 +14,7 @@ public struct DataConversion<Element:DataConversionProtocol> {
     public typealias E = Element
 }
 
+
 // MARK: - JSON Map
 extension DataConversion {
     /// Maps a JSON dictionary to an object that conforms to Mappable

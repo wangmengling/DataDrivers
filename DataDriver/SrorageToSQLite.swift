@@ -217,7 +217,7 @@ extension SrorageToSQLite {
      
      - parameter object: E object
      */
-    func createTable(_ object:E) -> Bool {
+    func createTable(_ object:E,type:E.Type) -> Bool {
         /// 1.反射获取属性
         let objectsMirror = Mirror(reflecting: object)
         let property = objectsMirror.children

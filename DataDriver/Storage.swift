@@ -55,14 +55,14 @@ extension Storage {
      - parameter object: <#object description#>
      - parameter update: <#update description#>
      */
-    mutating func add(_ object:E?,update:Bool = false) -> Bool  {
+    mutating func add(_ object:E?,update:Bool = false,type:E.Type = E) -> Bool  {
         
         guard let object:E = object else {
             return false
         }
         //创建数据库
         if !srorageToSQLite.tableIsExists(object){
-            _ = srorageToSQLite.createTable(object)
+            _ = srorageToSQLite.createTable(object,type: type)
         }
         //修改
         if update == true && srorageToSQLite.count(object) > 0{

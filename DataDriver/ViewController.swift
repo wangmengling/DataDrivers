@@ -25,20 +25,22 @@ class ViewController: UIViewController {
         let topicsModel = TopicsModel()
         //topicsModel.author_id = "dsd"
         
-        let dd = DataConversion<TopicsModel>().fieldsType(topicsModel)
-        print(dd)
+//        let dd = DataConversion<TopicsModel>().fieldsType(topicsModel)
+//        print(dd)
         
-//        var store = Storage()
+        var store = Storage()
 //        let topicsModel =  store.objects(TopicsModel.self)
-//        //            if store.add(topic, update: false) {
-//        //
-//        //            }
-//        
-////        let dd =  store.delete(topicsModel.last)
-//        var topicModel = topicsModel.last
-//        print(topicModel)
-//        topicModel?.content = "w"
-//        let ds = store.add(topicModel, update: true)
+////                    if store.add(topic, update: false) {
+////        
+////                    }
+//////
+//////        let dd =  store.delete(topicsModel.last)
+//        let topicModel = topicsModel.last
+        print(topicsModel)
+        topicsModel.content = "w"
+//        let ds = store.add<TopicsModel>(topicsModel)
+        store.add(topicsModel)
+//        print(ds)
 //        NetWork.request(.GET, url: "https://cnodejs.org/api/v1/topics") { (data, response, error) in
 //            let dataArray = data?.object(forKey:"data") as AnyObject
 //            let topicsssModelArray = DataConversion<TopicsModel>().mapArray(dataArray)
