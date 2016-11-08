@@ -100,7 +100,9 @@ extension SrorageToSQLite {
 
 // MARK: - Insert Data To Table
 extension SrorageToSQLite {
-    func insert(_ object:E) -> Bool {
+    func insert<T:DataConversionProtocol>(_ object:T) -> Bool {
+        
+        
         
         let objectsMirror = Mirror(reflecting: object)
         let property = objectsMirror.children
@@ -109,9 +111,26 @@ extension SrorageToSQLite {
         var values = ""
         
         
+        let fieldsType = DataConversion<T>().fieldsType(object) as AnyObject
+        
+//        fieldsType.forEach { (pro,value) in
+//            if value is Array<Any> {
+//                
+//            }else {
+//                guard let columnValue:String = self.proToColumnValues(object.objectForKey(pro) as Any, pro, value) , columnValue.characters.count > 0  else  {
+//                    return
+//                }
+//                values += columnValue
+//            }
+//            columns += "\(pro),"
+//        }
+        
+        
+        
         if let b = AnyBidirectionalCollection(property) {
-            
             b.forEach({ (child) in
+                let fieldType = fieldsType.object(forKey: child.label!)
+                print(fieldType!)
                 guard let columnValue:String = self.proToColumnValues(child.value) , columnValue.characters.count > 0  else  {
                     return
                 }
@@ -132,7 +151,23 @@ extension SrorageToSQLite {
         return sqliteManager.execSQL(insertSQL)
     }
     
-    
+    func proToColumnValues(_ object:Any, _ pro:String, _ value:Any)  -> String? {
+        print(object)
+        if value is Int.Type{
+            return "\(object as! Int),"
+        }else if value is Double.Type{
+            return "\(object as! Double),"
+        } else if value is Float.Type{
+            return "\(object as! Float),"
+        } else if value is String.Type{
+            return "'\(object as! String)',"
+        } else if value is Bool.Type{
+            return "\(object as! Bool),"
+        } else if value is Array<Any> {
+            
+        }
+        return "\(object as! Int),"
+    }
     
     /**
      Optional To Value
@@ -161,11 +196,15 @@ extension SrorageToSQLite {
             return "\(value as! Float),"
         } else if m.subjectType == Optional<String>.self{
             return "'\(value as! String)',"
+        }else if m.subjectType == Optional<Bool>.self{
+            return "'\(value as! String)',"
         } else if m.subjectType == ImplicitlyUnwrappedOptional<String>.self {
             return "'\(value)',"
         } else {
             return "\(value),"
         }
+        
+        
     }
 }
 

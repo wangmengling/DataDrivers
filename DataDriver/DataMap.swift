@@ -11,7 +11,7 @@ import Foundation
 open class DataMap {
     open var JSONDictionary: [String : AnyObject] = [:]
     open var JSONDataDictionary: [String : AnyObject] = [:]
-    open var currentValue: AnyObject?
+    open var currentValue: Any?
     open var currentKey: String?
     
 //    open var FeildTypeDictionary: [String : Any.Type] = [:]
@@ -50,7 +50,7 @@ open class DataMap {
         return self.currentValue as? T
     }
     
-    open func value<T>() -> T? {
+    public func value<T>() -> T? {
         return currentValue as? T
     }
 }

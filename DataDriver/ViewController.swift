@@ -22,36 +22,38 @@ class ViewController: UIViewController {
 
     @IBAction func ceshiAction(_ sender: AnyObject) {
         
-        let topicsModel = TopicsModel()
-        //topicsModel.author_id = "dsd"
-        
-//        let dd = DataConversion<TopicsModel>().fieldsType(topicsModel)
-//        print(dd)
-        
-        var store = Storage()
-//        let topicsModel =  store.objects(TopicsModel.self)
-////                    if store.add(topic, update: false) {
-////        
-////                    }
-//////
-//////        let dd =  store.delete(topicsModel.last)
-//        let topicModel = topicsModel.last
-        print(topicsModel)
-//        topicsModel.content = "w"
-//        let ds = store.add<TopicsModel>(topicsModel)
-//        store.add(topicsModel)
-        let ds = store.add(topicsModel, update: false)
-        print(ds)
-//        NetWork.request(.GET, url: "https://cnodejs.org/api/v1/topics") { (data, response, error) in
-//            let dataArray = data?.object(forKey:"data") as AnyObject
-//            let topicsssModelArray = DataConversion<TopicsModel>().mapArray(dataArray)
-//            let topic = topicsssModelArray.last! as TopicsModel
-//            //            Storage().add(topicsssModelArray)
-//            
+//        let topicsModel = TopicsModel()
+//        //topicsModel.author_id = "dsd"
+//        
+////        let dd = DataConversion<TopicsModel>().fieldsType(topicsModel)
+////        print(dd)
+//        
+//        var store = Storage()
+////        let topicsModel =  store.objects(TopicsModel.self)
+//////                    if store.add(topic, update: false) {
+//////        
+//////                    }
+////////
+////////        let dd =  store.delete(topicsModel.last)
+////        let topicModel = topicsModel.last
+//        print(topicsModel)
+////        topicsModel.content = "w"
+////        let ds = store.add<TopicsModel>(topicsModel)
+////        store.add(topicsModel)
+//        let ds = store.add(topicsModel, update: false)
+//        print(ds)
+        NetWork.request(.GET, url: "https://cnodejs.org/api/v1/topics") { (data, response, error) in
+            let dataArray = data?.object(forKey:"data") as AnyObject
+            let topicsssModelArray = DataConversion<TopicsModel>().mapArray(dataArray)
+            print(dataArray)
+            print(topicsssModelArray)
+            //            Storage().add(topicsssModelArray)
+            
 //            print(type(of: topic))
-//            
-//            
-//            var store = Storage()
+            
+            
+            var store = Storage()
+            store.addArray(topicsssModelArray)
 ////            let topicsModel =  store.objects(TopicsModel.self)
 ////            if store.add(topic, update: false) {
 ////                
@@ -61,10 +63,10 @@ class ViewController: UIViewController {
 ////            print(topicsModel)
 ////            return
 //            store.addArray(topicsssModelArray)
-//            
-//            
-//            //store.objects()
-//        }
+            
+            
+            //store.objects()
+        }
     }
 
 }

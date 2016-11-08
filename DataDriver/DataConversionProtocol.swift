@@ -33,8 +33,8 @@ extension DataConversionProtocol{
         var value:Any?
         
         _ = property.map { (child) -> Mirror.Child? in
-            if child.label == self.primaryKey() {
-                value = child.value
+            if child.label == key {
+                value = child.value as Any
             }
             return nil
         }

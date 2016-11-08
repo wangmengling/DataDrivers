@@ -19,8 +19,8 @@ enum TopicVisitCountEnum: Int {
 }
 
 struct AuthorssModel:DataConversionProtocol {
-    var id:Int!
-    var name:String!
+    var avatar_url:Int!
+    var loginname:String!
     
     init?(map: DataMap) {
         
@@ -31,23 +31,24 @@ struct AuthorssModel:DataConversionProtocol {
     }
     
     mutating func mapping(_ map: DataMap) {
-        id <-> map["id"]
-        name <-> map["name"]
+        avatar_url <-> map["avatar_url"]
+        loginname <-> map["loginname"]
     }
 }
 
 class TopicsModel:DataConversionProtocol {
-    var num: Int = 0
-    var author: AuthorssModel! = AuthorssModel()
+    var id:String!
+    var author: AuthorssModel!
     var author_id: String!
     var tab: String!
     var content: String?
+    var create_at: String!
     var title: String?
-    var visit_count: TopicVisitCountEnum = TopicVisitCountEnum.default
+    var visit_count: Int = 0
     var reply_count: Int = 0
     var top:Bool = false
-    var array:Array<String>!
-    var authorArray:Array<AuthorssModel> = []
+    var good:Bool = false
+    var last_reply_at:String!
     
     func primaryKey() -> String {
         return "author_id"
@@ -62,16 +63,18 @@ class TopicsModel:DataConversionProtocol {
     }
     
     func mapping(_ map: DataMap) {
-        num <-> map["num"]
-        author <-> map["author"]
+        id <-> map["id"]
+//        author <-> map["author"]
         author_id <-> map["author_id"]
         top <-> map["top"]
         tab <-> map["tab"]
         content <-> map["content"]
+        create_at <-> map["create_at"]
         title <-> map["title"]
         visit_count <-> map["visit_count"]
-        array <->  map["array"]
-        authorArray <-> map["authorArray"]
+        last_reply_at <->  map["last_reply_at"]
+        good <-> map["good"]
+        reply_count <-> map["reply_count"]
     }
 }
 

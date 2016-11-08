@@ -72,14 +72,13 @@ extension Storage {
     }
     
     
-    mutating func addArray(_ objectArray:[E]?) {
+    mutating func addArray<T:DataConversionProtocol>(_ objectArray:[T]?) {
         guard let objectArray = objectArray else {
             return
         }
         for (_,element) in objectArray.enumerated() {
-//            self.add(element,update: false)
+            _ = self.add(element,update: false)
         }
-        
     }
 }
 

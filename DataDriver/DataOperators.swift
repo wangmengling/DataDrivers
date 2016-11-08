@@ -274,7 +274,6 @@ func fieldType<T:DataConversionProtocol>(_ field: T?, right: DataMap) {
     }
     let dataConversionFieldKey = Mirror(reflecting: field as Any)
     let dataConversionFieldType =  [ String(describing: dataConversionFieldKey.subjectType),DataConversion<T>().fieldsType(right.value()!)] as [Any]
-    print(dataConversionFieldType)
     right.FeildTypeDictionary[right.currentKey!] = dataConversionFieldType
 }
 
