@@ -52,10 +52,3 @@ struct BaseDataConversion:DataConversionProtocol {
         
     }
 }
-
-//extension DataConversionProtocol : CustomStringConvertible {
-//    public var description: String
-
-//let objectsMirror = Mirror(reflecting: object)
-//let property = objectsMirror.children
-//}

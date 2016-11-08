@@ -55,14 +55,14 @@ extension Storage {
      - parameter object: <#object description#>
      - parameter update: <#update description#>
      */
-    mutating func add(_ object:E?,update:Bool = false,type:E.Type = E) -> Bool  {
+    mutating func add<E:DataConversionProtocol>(_ object:E?,update:Bool = false) -> Bool  {
         
         guard let object:E = object else {
             return false
         }
         //创建数据库
         if !srorageToSQLite.tableIsExists(object){
-            _ = srorageToSQLite.createTable(object,type: type)
+            _ = srorageToSQLite.createTable(object)
         }
         //修改
         if update == true && srorageToSQLite.count(object) > 0{
@@ -77,7 +77,7 @@ extension Storage {
             return
         }
         for (_,element) in objectArray.enumerated() {
-            self.add(element,update: false)
+//            self.add(element,update: false)
         }
         
     }

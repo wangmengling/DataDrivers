@@ -50,7 +50,6 @@ class TopicsModel:DataConversionProtocol {
     var authorArray:Array<AuthorssModel> = []
     
     func primaryKey() -> String {
-        //        self.description = self.
         return "author_id"
     }
     

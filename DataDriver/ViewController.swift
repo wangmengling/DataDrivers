@@ -37,10 +37,11 @@ class ViewController: UIViewController {
 //////        let dd =  store.delete(topicsModel.last)
 //        let topicModel = topicsModel.last
         print(topicsModel)
-        topicsModel.content = "w"
+//        topicsModel.content = "w"
 //        let ds = store.add<TopicsModel>(topicsModel)
-        store.add(topicsModel)
-//        print(ds)
+//        store.add(topicsModel)
+        let ds = store.add(topicsModel, update: false)
+        print(ds)
 //        NetWork.request(.GET, url: "https://cnodejs.org/api/v1/topics") { (data, response, error) in
 //            let dataArray = data?.object(forKey:"data") as AnyObject
 //            let topicsssModelArray = DataConversion<TopicsModel>().mapArray(dataArray)

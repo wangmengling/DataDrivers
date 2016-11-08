@@ -217,21 +217,29 @@ extension SrorageToSQLite {
      
      - parameter object: E object
      */
-    func createTable(_ object:E,type:E.Type) -> Bool {
+    func createTable<E:DataConversionProtocol>(_ object:E) -> Bool {
+        let d = DataConversion<E>().fieldsType(object)
         /// 1.反射获取属性
         let objectsMirror = Mirror(reflecting: object)
-        let property = objectsMirror.children
-        
-        /// 2.设置插入字段
+        return self.createTable(tableName: String(describing: objectsMirror.subjectType), value: d)
+    }
+    
+    /**
+     create table
+     
+     - parameter tableName: String
+     - parameter value: [String:Any]
+     */
+    func createTable(tableName:String,value:[String:Any]) -> Bool {
         var column = ""
-        _ = property.map { (label,value) -> Void in
-            column += self.proToColumn(label!, value: value)
+        value.forEach { (pro,value) in
+            column += self.proToColumn(pro, value: value)
         }
+        
         if column.characters.count > 5 {
             column = column.subString(0, length: column.characters.count - 1)
         }
-        let createTabelSQL = "Create TABLE if not exists \(String(describing: objectsMirror.subjectType))(\(column));"
-        
+        let createTabelSQL = "Create TABLE if not exists \(tableName)(\(column));"
         /// 3.执行createTableSql
         return sqliteManager.execSQL(createTabelSQL)
     }
@@ -252,6 +260,29 @@ extension SrorageToSQLite {
         case CHARACTER,INT,FLOAT,DOUBLE,INTEGER,BLOB,NULL,TEXT
     }
     
+    
+    func proTypeReplace( _ value:Any) -> ColumuType {
+//        let sd = Mirror(reflecting: value)
+//        print(sd)
+        if value is Int.Type{
+            return ColumuType.INT
+        }else if value is Double.Type{
+            return ColumuType.DOUBLE
+        } else if value is Float.Type{
+            return ColumuType.FLOAT
+        } else if value is String.Type{
+            return ColumuType.CHARACTER
+        } else if value is Bool.Type{
+            return ColumuType.INT
+        } else if value is Array<Any> {
+            if self.createTable(tableName: (value as AnyObject).firstObject as! String, value: (value as AnyObject).lastObject as! [String : Any]){
+                return ColumuType.INT
+            }
+            return ColumuType.INT
+        }
+        return ColumuType.CHARACTER
+    }
+    
     /**
      Create Table Column Structure ---- E object property To Column SQL
      
@@ -262,7 +293,7 @@ extension SrorageToSQLite {
      */
     func proToColumn(_ label:String,value:Any) -> String {
         var string = ""
-        let columuType = self.typeReplace(value)
+        let columuType = self.proTypeReplace(value)
         switch columuType {
         case ColumuType.INT:
             string += "\(label) \(ColumuType.INT.rawValue) ,"
@@ -291,9 +322,6 @@ extension SrorageToSQLite {
         }
         
         let m =  Mirror(reflecting: x)
-        print(value)
-        print(m.subjectType)
-        
         if m.subjectType ==  ImplicitlyUnwrappedOptional<Int>.self || m.subjectType == Optional<Int>.self{
             return ColumuType.INT
         } else if m.subjectType ==  ImplicitlyUnwrappedOptional<Double>.self || m.subjectType == Optional<Double>.self{

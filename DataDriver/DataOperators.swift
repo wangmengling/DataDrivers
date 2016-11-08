@@ -269,7 +269,12 @@ func fieldType<T:DataConversionProtocol>(_ field: T, right: DataMap) {
 }
 
 func fieldType<T:DataConversionProtocol>(_ field: T?, right: DataMap) {
-    let dataConversionFieldType = DataConversion<T>().fieldsType(right.value()!)
+    guard let field = field  else {
+        return
+    }
+    let dataConversionFieldKey = Mirror(reflecting: field as Any)
+    let dataConversionFieldType =  [ String(describing: dataConversionFieldKey.subjectType),DataConversion<T>().fieldsType(right.value()!)] as [Any]
+    print(dataConversionFieldType)
     right.FeildTypeDictionary[right.currentKey!] = dataConversionFieldType
 }
 
@@ -277,15 +282,15 @@ func fieldType<T:DataConversionProtocol>(_ field: T?, right: DataMap) {
 
 func fieldTypeString(stringMirror:Mirror) -> Any{
     if stringMirror.subjectType == Optional<Int>.self || stringMirror.subjectType ==  ImplicitlyUnwrappedOptional<Int>.self || stringMirror.subjectType ==  Int.self{
-        return String(describing: Int().customMirror.subjectType)
+        return Int().customMirror.subjectType
     }else if stringMirror.subjectType == Optional<String>.self || stringMirror.subjectType == ImplicitlyUnwrappedOptional<String>.self || stringMirror.subjectType ==  String.self{
-        return String(describing: String().customMirror.subjectType)
+        return String().customMirror.subjectType
     }else if stringMirror.subjectType == Optional<Bool>.self || stringMirror.subjectType == ImplicitlyUnwrappedOptional<Bool>.self || stringMirror.subjectType ==  Bool.self{
-        return String(describing: Bool().customMirror.subjectType)
+        return Bool().customMirror.subjectType
     }else if stringMirror.subjectType == Optional<Double>.self || stringMirror.subjectType == ImplicitlyUnwrappedOptional<Double>.self || stringMirror.subjectType ==  Double.self{
-        return String(describing: Double().customMirror.subjectType)
+        return Double().customMirror.subjectType
     }else if stringMirror.subjectType == Optional<Float>.self || stringMirror.subjectType == ImplicitlyUnwrappedOptional<Float>.self || stringMirror.subjectType ==  Float.self{
-        return String(describing: Float().customMirror.subjectType)
+        return Float().customMirror.subjectType
     }
-    return String(describing: String().customMirror.subjectType)
+    return String().customMirror.subjectType
 }
