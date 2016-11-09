@@ -53,7 +53,8 @@ class ViewController: UIViewController {
             
             
             var store = Storage()
-            store.addArray(topicsssModelArray)
+            store.add(topicsssModelArray.first)
+//            store.addArray(topicsssModelArray)
 ////            let topicsModel =  store.objects(TopicsModel.self)
 ////            if store.add(topic, update: false) {
 ////                

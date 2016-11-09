@@ -38,9 +38,9 @@ extension DataConversionProtocol{
             }
             return nil
         }
-        
         return value
     }
+    
 }
 
 struct BaseDataConversion:DataConversionProtocol {

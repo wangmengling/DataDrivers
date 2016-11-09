@@ -101,9 +101,6 @@ extension SrorageToSQLite {
 // MARK: - Insert Data To Table
 extension SrorageToSQLite {
     func insert<T:DataConversionProtocol>(_ object:T) -> Bool {
-        
-        
-        
         let objectsMirror = Mirror(reflecting: object)
         let property = objectsMirror.children
         
@@ -111,31 +108,20 @@ extension SrorageToSQLite {
         var values = ""
         
         
-        let fieldsType = DataConversion<T>().fieldsType(object) as AnyObject
-        
-//        fieldsType.forEach { (pro,value) in
-//            if value is Array<Any> {
-//                
-//            }else {
-//                guard let columnValue:String = self.proToColumnValues(object.objectForKey(pro) as Any, pro, value) , columnValue.characters.count > 0  else  {
-//                    return
-//                }
-//                values += columnValue
-//            }
-//            columns += "\(pro),"
-//        }
-        
+        let fieldsType = DataConversion<T>().fieldsType(object)
         
         
         if let b = AnyBidirectionalCollection(property) {
             b.forEach({ (child) in
-                let fieldType = fieldsType.object(forKey: child.label!)
-                print(fieldType!)
-                guard let columnValue:String = self.proToColumnValues(child.value) , columnValue.characters.count > 0  else  {
-                    return
+                let fieldType:Any? = fieldsType[child.label!]
+                if fieldType != nil {
+                    
+                    guard let columnValue:String = self.proToColumnValues(fieldType!, child.value, object) , columnValue.characters.count > 0  else  {
+                        return
+                    }
+                    columns += "\(child.label!),"
+                    values += columnValue
                 }
-                columns += "\(child.label!),"
-                values += columnValue
             })
         }
         
@@ -146,27 +132,44 @@ extension SrorageToSQLite {
         
         let insertSQL = "INSERT INTO \(String(describing: objectsMirror.subjectType)) (\(columns))  VALUES (\(values));"
         
-        sqliteManager.execIOSQL(insertSQL)
+//        return sqliteManager.execIOSQL(insertSQL)
         
         return sqliteManager.execSQL(insertSQL)
     }
     
-    func proToColumnValues(_ object:Any, _ pro:String, _ value:Any)  -> String? {
-        print(object)
-        if value is Int.Type{
-            return "\(object as! Int),"
-        }else if value is Double.Type{
-            return "\(object as! Double),"
-        } else if value is Float.Type{
-            return "\(object as! Float),"
-        } else if value is String.Type{
-            return "'\(object as! String)',"
-        } else if value is Bool.Type{
-            return "\(object as! Bool),"
-        } else if value is Array<Any> {
-            
+    func proToColumnValues<T:DataConversionProtocol>(_ fieldType:Any, _ value:Any , _ object:T? = nil)  -> String? {
+        if fieldType is Int.Type{
+            return "\(value as! Int),"
+        }else if fieldType is Double.Type{
+            return "\(value as! Double),"
+        } else if fieldType is Float.Type{
+            return "\(value as! Float),"
+        } else if fieldType is String.Type{
+            return "'\(value as! String)',"
+        } else if fieldType is Bool.Type{
+            let boolValue = value as! Bool
+            if boolValue == true{
+                return "1,"
+            }
+            return "0,"
+        } else if fieldType is Array<Any> {
+            let objectsMirror = Mirror(reflecting: value)
+            let property = objectsMirror.children
+//            print(objectsMirror.subjectType)
+//            
+//            let type = objectsMirror.subjectType
+//            
+//            let va = value as! T
+//            
+            property.forEach({ (child) in
+                print(child.label!)
+                print(child.value)
+            })
+//            let object = value as! T
+//            _ = self.insert(object)
+            return ""
         }
-        return "\(object as! Int),"
+        return "\(value as! Int),"
     }
     
     /**

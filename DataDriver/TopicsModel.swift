@@ -19,7 +19,7 @@ enum TopicVisitCountEnum: Int {
 }
 
 struct AuthorssModel:DataConversionProtocol {
-    var avatar_url:Int!
+    var avatar_url:String!
     var loginname:String!
     
     init?(map: DataMap) {
@@ -64,7 +64,7 @@ class TopicsModel:DataConversionProtocol {
     
     func mapping(_ map: DataMap) {
         id <-> map["id"]
-//        author <-> map["author"]
+        author <-> map["author"]
         author_id <-> map["author_id"]
         top <-> map["top"]
         tab <-> map["tab"]
