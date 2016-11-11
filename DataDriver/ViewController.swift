@@ -51,9 +51,11 @@ class ViewController: UIViewController {
             
 //            print(type(of: topic))
             
-            
+            let firstObject = topicsssModelArray.first
+//            let d = DataConversion<TopicsModel>().toJSON(firstObject!)
+//            print(d)
             var store = Storage()
-            store.add(topicsssModelArray.first)
+            store.add(firstObject)
 //            store.addArray(topicsssModelArray)
 ////            let topicsModel =  store.objects(TopicsModel.self)
 ////            if store.add(topic, update: false) {

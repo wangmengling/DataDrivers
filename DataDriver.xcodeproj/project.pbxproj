@@ -36,6 +36,8 @@
 		1864E18E1D8262350042876C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1864E18D1D8262350042876C /* libsqlite3.tbd */; };
 		1864E1921D8262EC0042876C /* view.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864E1911D8262EC0042876C /* view.m */; };
 		1864E1941D826AA90042876C /* TopicsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1864E1931D826AA90042876C /* TopicsModel.swift */; };
+		18AE2AD51DD55A1500CA92BD /* DataToJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AE2AD41DD55A1500CA92BD /* DataToJSON.swift */; };
+		18BFE71D1DD5C6060088AF50 /* DataFieldType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BFE71C1DD5C6060088AF50 /* DataFieldType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +95,8 @@
 		1864E1901D8262EC0042876C /* view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = view.h; sourceTree = "<group>"; };
 		1864E1911D8262EC0042876C /* view.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = view.m; sourceTree = "<group>"; };
 		1864E1931D826AA90042876C /* TopicsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicsModel.swift; sourceTree = "<group>"; };
+		18AE2AD41DD55A1500CA92BD /* DataToJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataToJSON.swift; sourceTree = "<group>"; };
+		18BFE71C1DD5C6060088AF50 /* DataFieldType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataFieldType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,6 +212,8 @@
 			children = (
 				1864E16A1D824DE20042876C /* DataConversion.swift */,
 				1625E3351DC7752400CB71FF /* DataOperators.swift */,
+				18AE2AD41DD55A1500CA92BD /* DataToJSON.swift */,
+				18BFE71C1DD5C6060088AF50 /* DataFieldType.swift */,
 				1864E16B1D824DE20042876C /* DataConversionProtocol.swift */,
 				1864E16C1D824DE20042876C /* DataMap.swift */,
 				1625E3371DC77FF900CB71FF /* DataConversionTypeEnum.swift */,
@@ -396,6 +402,8 @@
 				1625E3381DC77FF900CB71FF /* DataConversionTypeEnum.swift in Sources */,
 				1864E17F1D824E4B0042876C /* String+MD5.swift in Sources */,
 				1864E17A1D824E4B0042876C /* Image.swift in Sources */,
+				18AE2AD51DD55A1500CA92BD /* DataToJSON.swift in Sources */,
+				18BFE71D1DD5C6060088AF50 /* DataFieldType.swift in Sources */,
 				1864E16E1D824DE20042876C /* DataConversionProtocol.swift in Sources */,
 				1864E1641D824DB80042876C /* Extensions.swift in Sources */,
 				1864E17B1D824E4B0042876C /* ImageView+MLImageDowload.swift in Sources */,

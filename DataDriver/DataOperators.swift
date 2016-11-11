@@ -27,7 +27,7 @@ public func <-> <T>(field: inout T, right: DataMap) {
 
 public func <-> <T:Collection>(field: inout T, right: DataMap) {
     if right.dataConversionType == .FieldType {
-        fieldType(field, right: right)
+        DataFieldType.fieldType(field, right: right)
         return
     }
     dataConversion(&field, right: right)
@@ -35,7 +35,7 @@ public func <-> <T:Collection>(field: inout T, right: DataMap) {
 
 public func <-> <T:Collection>(field: inout T!, right: DataMap) {
     if right.dataConversionType == .FieldType {
-        fieldType(field, right: right)
+        DataFieldType.fieldType(field, right: right)
         return
     }
     dataConversion(&field, right: right)
@@ -43,7 +43,7 @@ public func <-> <T:Collection>(field: inout T!, right: DataMap) {
 
 public func <-> <T:Collection>(field: inout T?, right: DataMap) {
     if right.dataConversionType == .FieldType {
-        fieldType(field, right: right)
+        DataFieldType.fieldType(field, right: right)
         return
     }
     dataConversion(&field, right: right)
@@ -53,54 +53,71 @@ public func <-> <T:Collection>(field: inout T?, right: DataMap) {
 //----------------- DataConversionProtocol
 public func <-> <T:DataConversionProtocol>(field: inout T, right: DataMap) {
     if right.dataConversionType == .FieldType {
-        fieldType(field, right: right)
+        DataFieldType.fieldType(field, right: right)
         return
+    }else if right.dataConversionType == .Model {
+        guard let object:T = DataConversion().map(right.value()) else {
+            return
+        }
+        field = object
+    }else if right.dataConversionType == .Json {
+        DataToJSON.toJSON(field, map: right)
     }
-    guard let object:T = DataConversion().map(right.value()) else {
-        return
-    }
-    field = object
 }
 
 public func <-> <T:DataConversionProtocol>(field: inout T!, right: DataMap) {
     if right.dataConversionType == .FieldType {
-        if let object:T = right.value()  {
-            field = object
-        }else {
-            right.currentValue = T() as AnyObject!
-            field = right.value()
+        guard let left = field else {
+            if let object:T = right.value()  {
+                field = object
+            }else {
+                right.currentValue = T() as AnyObject!
+                field = right.value()
+            }
+            DataFieldType.fieldType(field, right: right)
+            return
         }
-        fieldType(field, right: right)
+        DataFieldType.fieldType(left, right: right)
         return
+    }else if right.dataConversionType == .Model {
+        guard let object:T = DataConversion().map(right.value()) else {
+            return
+        }
+        field = object
+    }else if right.dataConversionType == .Json {
+        DataToJSON.toJSON(field, map: right)
     }
-    guard let object:T = DataConversion().map(right.value()) else {
-        return
-    }
-    field = object
 }
 
 public func <-> <T:DataConversionProtocol>(field: inout T?, right: DataMap) {
     if right.dataConversionType == .FieldType {
-        if let object:T = right.value()  {
-            field = object
-        }else {
-            right.currentValue = T() as AnyObject!
-            field = right.value()
+        guard let left = field else {
+            if let object:T = right.value()  {
+                field = object
+            }else {
+                right.currentValue = T() as AnyObject!
+                field = right.value()
+            }
+            DataFieldType.fieldType(field, right: right)
+            return
         }
-        fieldType(field, right: right)
+        DataFieldType.fieldType(left, right: right)
         return
+    }else if right.dataConversionType == .Model {
+        guard let object:T = DataConversion().map(right.value()) else {
+            return
+        }
+        field = object
+    }else if right.dataConversionType == .Json {
+        DataToJSON.toJSON(field, map: right)
     }
-    guard let object:T = DataConversion().map(right.value()) else {
-        return
-    }
-    field = object
 }
 
 //----------------- Array<TDataConversionProtocol>
 public func <-> <T:DataConversionProtocol>(field: inout Array<T>, right: DataMap) {
     if right.dataConversionType == .FieldType {
         let value:T = T()!
-        fieldType(value, right: right)
+        DataFieldType.fieldType(value, right: right)
         return
     }
     guard let object:Array<T> = DataConversion().mapArray(right.value()) else {
@@ -111,14 +128,8 @@ public func <-> <T:DataConversionProtocol>(field: inout Array<T>, right: DataMap
 
 public func <-> <T:DataConversionProtocol>(field: inout Array<T>!, right: DataMap) {
     if right.dataConversionType == .FieldType {
-        if let object:Array<T> = right.value()  {
-            field = object
-        }else {
-            right.currentValue = T() as AnyObject!
-            field = right.value()
-        }
         let value = T()
-        fieldType(value, right: right)
+        DataFieldType.fieldType(value, right: right)
         return
     }
     guard let object:Array<T> = DataConversion().mapArray(right.value()) else {
@@ -129,14 +140,8 @@ public func <-> <T:DataConversionProtocol>(field: inout Array<T>!, right: DataMa
 
 public func <-> <T:DataConversionProtocol>(field: inout Array<T>?, right: DataMap) {
     if right.dataConversionType == .FieldType {
-        if let object:Array<T> = right.value()  {
-            field = object
-        }else {
-            right.currentValue = T() as AnyObject!
-            field = right.value()
-        }
         let value = T()
-        fieldType(value, right: right)
+        DataFieldType.fieldType(value, right: right)
         return
     }
     guard let object:Array<T> = DataConversion().mapArray(right.value()) else {
@@ -148,7 +153,7 @@ public func <-> <T:DataConversionProtocol>(field: inout Array<T>?, right: DataMa
 /// Object of Raw Representable type
 public func <-> <T: RawRepresentable>(field: inout T, right: DataMap) {
     if right.dataConversionType == .FieldType {
-        fieldType(field, right: right)
+        DataFieldType.fieldType(field, right: right)
         return
     }
     guard let raw = right.currentValue as? T.RawValue  else{
@@ -163,7 +168,7 @@ public func <-> <T: RawRepresentable>(field: inout T, right: DataMap) {
 /// Optional Object of Raw Representable type
 public func <-> <T: RawRepresentable>(left: inout T?, right: DataMap) {
     if right.dataConversionType == .FieldType {
-        fieldType(left, right: right)
+        DataFieldType.fieldType(left, right: right)
         return
     }
     guard let raw = right.currentValue as? T.RawValue  else{
@@ -176,7 +181,7 @@ public func <-> <T: RawRepresentable>(left: inout T?, right: DataMap) {
 /// Implicitly Unwrapped Optional Object of Raw Representable type
 public func <-> <T: RawRepresentable>(left: inout T!, right: DataMap) {
     if right.dataConversionType == .FieldType {
-        fieldType(left, right: right)
+        DataFieldType.fieldType(left, right: right)
         return
     }
     guard let raw = right.currentValue as? T.RawValue  else{
@@ -197,99 +202,37 @@ func dataConversion <T>(_ field: inout T, right: DataMap) {
         }
         field = object
     }else if right.dataConversionType == .Json {
-        toJSON(field, map: right)
+        DataToJSON.toJSON(field, map: right)
     }else if right.dataConversionType == .FieldType {
-        fieldType(field, right: right)
+        DataFieldType.fieldType(field, right: right)
     }
 }
 
-//----------------------------------------
-func toJSON<T>(_ field: T?, map: DataMap) {
-    if map.dataConversionType != .Json {
-        return
-    }
-    guard let value = field else {
-        return
-    }
-    if let x = value as? AnyObject , false
-        || x is NSNumber // Basic types
-        || x is Bool
-        || x is Int
-        || x is Double
-        || x is Float
-        || x is String
-        || x is Array<NSNumber> // Arrays
-        || x is Array<Bool>
-        || x is Array<Int>
-        || x is Array<Double>
-        || x is Array<Float>
-        || x is Array<String>
-        || x is Array<AnyObject>
-        || x is Array<Dictionary<String, AnyObject>>
-        || x is Dictionary<String, NSNumber> // Dictionaries
-        || x is Dictionary<String, Bool>
-        || x is Dictionary<String, Int>
-        || x is Dictionary<String, Double>
-        || x is Dictionary<String, Float>
-        || x is Dictionary<String, String>
-        || x is Dictionary<String, AnyObject>
-    {
-        map.JSONDataDictionary[map.currentKey!] = x
+func dataConversion <T>(_ field: inout T!, right: DataMap) {
+    if right.dataConversionType == .Model {
+        guard let object:T = right.value() else {
+            return
+        }
+        field = object
+    }else if right.dataConversionType == .Json {
+        //        toJSON(field, map: right)
+        DataToJSON.toJSON(field, map: right)
+    }else if right.dataConversionType == .FieldType {
+        DataFieldType.fieldType(field, right: right)
     }
 }
 
-
-//----------------------------------------
-func fieldType<T:Collection>(_ field: T?, right:DataMap) {
-    right.FeildTypeDictionary[right.currentKey!] = String(describing: String().customMirror.subjectType)
-}
-
-func fieldType<T:Collection>(_ field: T, right:DataMap) {
-    right.FeildTypeDictionary[right.currentKey!] = String(describing: String().customMirror.subjectType)
-}
-
-func fieldType<T>(_ field: T, right: DataMap) {
-    let stringMirror = Mirror(reflecting: field as Any)
-    right.FeildTypeDictionary[right.currentKey!] = fieldTypeString(stringMirror: stringMirror)
-}
-
-func fieldType<T:RawRepresentable>(_ field: T?, right: DataMap) {
-    let dMirror = Mirror(reflecting: field?.rawValue as Any)
-    right.FeildTypeDictionary[right.currentKey!] = fieldTypeString(stringMirror: dMirror)
-}
-
-func fieldType<T:RawRepresentable>(_ field: T, right: DataMap) {
-    let dMirror = Mirror(reflecting: field.rawValue as Any)
-    right.FeildTypeDictionary[right.currentKey!] = fieldTypeString(stringMirror: dMirror)
-}
-
-func fieldType<T:DataConversionProtocol>(_ field: T, right: DataMap) {
-    let dataConversionFieldType = DataConversion<T>().fieldsType(field)
-    right.FeildTypeDictionary[right.currentKey!] = dataConversionFieldType
-}
-
-func fieldType<T:DataConversionProtocol>(_ field: T?, right: DataMap) {
-    guard let field = field  else {
-        return
+func dataConversion <T>(_ field: inout T?, right: DataMap) {
+    if right.dataConversionType == .Model {
+        guard let object:T = right.value() else {
+            return
+        }
+        field = object
+    }else if right.dataConversionType == .Json {
+//        toJSON(field, map: right)
+        DataToJSON.toJSON(field, map: right)
+    }else if right.dataConversionType == .FieldType {
+        DataFieldType.fieldType(field, right: right)
     }
-    let dataConversionFieldKey = Mirror(reflecting: field as Any)
-    let dataConversionFieldType =  [ String(describing: dataConversionFieldKey.subjectType),DataConversion<T>().fieldsType(right.value()!)] as [Any]
-    right.FeildTypeDictionary[right.currentKey!] = dataConversionFieldType
-}
-
-
-
-func fieldTypeString(stringMirror:Mirror) -> Any{
-    if stringMirror.subjectType == Optional<Int>.self || stringMirror.subjectType ==  ImplicitlyUnwrappedOptional<Int>.self || stringMirror.subjectType ==  Int.self{
-        return Int().customMirror.subjectType
-    }else if stringMirror.subjectType == Optional<String>.self || stringMirror.subjectType == ImplicitlyUnwrappedOptional<String>.self || stringMirror.subjectType ==  String.self{
-        return String().customMirror.subjectType
-    }else if stringMirror.subjectType == Optional<Bool>.self || stringMirror.subjectType == ImplicitlyUnwrappedOptional<Bool>.self || stringMirror.subjectType ==  Bool.self{
-        return Bool().customMirror.subjectType
-    }else if stringMirror.subjectType == Optional<Double>.self || stringMirror.subjectType == ImplicitlyUnwrappedOptional<Double>.self || stringMirror.subjectType ==  Double.self{
-        return Double().customMirror.subjectType
-    }else if stringMirror.subjectType == Optional<Float>.self || stringMirror.subjectType == ImplicitlyUnwrappedOptional<Float>.self || stringMirror.subjectType ==  Float.self{
-        return Float().customMirror.subjectType
-    }
-    return String().customMirror.subjectType
+    
 }

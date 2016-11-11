@@ -110,7 +110,12 @@ extension DataConversion {
 
 // MARK: - OBJECT ->  TO JSON----------------------------------------------------------//
 extension DataConversion {
-    
+    public func toJSON(_ object: E) -> [String: Any] {
+        var mutableObject = object
+        let map = DataMap(toJSON: true)
+        mutableObject.mapping(map)
+        return map.JSONDataDictionary
+    }
 }
 
 
@@ -123,4 +128,6 @@ extension DataConversion {
         return map.FeildTypeDictionary
     }
 }
+
+
 

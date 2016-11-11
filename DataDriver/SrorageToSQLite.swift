@@ -101,6 +101,7 @@ extension SrorageToSQLite {
 // MARK: - Insert Data To Table
 extension SrorageToSQLite {
     func insert<T:DataConversionProtocol>(_ object:T) -> Bool {
+        print(object)
         let objectsMirror = Mirror(reflecting: object)
         let property = objectsMirror.children
         
@@ -108,21 +109,21 @@ extension SrorageToSQLite {
         var values = ""
         
         
+        
+        
+        let json = DataConversion<T>().toJSON(object)
         let fieldsType = DataConversion<T>().fieldsType(object)
         
-        
-        if let b = AnyBidirectionalCollection(property) {
-            b.forEach({ (child) in
-                let fieldType:Any? = fieldsType[child.label!]
-                if fieldType != nil {
-                    
-                    guard let columnValue:String = self.proToColumnValues(fieldType!, child.value, object) , columnValue.characters.count > 0  else  {
-                        return
-                    }
-                    columns += "\(child.label!),"
-                    values += columnValue
+        json.forEach { (key,value) in
+            let fieldType:Any? = fieldsType[key]
+            if fieldType != nil {
+                
+                guard let columnValue:String = self.proToColumnValues(fieldType!, value) , columnValue.characters.count > 0  else  {
+                    return
                 }
-            })
+                columns += "\(key),"
+                values += columnValue
+            }
         }
         
         if property.count > 0 {
@@ -137,7 +138,36 @@ extension SrorageToSQLite {
         return sqliteManager.execSQL(insertSQL)
     }
     
-    func proToColumnValues<T:DataConversionProtocol>(_ fieldType:Any, _ value:Any , _ object:T? = nil)  -> String? {
+    
+    func insert(_ fieldType:[Any] ,_ value:[String:Any]) -> Bool {
+        var columns = ""
+        var values = ""
+        
+        let fieldsType = fieldType.last as? [String:Any]
+        let tableName = fieldType.first as? String
+        
+        value.forEach { (k,v) in
+            let fT:Any? = fieldsType?[k]
+            if fT != nil {
+                guard let columnValue:String = self.proToColumnValues(fT!, v ) , columnValue.characters.count > 0  else  {
+                    return
+                }
+                columns += "\(k),"
+                values += columnValue
+            }
+        }
+        if value.count > 0 {
+            columns = columns.subString(0, length: columns.characters.count - 1)
+            values = values.subString(0, length: values.characters.count - 1)
+        }
+        if let tableName = tableName {
+            let insertSQL = "INSERT INTO \(tableName) (\(columns))  VALUES (\(values));"
+            return sqliteManager.execSQL(insertSQL)
+        }
+        return false
+    }
+    
+    func proToColumnValues(_ fieldType:Any, _ value:Any )  -> String? {
         if fieldType is Int.Type{
             return "\(value as! Int),"
         }else if fieldType is Double.Type{
@@ -153,20 +183,7 @@ extension SrorageToSQLite {
             }
             return "0,"
         } else if fieldType is Array<Any> {
-            let objectsMirror = Mirror(reflecting: value)
-            let property = objectsMirror.children
-//            print(objectsMirror.subjectType)
-//            
-//            let type = objectsMirror.subjectType
-//            
-//            let va = value as! T
-//            
-            property.forEach({ (child) in
-                print(child.label!)
-                print(child.value)
-            })
-//            let object = value as! T
-//            _ = self.insert(object)
+            _ = self.insert(fieldType as! [Any], value as! [String : Any])
             return ""
         }
         return "\(value as! Int),"
