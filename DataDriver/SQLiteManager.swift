@@ -146,7 +146,6 @@ extension SQLiteManager {
         var stmt : OpaquePointer? = nil
         var error:UnsafeMutablePointer<CChar>? = nil
         if sqlite3_exec(db, sqlString.cString(using: String.Encoding.utf8)!, nil, &stmt, &error) != SQLITE_OK{
-            print(error)
             return (false,stmt)
         }
         return (true,stmt)

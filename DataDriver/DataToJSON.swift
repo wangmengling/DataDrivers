@@ -35,7 +35,6 @@ struct DataToJSON {
             || x is Dictionary<String, String>
             || x is Dictionary<String, AnyObject>
         {
-            print(map.currentKey)
             map.JSONDataDictionary[map.currentKey!] = x as AnyObject?
         }
     }
@@ -53,8 +52,33 @@ struct DataToJSON {
     
     static func toJSON<T:DataConversionProtocol>(_ field: T?, map: DataMap) {
         if let field = field {
-            print(field)
             self.toJSON(field, map: map)
         }
     }
+    
+    
+    static func toJSON<T:DataConversionProtocol>(_ field: Array<T>, map: DataMap) {
+        let jsonArray = field.map { (data) -> [String:Any] in
+            return DataConversion<T>().toJSON(data)
+        }
+        map.JSONDataDictionary[map.currentKey!] = jsonArray as AnyObject?
+    }
+    
+    static func toJSON<T:DataConversionProtocol>(_ field: Array<T>?, map: DataMap) {
+        if let field = field {
+            self.toJSON(field, map: map)
+        }
+    }
+    
+    
+    static func toJSON<T: RawRepresentable>(_ field: T, map: DataMap) {
+        map.JSONDataDictionary[map.currentKey!] = field.rawValue as AnyObject?
+    }
+    
+    static func toJSON<T: RawRepresentable>(_ field: T?, map: DataMap) {
+        if let field = field {
+            self.toJSON(field, map: map)
+        }
+    }
+    
 }

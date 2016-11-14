@@ -11,6 +11,11 @@ import XCTest
 
 class DataDriverTests: XCTestCase {
     
+    var topicsModel:TopicsModel?
+    var topicsModelArray:Array<TopicsModel>?
+    var topicsModelDic:AnyObject?
+    
+    
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -31,6 +36,28 @@ class DataDriverTests: XCTestCase {
         self.measure {
             // Put the code you want to measure the time of here.
         }
+    }
+    
+    func testAddStorage()  {
+        NetWork.request(.GET, url: "https://cnodejs.org/api/v1/topics") { (data, response, error) in
+            let dataArray = data?.object(forKey:"data") as AnyObject
+            let topicsssModelArray = DataConversion<TopicsModel>().mapArray(dataArray)
+            let firstObject = topicsssModelArray.first
+            var store = Storage()
+            _ = store.add(firstObject)
+        }
+    }
+    
+    func testDataConversion()  {
+        self.measure {
+            // Put the code you want to measure the time of here.
+            NetWork.request(.GET, url: "https://cnodejs.org/api/v1/topics") { (data, response, error) in
+                let dataArray = data?.object(forKey:"data") as AnyObject
+                let topicsssModelArray = DataConversion<TopicsModel>().mapArray(dataArray)
+                print(topicsssModelArray)
+            }
+        }
+        
     }
     
 }

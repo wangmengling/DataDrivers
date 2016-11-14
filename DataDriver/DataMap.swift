@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 open class DataMap {
     open var JSONDictionary: [String : AnyObject] = [:]
     open var JSONDataDictionary: [String : AnyObject] = [:]

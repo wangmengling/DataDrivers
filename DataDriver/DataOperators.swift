@@ -26,26 +26,14 @@ public func <-> <T>(field: inout T, right: DataMap) {
 }
 
 public func <-> <T:Collection>(field: inout T, right: DataMap) {
-    if right.dataConversionType == .FieldType {
-        DataFieldType.fieldType(field, right: right)
-        return
-    }
     dataConversion(&field, right: right)
 }
 
 public func <-> <T:Collection>(field: inout T!, right: DataMap) {
-    if right.dataConversionType == .FieldType {
-        DataFieldType.fieldType(field, right: right)
-        return
-    }
     dataConversion(&field, right: right)
 }
 
 public func <-> <T:Collection>(field: inout T?, right: DataMap) {
-    if right.dataConversionType == .FieldType {
-        DataFieldType.fieldType(field, right: right)
-        return
-    }
     dataConversion(&field, right: right)
 }
 
@@ -115,82 +103,99 @@ public func <-> <T:DataConversionProtocol>(field: inout T?, right: DataMap) {
 
 //----------------- Array<TDataConversionProtocol>
 public func <-> <T:DataConversionProtocol>(field: inout Array<T>, right: DataMap) {
-    if right.dataConversionType == .FieldType {
+    if right.dataConversionType == .Model  {
+        guard let object:Array<T> = DataConversion().mapArray(right.value()) else {
+            return
+        }
+        field = object
+    }else if right.dataConversionType == .FieldType {
         let value:T = T()!
         DataFieldType.fieldType(value, right: right)
-        return
+    }else if right.dataConversionType == .Json {
+        DataToJSON.toJSON(field, map: right)
     }
-    guard let object:Array<T> = DataConversion().mapArray(right.value()) else {
-        return
-    }
-    field = object
+    
 }
 
 public func <-> <T:DataConversionProtocol>(field: inout Array<T>!, right: DataMap) {
-    if right.dataConversionType == .FieldType {
+    if right.dataConversionType == .Model {
+        guard let object:Array<T> = DataConversion<T>().mapArray(right.value()) else {
+            return
+        }
+        field = object
+    }else if right.dataConversionType == .FieldType {
         let value = T()
         DataFieldType.fieldType(value, right: right)
-        return
+    }else if right.dataConversionType == .Json {
+        DataToJSON.toJSON(field, map: right)
     }
-    guard let object:Array<T> = DataConversion().mapArray(right.value()) else {
-        return
-    }
-    field = object
+    
 }
 
 public func <-> <T:DataConversionProtocol>(field: inout Array<T>?, right: DataMap) {
-    if right.dataConversionType == .FieldType {
+    if right.dataConversionType == .Model {
+        guard let object:Array<T> = DataConversion().mapArray(right.value()) else {
+            return
+        }
+        field = object
+    }else if right.dataConversionType == .FieldType {
         let value = T()
         DataFieldType.fieldType(value, right: right)
-        return
+    }else if right.dataConversionType == .Json {
+        DataToJSON.toJSON(field, map: right)
     }
-    guard let object:Array<T> = DataConversion().mapArray(right.value()) else {
-        return
-    }
-    field = object
 }
 
 /// Object of Raw Representable type
 public func <-> <T: RawRepresentable>(field: inout T, right: DataMap) {
-    if right.dataConversionType == .FieldType {
+    if right.dataConversionType == .Model {
+        guard let raw = right.currentValue as? T.RawValue  else{
+            return
+        }
+        guard let value = T(rawValue: raw) else {
+            return
+        }
+        field = value
+    }else if right.dataConversionType == .FieldType {
         DataFieldType.fieldType(field, right: right)
-        return
+    }else if right.dataConversionType == .Json {
+        DataToJSON.toJSON(field, map: right)
     }
-    guard let raw = right.currentValue as? T.RawValue  else{
-        return
-    }
-    guard let value = T(rawValue: raw) else {
-        return
-    }
-    field = value
 }
 
 /// Optional Object of Raw Representable type
 public func <-> <T: RawRepresentable>(left: inout T?, right: DataMap) {
-    if right.dataConversionType == .FieldType {
+    if right.dataConversionType == .Model {
+        guard let raw = right.currentValue as? T.RawValue  else{
+            return
+        }
+        let value = T(rawValue: raw)
+        left = value
+    }else if right.dataConversionType == .FieldType {
         DataFieldType.fieldType(left, right: right)
         return
+    }else if right.dataConversionType == .Json {
+        DataToJSON.toJSON(left, map: right)
     }
-    guard let raw = right.currentValue as? T.RawValue  else{
-        return
-    }
-    let value = T(rawValue: raw)
-    left = value
 }
 
 /// Implicitly Unwrapped Optional Object of Raw Representable type
 public func <-> <T: RawRepresentable>(left: inout T!, right: DataMap) {
-    if right.dataConversionType == .FieldType {
+    if right.dataConversionType == .Model {
+        guard let raw = right.currentValue as? T.RawValue  else{
+            return
+        }
+        guard let value = T(rawValue: raw) else {
+            return
+        }
+        left = value
+    }else if right.dataConversionType == .FieldType {
         DataFieldType.fieldType(left, right: right)
         return
+    }else if right.dataConversionType == .Json {
+        DataToJSON.toJSON(left, map: right)
     }
-    guard let raw = right.currentValue as? T.RawValue  else{
-        return
-    }
-    guard let value = T(rawValue: raw) else {
-        return
-    }
-    left = value
+    
 }
 
 infix operator <->
@@ -215,7 +220,6 @@ func dataConversion <T>(_ field: inout T!, right: DataMap) {
         }
         field = object
     }else if right.dataConversionType == .Json {
-        //        toJSON(field, map: right)
         DataToJSON.toJSON(field, map: right)
     }else if right.dataConversionType == .FieldType {
         DataFieldType.fieldType(field, right: right)
@@ -229,7 +233,6 @@ func dataConversion <T>(_ field: inout T?, right: DataMap) {
         }
         field = object
     }else if right.dataConversionType == .Json {
-//        toJSON(field, map: right)
         DataToJSON.toJSON(field, map: right)
     }else if right.dataConversionType == .FieldType {
         DataFieldType.fieldType(field, right: right)
