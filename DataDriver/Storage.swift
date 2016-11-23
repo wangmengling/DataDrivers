@@ -8,8 +8,13 @@
 
 import Foundation
 
+protocol StoragePtotocol {
+    
+}
 
-public struct Storage {
+
+
+public struct Storage:StoragePtotocol{
     public typealias E = DataConversionProtocol
     fileprivate lazy var srorageToSQLite = SrorageToSQLite.instanceManager
     
@@ -35,14 +40,30 @@ extension Storage {
         return objectArray!
     }
     
-    public mutating func object<E:DataConversionProtocol>(_ filter:String) -> E? {
-        if let object = E() {
-            let dic = srorageToSQLite.objectToSQLite(self.tableName(object),filter: filter)
+    public mutating func object<E:DataConversionProtocol>(_ type:E.Type , _ filter:String) -> E? {
+            let dic = srorageToSQLite.objectToSQLite(String(describing: type),filter: filter)
             let data:DataConversion =  DataConversion<E>()
             let object = data.map(dic!)
             return object
-        }
-        return nil
+    }
+    
+    public func object<E:DataConversionProtocol>(_ type:E.Type) -> SrorageToSQLite {
+        return SrorageToSQLite(type)
+    }
+}
+
+//extension Array:DataConversionProtocol
+
+extension Array{
+    
+    func filter(_ filter:String) -> Array<DataConversionProtocol> {
+        
+        return []
+    }
+    
+    func filterss() -> Array<DataConversionProtocol> {
+        print("d")
+        return []
     }
 }
 

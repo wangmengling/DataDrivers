@@ -577,7 +577,7 @@
 				INFOPLIST_FILE = DataDriver/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = wang.DataDriver;
+				PRODUCT_BUNDLE_IDENTIFIER = wang.DataDrivers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "DataDriver/DataDriver-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -594,7 +594,7 @@
 				INFOPLIST_FILE = DataDriver/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = wang.DataDriver;
+				PRODUCT_BUNDLE_IDENTIFIER = wang.DataDrivers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "DataDriver/DataDriver-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;

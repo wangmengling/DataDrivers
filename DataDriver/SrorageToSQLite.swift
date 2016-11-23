@@ -14,35 +14,72 @@
 
 import Foundation
 
-struct SrorageToSQLite {
+public struct SrorageToSQLite {
     internal typealias E = DataConversionProtocol
     var sqliteManager = SQLiteManager.instanceManager
     static let instanceManager:SrorageToSQLite = {
         return SrorageToSQLite()
     }()
+    
+    var objectType:E.Type?
+    var tableName:String?
+    var filter:String?
+    var sort:String?
+    var limit:String?
+    
+    
+    init() {
+        
+    }
+    
+    init<T:DataConversionProtocol>(_ type:T.Type) {
+        self.objectType = type
+        self.tableName = String(describing: type)
+    }
 }
 
 // MARK: - filter sorted
 extension SrorageToSQLite {
-    func filter(_ predicate:String) -> String{
-        var filter = ""
+    mutating func filter(_ predicate:String, _ args: AnyObject...) -> SrorageToSQLite{
+        var filter:String?
         if predicate.characters.count > 1 {
             filter = " Where "+predicate
         }
-        return filter
+        self.filter = filter
+        return self
     }
     
-    mutating func sorted(_ property: String, ascending: Bool = true) {
+    
+    mutating func filter(predicate: NSPredicate) -> SrorageToSQLite {
+        var filter:String?
+        if predicate.predicateFormat.characters.count > 1 {
+            filter = " Where " + predicate.predicateFormat
+        }
+        self.filter = filter
+        return self
+    }
+    
+    mutating func sorted(_ property: String, ascending: Bool = false) -> SrorageToSQLite{
+        self.sort = "order by \(property) " + (ascending == true ? "ASC" : "DESC")
+        return self
+    }
+    
+    mutating func limit(_ pageIndex:Int,row:Int) -> SrorageToSQLite {
+        self.limit = "LIMIT \(pageIndex * row),\(row)"
+        return self
+    }
+    
+    func value() -> Void {
         
     }
 }
 
 extension SrorageToSQLite {
-    func count(_ object:E,filter:String = "") -> Int {
+    mutating func count(_ object:E,filter:String = "") -> Int {
         var count = 0
         //关键字 来计算count
         let objectsMirror = Mirror(reflecting: object)
-        let countSql = "SELECT COUNT(*) AS count FROM \(String(describing: objectsMirror.subjectType)) \(self.filter(filter))"
+        let countSql = "SELECT COUNT(*) AS count FROM \(String(describing: objectsMirror.subjectType)) \(self.filter(filter).filter)"
         count = sqliteManager.count(countSql)
         return count
     }

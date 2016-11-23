@@ -21,9 +21,14 @@ class ViewController: UIViewController {
     }
 
     @IBAction func ceshiAction(_ sender: AnyObject) {
-        NetWork.requestDataConversionArray(.GET, url: "https://cnodejs.org/api/v1/topics",modelType: TopicsModel.self) { (data, response, error) in
-            print(data as Any)
-        }
+        var sto = Storage()
+        let sd = sto.objects(TopicsModel.self).filterss()
+        sto.object(TopicsModel.self).filter("").arrayValue()
+        
+        print(sd)
+//        NetWork.requestDataConversionArray(.GET, url: "https://cnodejs.org/api/v1/topics",modelType: TopicsModel.self) { (data, response, error) in
+//            print(data!)
+//        }
     }
 
 }
