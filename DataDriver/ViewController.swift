@@ -22,12 +22,23 @@ class ViewController: UIViewController {
 
     @IBAction func ceshiAction(_ sender: AnyObject) {
         var sto = Storage()
-        let sd = sto.objects(TopicsModel.self).filterss()
-        sto.object(TopicsModel.self).filter("").arrayValue()
-        
+        let sd = sto.objects(TopicsModel.self).filters("id = '581b0c4ebb9452c9052e7acb'").limit(1, row: 10).valueOfArray(TopicsModel())
         print(sd)
+//        var sd = sto.objects(TopicsModel.self).filters("").sorted("").valueOfArray()
+//        print(sd.valueOfArray())
+//        sd?.filters("")
+        //        sd.valueOfArray()
+//        sto.objects(TopicsModel.self).filters("").
+//        print(sd)
 //        NetWork.requestDataConversionArray(.GET, url: "https://cnodejs.org/api/v1/topics",modelType: TopicsModel.self) { (data, response, error) in
-//            print(data!)
+////            print(data!)
+////            let dataArray = data?.object(forKey:"data") as AnyObject
+////            let topicsssModelArray = DataConversion<TopicsModel>().mapArray(dataArray)
+////            print(dataArray)
+////            print(topicsssModelArray)
+////            Storage().add(topicsssModelArray)
+//            var store = Storage()
+//            store.addArray(data)
 //        }
     }
 

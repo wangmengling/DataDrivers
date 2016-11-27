@@ -13,19 +13,22 @@
 //        let realTypes = ["DECIMAL", "DOUBLE", "DOUBLE PRECISION", "FLOAT", "NUMERIC", "REAL"]
 
 import Foundation
+private let instance = SrorageToSQLite()
 
-public struct SrorageToSQLite {
+public class SrorageToSQLite{
     internal typealias E = DataConversionProtocol
     var sqliteManager = SQLiteManager.instanceManager
-    static let instanceManager:SrorageToSQLite = {
-        return SrorageToSQLite()
-    }()
+    class var instanceManager:SrorageToSQLite  {
+        return instance
+    }
     
-    var objectType:E.Type?
-    var tableName:String?
-    var filter:String?
-    var sort:String?
-    var limit:String?
+    
+    
+    fileprivate var objectType:E.Type?
+    fileprivate var tableName:String = ""
+    fileprivate var filter:String = ""
+    fileprivate var sort:String = ""
+    var limit:String = ""
     
     
     init() {
@@ -33,25 +36,27 @@ public struct SrorageToSQLite {
     }
     
     init<T:DataConversionProtocol>(_ type:T.Type) {
-        self.objectType = type
+//        self.objectType = type
         self.tableName = String(describing: type)
     }
-}
-
-// MARK: - filter sorted
-extension SrorageToSQLite {
-    mutating func filter(_ predicate:String, _ args: AnyObject...) -> SrorageToSQLite{
-        var filter:String?
+    
+    func filters(_ predicate:String) -> SrorageToSQLite{
+        var filter:String = ""
         if predicate.characters.count > 1 {
             filter = " Where "+predicate
         }
         self.filter = filter
         return self
     }
+}
+
+// MARK: - filter sorted
+extension SrorageToSQLite {
     
     
-    mutating func filter(predicate: NSPredicate) -> SrorageToSQLite {
-        var filter:String?
+    
+    func filter(predicate: NSPredicate) -> SrorageToSQLite {
+        var filter:String = ""
         if predicate.predicateFormat.characters.count > 1 {
             filter = " Where " + predicate.predicateFormat
         }
@@ -59,27 +64,43 @@ extension SrorageToSQLite {
         return self
     }
     
-    mutating func sorted(_ property: String, ascending: Bool = false) -> SrorageToSQLite{
+    func sorted(_ property: String, ascending: Bool = false) -> SrorageToSQLite{
         self.sort = "order by \(property) " + (ascending == true ? "ASC" : "DESC")
         return self
     }
     
-    mutating func limit(_ pageIndex:Int,row:Int) -> SrorageToSQLite {
+    func limit(_ pageIndex:Int,row:Int) -> SrorageToSQLite {
         self.limit = "LIMIT \(pageIndex * row),\(row)"
         return self
     }
     
-    func value() -> Void {
+    func valueOfArray<T:DataConversionProtocol>(_ types:T) -> Array<T> {
+//        let type:DataConversionProtocol = self.objectType as DataConversionProtocol
+        typealias EF = T
         
+        let dicArray = self.objectsToSQLite()
+        let data:DataConversion =  DataConversion<EF>()
+        guard let dicArrays = dicArray else {
+            return Array<EF>()
+        }
+        let objectArray = data.mapArray(dicArrays)
+        return objectArray!
+    }
+    
+    func value<T:DataConversionProtocol>() -> T? {
+        let dic = self.objectToSQLite()
+        let data:DataConversion =  DataConversion<T>()
+        let object = data.map(dic!)
+        return object
     }
 }
 
 extension SrorageToSQLite {
-    mutating func count(_ object:E,filter:String = "") -> Int {
+    func count(_ object:E,filter:String = "") -> Int {
         var count = 0
         //关键字 来计算count
         let objectsMirror = Mirror(reflecting: object)
-        let countSql = "SELECT COUNT(*) AS count FROM \(String(describing: objectsMirror.subjectType)) \(self.filter(filter).filter)"
+        let countSql = "SELECT COUNT(*) AS count FROM \(String(describing: objectsMirror.subjectType)) \(self.filter)"
         count = sqliteManager.count(countSql)
         return count
     }
@@ -88,13 +109,23 @@ extension SrorageToSQLite {
 // MARK: - SelectTable
 
 extension SrorageToSQLite {
-    mutating func objectsToSQLite(_ tableName:String,filter:String = "",sorted:(String,Bool) = ("",false),limit:(Int,Int) = (0,10)) -> [[String : AnyObject]]? {
-        let selectSQL = "SELECT * FROM  \(tableName) \(self.filter(filter));"
+//    mutating func objectsToSQLite(_ tableName:String,filter:String = "",sorted:(String,Bool) = ("",false),limit:(Int,Int) = (0,10)) -> [[String : AnyObject]]? {
+//        let selectSQL = "SELECT * FROM  \(self.tableName) \(self.filter) \(self.limit);"
+//        return sqliteManager.fetchArray(selectSQL)
+//    }
+//
+//    mutating func objectToSQLite(_ tableName:String,filter:String = "") -> [String : AnyObject]? {
+//        let objectSQL = "SELECT * FROM  \(self.tableName) \(self.filter) LIMIT 0,1"
+//        return sqliteManager.fetchArray(objectSQL).last
+//    }
+    
+    fileprivate func objectsToSQLite() -> [[String : AnyObject]]? {
+        let selectSQL = "SELECT * FROM  \(self.tableName) \(self.filter) \(self.sort) \(self.limit)"
         return sqliteManager.fetchArray(selectSQL)
     }
     
-    mutating func objectToSQLite(_ tableName:String,filter:String = "") -> [String : AnyObject]? {
-        let objectSQL = "SELECT * FROM  \(tableName) \(self.filter(filter)) LIMIT 0,1"
+    fileprivate func objectToSQLite() -> [String : AnyObject]? {
+        let objectSQL = "SELECT * FROM  \(self.tableName) \(self.filter)  \(self.sort) LIMIT 0,1"
         return sqliteManager.fetchArray(objectSQL).last
     }
 }

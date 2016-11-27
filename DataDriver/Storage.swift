@@ -30,42 +30,34 @@ public struct Storage:StoragePtotocol{
 
 // MARK: - Select Table Data
 extension Storage {
-    mutating func objects<E:DataConversionProtocol>(_ type:E.Type,_ filter:String = "",sorted:(String,Bool) = ("",false),limit:(Int,Int) = (0,10)) -> Array<E> {
-        let dicArray = srorageToSQLite.objectsToSQLite(String(describing: type))
-        let data:DataConversion =  DataConversion<E>()
-        guard let dicArrays = dicArray else {
-            return Array<E>()
-        }
-        let objectArray = data.mapArray(dicArrays)
-        return objectArray!
+//    mutating func objects<E:DataConversionProtocol>(_ type:E.Type,_ filter:String = "",sorted:(String,Bool) = ("",false),limit:(Int,Int) = (0,10)) -> Array<E> {
+//        let dicArray = srorageToSQLite.objectsToSQLite(String(describing: type))
+//        let data:DataConversion =  DataConversion<E>()
+//        guard let dicArrays = dicArray else {
+//            return Array<E>()
+//        }
+//        let objectArray = data.mapArray(dicArrays)
+//        return objectArray!
+//    }
+//    
+//    public mutating func object<E:DataConversionProtocol>(_ type:E.Type , _ filter:String) -> E? {
+//            let dic = srorageToSQLite.objectToSQLite(String(describing: type),filter: filter)
+//            let data:DataConversion =  DataConversion<E>()
+//            let object = data.map(dic!)
+//            return object
+//    }
+    
+    mutating public func objects<E:DataConversionProtocol>(_ type:E.Type) ->  SrorageToSQLite {
+        return SrorageToSQLite(type)
     }
     
-    public mutating func object<E:DataConversionProtocol>(_ type:E.Type , _ filter:String) -> E? {
-            let dic = srorageToSQLite.objectToSQLite(String(describing: type),filter: filter)
-            let data:DataConversion =  DataConversion<E>()
-            let object = data.map(dic!)
-            return object
-    }
+    
     
     public func object<E:DataConversionProtocol>(_ type:E.Type) -> SrorageToSQLite {
         return SrorageToSQLite(type)
     }
 }
 
-//extension Array:DataConversionProtocol
-
-extension Array{
-    
-    func filter(_ filter:String) -> Array<DataConversionProtocol> {
-        
-        return []
-    }
-    
-    func filterss() -> Array<DataConversionProtocol> {
-        print("d")
-        return []
-    }
-}
 
 // MARK: - Add Table Data
 extension Storage {
