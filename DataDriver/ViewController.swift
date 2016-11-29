@@ -21,9 +21,14 @@ class ViewController: UIViewController {
     }
 
     @IBAction func ceshiAction(_ sender: AnyObject) {
-        var sto = Storage()
-        let sd = sto.objects(TopicsModel.self).filters("id = '581b0c4ebb9452c9052e7acb'").limit(1, row: 10).valueOfArray(TopicsModel())
-        print(sd)
+        let sto = Storage()
+//        let sd = sto.objects().filters("id = '581b0c4ebb9452c9052e7acb'").limit(0, row: 10).valueOfArray(TopicsModel.self)
+//        print(sd)
+        
+//        let ps = sto.objects().count(<#T##object: SrorageToSQLite.E##SrorageToSQLite.E#>)
+        let ps = sto.count(TopicsModel.self)
+        print(ps)
+        
 //        var sd = sto.objects(TopicsModel.self).filters("").sorted("").valueOfArray()
 //        print(sd.valueOfArray())
 //        sd?.filters("")

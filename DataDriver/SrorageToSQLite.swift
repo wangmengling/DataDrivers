@@ -22,23 +22,29 @@ public class SrorageToSQLite{
         return instance
     }
     
-    
-    
     fileprivate var objectType:E.Type?
     fileprivate var tableName:String = ""
     fileprivate var filter:String = ""
     fileprivate var sort:String = ""
-    var limit:String = ""
+    fileprivate var limit:String = ""
     
     
     init() {
         
     }
+//    
+//    init<T:DataConversionProtocol>(_ type:T.Type) {
+//        self.tableName = String(describing: type)
+////        DispatchQueue.global(qos: .default).asyncAfter(deadline: DispatchTime.now() + 2.0) {
+////             self.valueOfArray(type)
+////        }
+//    }
     
-    init<T:DataConversionProtocol>(_ type:T.Type) {
-//        self.objectType = type
-        self.tableName = String(describing: type)
-    }
+    
+}
+
+// MARK: - filter sorted
+extension SrorageToSQLite {
     
     func filters(_ predicate:String) -> SrorageToSQLite{
         var filter:String = ""
@@ -48,12 +54,6 @@ public class SrorageToSQLite{
         self.filter = filter
         return self
     }
-}
-
-// MARK: - filter sorted
-extension SrorageToSQLite {
-    
-    
     
     func filter(predicate: NSPredicate) -> SrorageToSQLite {
         var filter:String = ""
@@ -74,20 +74,19 @@ extension SrorageToSQLite {
         return self
     }
     
-    func valueOfArray<T:DataConversionProtocol>(_ types:T) -> Array<T> {
-//        let type:DataConversionProtocol = self.objectType as DataConversionProtocol
-        typealias EF = T
-        
+    func valueOfArray<T:DataConversionProtocol>(_ type:T.Type) -> Array<T> {
+        self.tableName = String(describing: type)
         let dicArray = self.objectsToSQLite()
-        let data:DataConversion =  DataConversion<EF>()
+        let data:DataConversion =  DataConversion<T>()
         guard let dicArrays = dicArray else {
-            return Array<EF>()
+            return Array<T>()
         }
         let objectArray = data.mapArray(dicArrays)
         return objectArray!
     }
     
-    func value<T:DataConversionProtocol>() -> T? {
+    func value<T:DataConversionProtocol>(_ type:T.Type) -> T? {
+        self.tableName = String(describing: type)
         let dic = self.objectToSQLite()
         let data:DataConversion =  DataConversion<T>()
         let object = data.map(dic!)
@@ -96,11 +95,11 @@ extension SrorageToSQLite {
 }
 
 extension SrorageToSQLite {
-    func count(_ object:E,filter:String = "") -> Int {
+    func count(_ type:E.Type,filter:String = "") -> Int {
         var count = 0
+        self.tableName = String(describing: type)
         //关键字 来计算count
-        let objectsMirror = Mirror(reflecting: object)
-        let countSql = "SELECT COUNT(*) AS count FROM \(String(describing: objectsMirror.subjectType)) \(self.filter)"
+        let countSql = "SELECT COUNT(*) AS count FROM \(self.tableName) \(filter)"
         count = sqliteManager.count(countSql)
         return count
     }
@@ -109,15 +108,6 @@ extension SrorageToSQLite {
 // MARK: - SelectTable
 
 extension SrorageToSQLite {
-//    mutating func objectsToSQLite(_ tableName:String,filter:String = "",sorted:(String,Bool) = ("",false),limit:(Int,Int) = (0,10)) -> [[String : AnyObject]]? {
-//        let selectSQL = "SELECT * FROM  \(self.tableName) \(self.filter) \(self.limit);"
-//        return sqliteManager.fetchArray(selectSQL)
-//    }
-//
-//    mutating func objectToSQLite(_ tableName:String,filter:String = "") -> [String : AnyObject]? {
-//        let objectSQL = "SELECT * FROM  \(self.tableName) \(self.filter) LIMIT 0,1"
-//        return sqliteManager.fetchArray(objectSQL).last
-//    }
     
     fileprivate func objectsToSQLite() -> [[String : AnyObject]]? {
         let selectSQL = "SELECT * FROM  \(self.tableName) \(self.filter) \(self.sort) \(self.limit)"
@@ -169,14 +159,11 @@ extension SrorageToSQLite {
 // MARK: - Insert Data To Table
 extension SrorageToSQLite {
     func insert<T:DataConversionProtocol>(_ object:T) -> Bool {
-        print(object)
         let objectsMirror = Mirror(reflecting: object)
         let property = objectsMirror.children
         
         var columns = ""
         var values = ""
-        
-        
         
         
         let json = DataConversion<T>().toJSON(object)
@@ -200,8 +187,6 @@ extension SrorageToSQLite {
         }
         
         let insertSQL = "INSERT INTO \(String(describing: objectsMirror.subjectType)) (\(columns))  VALUES (\(values));"
-        
-//        return sqliteManager.execIOSQL(insertSQL)
         
         return sqliteManager.execSQL(insertSQL)
     }
@@ -257,6 +242,17 @@ extension SrorageToSQLite {
         return "\(value as! Int),"
     }
     
+    func proToColumnValues(_ value:Any?) -> String?{
+        guard let x:Any = value else {
+            return ""
+        }
+        
+        if (x as AnyObject).debugDescription == "Optional(nil)" {
+            return ""
+        }
+        return self.proToColumnValues(x)
+    }
+    
     /**
      Optional To Value
      
@@ -265,14 +261,6 @@ extension SrorageToSQLite {
      - returns: column values
      */
     func proToColumnValues(_ value:Any) -> String?{
-        
-        guard let x:Any? = value else {
-            return ""
-        }
-        
-        if x.debugDescription == "Optional(nil)" {
-            return ""
-        }
         
         let m =  Mirror(reflecting: value)
         
@@ -291,8 +279,6 @@ extension SrorageToSQLite {
         } else {
             return "\(value),"
         }
-        
-        
     }
 }
 

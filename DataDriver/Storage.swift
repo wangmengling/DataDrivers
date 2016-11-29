@@ -30,31 +30,22 @@ public struct Storage:StoragePtotocol{
 
 // MARK: - Select Table Data
 extension Storage {
-//    mutating func objects<E:DataConversionProtocol>(_ type:E.Type,_ filter:String = "",sorted:(String,Bool) = ("",false),limit:(Int,Int) = (0,10)) -> Array<E> {
-//        let dicArray = srorageToSQLite.objectsToSQLite(String(describing: type))
-//        let data:DataConversion =  DataConversion<E>()
-//        guard let dicArrays = dicArray else {
-//            return Array<E>()
-//        }
-//        let objectArray = data.mapArray(dicArrays)
-//        return objectArray!
-//    }
-//    
-//    public mutating func object<E:DataConversionProtocol>(_ type:E.Type , _ filter:String) -> E? {
-//            let dic = srorageToSQLite.objectToSQLite(String(describing: type),filter: filter)
-//            let data:DataConversion =  DataConversion<E>()
-//            let object = data.map(dic!)
-//            return object
-//    }
-    
-    mutating public func objects<E:DataConversionProtocol>(_ type:E.Type) ->  SrorageToSQLite {
-        return SrorageToSQLite(type)
+    public func objects() ->  SrorageToSQLite {
+        return SrorageToSQLite()
     }
     
     
-    
-    public func object<E:DataConversionProtocol>(_ type:E.Type) -> SrorageToSQLite {
-        return SrorageToSQLite(type)
+    public func object() -> SrorageToSQLite {
+        return SrorageToSQLite()
+    }
+}
+
+// MARK: - Select Table Data
+extension Storage {
+    public func count<T:DataConversionProtocol>(_ type:T.Type,filter:String = "") -> Int {
+        let srorageToSQLite = SrorageToSQLite()
+        let count = srorageToSQLite.count(type,filter: filter)
+        return count
     }
 }
 
@@ -78,7 +69,7 @@ extension Storage {
             _ = srorageToSQLite.createTable(object)
         }
         //修改
-        if update == true && srorageToSQLite.count(object) > 0{
+        if update == true && srorageToSQLite.count(object as! SrorageToSQLite.E.Type) > 0{
             return srorageToSQLite.update(object)
         }
         return srorageToSQLite.insert(object)
@@ -92,6 +83,12 @@ extension Storage {
         for (_,element) in objectArray.enumerated() {
             _ = self.add(element,update: false)
         }
+    }
+}
+
+extension Storage {
+    mutating func update<E:DataConversionProtocol>(_ object:E?)  -> Bool {
+        return self.add(object, update: true)
     }
 }
 
@@ -111,7 +108,7 @@ extension Storage {
 }
 
 extension Storage {
-    public func tableName(_ objects:Any) -> String{
+    fileprivate  func tableName(_ objects:Any) -> String{
         let objectsMirror = Mirror(reflecting: objects)
         return String(describing: objectsMirror.subjectType)
     }
