@@ -23,6 +23,10 @@ extension DataConversionProtocol {
     func ignoredProperties() -> [String] {
         return []
     }
+    
+    init(value:AnyObject){
+        
+    }
 }
 
 extension DataConversionProtocol{

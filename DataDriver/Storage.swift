@@ -84,6 +84,7 @@ extension Storage {
             _ = self.add(element,update: false)
         }
     }
+    
 }
 
 extension Storage {
@@ -104,6 +105,28 @@ extension Storage {
     
     public mutating func deleteAll<E:DataConversionProtocol>(_ type:E.Type) -> Bool {
         return srorageToSQLite.deleteAll(type)
+    }
+}
+
+extension Storage {
+    mutating func create<T:DataConversionProtocol>(_ type:T.Type , value:AnyObject) -> Void {
+        if value is [String:AnyObject] {
+            self.create(type, value: value as! [String:AnyObject])
+        }else if value is [[String:AnyObject]] {
+            self.create(type, value: value as! [[String:AnyObject]])
+        }
+    }
+    
+    mutating func create<T:DataConversionProtocol>(_ type:T.Type , value:[String:AnyObject]) -> Void {
+        let dataConversion =  DataConversion<T>()
+        let data = dataConversion.map(value)
+        _ = self.add(data)
+    }
+    
+    mutating func create<T:DataConversionProtocol>(_ type:T.Type , value:[[String : AnyObject]]) -> Void {
+        let dataConversion =  DataConversion<T>()
+        let dataArray = dataConversion.mapArray(value)
+        self.addArray(dataArray)
     }
 }
 
