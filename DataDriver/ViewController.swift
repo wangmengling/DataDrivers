@@ -30,6 +30,14 @@ class ViewController: UIViewController {
         sto.create(TopicsModel.self, value: [["w":"s"]] as AnyObject)
         print(ps)
         
+        let t = TopicsModel()
+        t.value(["content":"wangmengling" as AnyObject])
+        
+        let ds = t.value(["content":"wangmengling" as AnyObject])
+        TopicsModel.init().value(["content":"wangmengling" as AnyObject])
+        print(ds)
+        
+        
 //        var sd = sto.objects(TopicsModel.self).filters("").sorted("").valueOfArray()
 //        print(sd.valueOfArray())
 //        sd?.filters("")

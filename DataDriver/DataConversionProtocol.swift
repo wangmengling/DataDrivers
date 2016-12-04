@@ -13,6 +13,8 @@ public protocol DataConversionProtocol{
     mutating func mapping(_ map: DataMap)
     func primaryKey() -> String
 //    var description: String { get }
+    
+    
 }
 
 extension DataConversionProtocol {
@@ -24,9 +26,7 @@ extension DataConversionProtocol {
         return []
     }
     
-    init(value:AnyObject){
-        
-    }
+    
 }
 
 extension DataConversionProtocol{
@@ -45,6 +45,10 @@ extension DataConversionProtocol{
         return value
     }
     
+    func value<T:DataConversionProtocol>(_ value:[String : AnyObject]) -> T{
+        let s = DataConversion<T>().map(value)
+        return s!
+    }
 }
 
 
@@ -52,6 +56,11 @@ extension DataConversionProtocol{
 struct BaseDataConversion:DataConversionProtocol {
     init() {
         
+    }
+    
+    init<T:DataConversionProtocol>(value:[String : AnyObject],type:T? = nil){
+        let s = DataConversion<T>().map(value)
+                print(s)
     }
     
     func mapping(_ map: DataMap) {
