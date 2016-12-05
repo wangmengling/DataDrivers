@@ -21,21 +21,26 @@ class ViewController: UIViewController {
     }
 
     @IBAction func ceshiAction(_ sender: AnyObject) {
-        var sto = Storage()
-//        let sd = sto.objects().filters("id = '581b0c4ebb9452c9052e7acb'").limit(0, row: 10).valueOfArray(TopicsModel.self)
-//        print(sd)
+//        var sto = Storage()
+////        let sd = sto.objects().filters("id = '581b0c4ebb9452c9052e7acb'").limit(0, row: 10).valueOfArray(TopicsModel.self)
+////        print(sd)
+//        
+////        let ps = sto.objects().count(<#T##object: SrorageToSQLite.E##SrorageToSQLite.E#>)
+//        let ps = sto.count(TopicsModel.self)
+//        sto.create(TopicsModel.self, value: [["w":"s"]] as AnyObject)
+//        print(ps)
         
-//        let ps = sto.objects().count(<#T##object: SrorageToSQLite.E##SrorageToSQLite.E#>)
-        let ps = sto.count(TopicsModel.self)
-        sto.create(TopicsModel.self, value: [["w":"s"]] as AnyObject)
-        print(ps)
+//        let t = TopicsModel().value(["content":"wangmengling" as AnyObject],type: TopicsModel.self)
+        let s = TopicsModel(value: ["content":"wangmengling" as AnyObject])
         
-        let t = TopicsModel()
-        t.value(["content":"wangmengling" as AnyObject])
-        
-        let ds = t.value(["content":"wangmengling" as AnyObject])
-        TopicsModel.init().value(["content":"wangmengling" as AnyObject])
-        print(ds)
+//        TopicsModel(["content":"wangmengling" as AnyObject],type:TopicsModel.self)
+        print(s)
+//        t.value(["content":"wangmengling" as AnyObject])
+//        t.value(["content":"wangmengling" as AnyObject])
+//
+//        let ds = t.value(["content":"wangmengling" as AnyObject])
+//        TopicsModel.init().value(["content":"wangmengling" as AnyObject])
+//        print(ds)
         
         
 //        var sd = sto.objects(TopicsModel.self).filters("").sorted("").valueOfArray()

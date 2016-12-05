@@ -45,9 +45,22 @@ extension DataConversionProtocol{
         return value
     }
     
-    func value<T:DataConversionProtocol>(_ value:[String : AnyObject]) -> T{
+    init?(value:[String : AnyObject]){
+        self.init()
+        self.dataConversion(self,value:value)
+    }
+    
+    func dataConversion<E:DataConversionProtocol>(_ object:E,value:[String : AnyObject]) {
+        let d = DataConversion<E>().map(value)
+        d.customMirror.children.forEach { (child) in
+            print(child.value)
+        }
+        print(d!)
+    }
+    
+    func value<T:DataConversionProtocol>(_ value:[String : AnyObject],type:T.Type) -> T?{
         let s = DataConversion<T>().map(value)
-        return s!
+        return s
     }
 }
 
@@ -60,7 +73,7 @@ struct BaseDataConversion:DataConversionProtocol {
     
     init<T:DataConversionProtocol>(value:[String : AnyObject],type:T? = nil){
         let s = DataConversion<T>().map(value)
-                print(s)
+        print(s)
     }
     
     func mapping(_ map: DataMap) {
