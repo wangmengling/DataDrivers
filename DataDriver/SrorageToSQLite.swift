@@ -22,11 +22,19 @@ public class SrorageToSQLite{
         return instance
     }
     
+<<<<<<< Updated upstream
     fileprivate var objectType:E.Type?
     fileprivate var tableName:String = ""
     fileprivate var filter:String = ""
     fileprivate var sort:String = ""
     fileprivate var limit:String = ""
+=======
+    var objectType:E.Type?
+    var tableName:String?
+    var filter:String? = String()
+    var sort:String?  = String()
+    var limit:String? = String()
+>>>>>>> Stashed changes
     
     
     init() {
@@ -108,6 +116,7 @@ extension SrorageToSQLite {
 // MARK: - SelectTable
 
 extension SrorageToSQLite {
+<<<<<<< Updated upstream
     
     fileprivate func objectsToSQLite() -> [[String : AnyObject]]? {
         let selectSQL = "SELECT * FROM  \(self.tableName) \(self.filter) \(self.sort) \(self.limit)"
@@ -116,6 +125,15 @@ extension SrorageToSQLite {
     
     fileprivate func objectToSQLite() -> [String : AnyObject]? {
         let objectSQL = "SELECT * FROM  \(self.tableName) \(self.filter)  \(self.sort) LIMIT 0,1"
+=======
+    fileprivate mutating func objectsToSQLite(_ tableName:String,filter:String = "",sorted:(String,Bool) = ("",false),limit:(Int,Int) = (0,10)) -> [[String : AnyObject]]? {
+        let selectSQL = "SELECT * FROM  \(self.tableName) \(self.filter);"
+        return sqliteManager.fetchArray(selectSQL)
+    }
+    
+    fileprivate mutating func objectToSQLite(_ tableName:String,filter:String = "") -> [String : AnyObject]? {
+        let objectSQL = "SELECT * FROM  \(tableName) \(self.filter(filter)) LIMIT 0,1"
+>>>>>>> Stashed changes
         return sqliteManager.fetchArray(objectSQL).last
     }
 }
