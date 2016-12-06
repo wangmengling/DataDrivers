@@ -25,8 +25,6 @@ extension DataConversionProtocol {
     func ignoredProperties() -> [String] {
         return []
     }
-    
-    
 }
 
 extension DataConversionProtocol{
@@ -58,9 +56,25 @@ extension DataConversionProtocol{
         print(d!)
     }
     
-    func value<T:DataConversionProtocol>(_ value:[String : AnyObject],type:T.Type) -> T?{
-        let s = DataConversion<T>().map(value)
-        return s
+}
+
+extension DataConversionProtocol {
+    func value(_ value:[String : AnyObject]) -> Any?{
+        return self.value(value, object: self)
+    }
+    
+    private func value<T:DataConversionProtocol>(_ value:[String : AnyObject],object:T) -> T?{
+        let data = DataConversion<T>().map(value)
+        return data
+    }
+    
+    private func values<T:DataConversionProtocol>(_ values:[[String : AnyObject]],object:T) -> [T]? {
+        let dataArray = DataConversion<T>().mapArray(values)
+        return dataArray
+    }
+    
+    func values(_ values:[[String : AnyObject]]) -> Any? {
+        return self.values(values, object: self)
     }
 }
 

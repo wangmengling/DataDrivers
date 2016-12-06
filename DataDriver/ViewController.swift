@@ -31,10 +31,12 @@ class ViewController: UIViewController {
 //        print(ps)
         
 //        let t = TopicsModel().value(["content":"wangmengling" as AnyObject],type: TopicsModel.self)
-        let s = TopicsModel(value: ["content":"wangmengling" as AnyObject])
-        
+//        let s = TopicsModel(value: ["content":"wangmengling" as AnyObject])
+        let s = TopicsModel().value(["content":"wangmengling" as AnyObject])
+        let d = TopicsModel(value: ["content":"wangmengling" as AnyObject])
 //        TopicsModel(["content":"wangmengling" as AnyObject],type:TopicsModel.self)
         print(s)
+        print(d)
 //        t.value(["content":"wangmengling" as AnyObject])
 //        t.value(["content":"wangmengling" as AnyObject])
 //
