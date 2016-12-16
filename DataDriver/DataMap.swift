@@ -10,8 +10,8 @@ import Foundation
 
 
 open class DataMap {
-    open var JSONDictionary: [String : AnyObject] = [:]
-    open var JSONDataDictionary: [String : AnyObject] = [:]
+    open var JSONDictionary: [String : Any] = [:]
+    open var JSONDataDictionary: [String : Any] = [:]
     open var currentValue: Any?
     open var currentKey: String?
     
@@ -20,7 +20,7 @@ open class DataMap {
     
     var dataConversionType:DataConversionTypeEnum! = .Model
     
-    init(JSONDictionary:[String : AnyObject]?){
+    init(JSONDictionary:[String : Any]?){
         guard let JSONDictionary = JSONDictionary else {
             return
         }

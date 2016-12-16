@@ -32,11 +32,17 @@ class ViewController: UIViewController {
         
 //        let t = TopicsModel().value(["content":"wangmengling" as AnyObject],type: TopicsModel.self)
 //        let s = TopicsModel(value: ["content":"wangmengling" as AnyObject])
-        let s = TopicsModel().value(["content":"wangmengling" as AnyObject])
-        let d = TopicsModel(value: ["content":"wangmengling" as AnyObject])
+//        let s = TopicsModel().value(["content":"wangmengling" as AnyObject])
+//        let d = TopicsModel(value: ["content":"wangmengling"])
 //        TopicsModel(["content":"wangmengling" as AnyObject],type:TopicsModel.self)
-        print(s)
-        print(d)
+        let sd = TopicsModel().values([["content":"wangmengling"]]) as! [TopicsModel]
+//        let s = TopicsModel().value(["content":"wangmengling" as AnyObject],type: TopicsModel.self)
+//        let ds = TopicsModel()
+//        ds.value(["content":"wangmengling" as AnyObject])
+        print(sd)
+//        print(s)
+        let ds = TopicsModel().value(["content":"wangmengling"]) as! TopicsModel
+//        print(d)
 //        t.value(["content":"wangmengling" as AnyObject])
 //        t.value(["content":"wangmengling" as AnyObject])
 //
@@ -61,7 +67,39 @@ class ViewController: UIViewController {
 //            var store = Storage()
 //            store.addArray(data)
 //        }
+//        self.getObject()
+        self.useWorkItem()
     }
 
+    
+    func getObject()  {
+        let tmpData = Date()
+        let asd = Storage().objects().filters("").sorted("").valueOfArray(TopicsModel.self)
+        let d = Date().timeIntervalSince(tmpData)
+        
+        print(d)
+        print(asd)
+        let delTime = Date().timeIntervalSince(tmpData)
+        print(delTime)
+    }
+
+    
+    func useWorkItem() {
+        var value = 10
+        
+        let workItem = DispatchWorkItem {
+            value += 5
+        }
+        
+        workItem.perform()
+        
+        let queue = DispatchQueue.global(qos: .utility)
+        
+        queue.async(execute: workItem)
+        
+        workItem.notify(queue: DispatchQueue.main) {
+            print("value = ", value)
+        }
+    }
 }
 
