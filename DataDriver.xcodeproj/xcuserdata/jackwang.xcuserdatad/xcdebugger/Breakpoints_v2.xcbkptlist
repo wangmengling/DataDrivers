@@ -102,60 +102,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DataDriver/ViewController.swift"
-            timestampString = "503068125.287765"
+            timestampString = "504070852.501977"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
             landmarkName = "useWorkItem()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "DataDriver.ViewController.useWorkItem () -&gt; ()"
-                  moduleName = "DataDriver"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/jackwang/Documents/github/DataDrivers/DataDriver/ViewController.swift"
-                  timestampString = "503068125.614115"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "88"
-                  endingLineNumber = "88"
-                  offsetFromSymbolStart = "51">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "DataDriver.ViewController.(useWorkItem () -&gt; ()).(closure #1)"
-                  moduleName = "DataDriver"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/jackwang/Documents/github/DataDrivers/DataDriver/ViewController.swift"
-                  timestampString = "503068125.61644"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "88"
-                  endingLineNumber = "88"
-                  offsetFromSymbolStart = "4">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "DataDriver.ViewController.(useWorkItem () -&gt; ()).(closure #2)"
-                  moduleName = "DataDriver"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/jackwang/Documents/github/DataDrivers/DataDriver/ViewController.swift"
-                  timestampString = "503068125.61945"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "88"
-                  endingLineNumber = "88"
-                  offsetFromSymbolStart = "15">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -165,12 +118,44 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DataDriver/ViewController.swift"
-            timestampString = "503068133.696836"
+            timestampString = "504070852.501977"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
             landmarkName = "useWorkItem()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DataDriver/MaoChatBaseCollectionViewCell.swift"
+            timestampString = "503654812.777861"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "avatarImageView"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DataDriver/MaoChatInputTextFieldView.swift"
+            timestampString = "504069935.534896"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
+            landmarkName = "buildView()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -9,6 +9,35 @@
 /* Begin PBXBuildFile section */
 		1625E3361DC7752400CB71FF /* DataOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1625E3351DC7752400CB71FF /* DataOperators.swift */; };
 		1625E3381DC77FF900CB71FF /* DataConversionTypeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1625E3371DC77FF900CB71FF /* DataConversionTypeEnum.swift */; };
+		1641F12A1E03EBD300D852E2 /* MaoChatBaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1641F1291E03EBD300D852E2 /* MaoChatBaseCollectionViewCell.swift */; };
+		1641F12C1E03EF9200D852E2 /* UIImageView+Mao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1641F12B1E03EF9200D852E2 /* UIImageView+Mao.swift */; };
+		1641F12E1E054A7700D852E2 /* MaoChatLabelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1641F12D1E054A7700D852E2 /* MaoChatLabelCollectionViewCell.swift */; };
+		1641F1301E07807500D852E2 /* MaoChatEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1641F12F1E07807500D852E2 /* MaoChatEnum.swift */; };
+		1641F1321E07867300D852E2 /* MaoChatImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1641F1311E07867300D852E2 /* MaoChatImageCollectionViewCell.swift */; };
+		1641F1351E078AD700D852E2 /* MaoUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1641F1341E078AD700D852E2 /* MaoUserModel.swift */; };
+		1641F1371E078C6000D852E2 /* MaoChatCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1641F1361E078C6000D852E2 /* MaoChatCollectionViewController.swift */; };
+		1641F1391E078ED300D852E2 /* MaoChatConversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1641F1381E078ED300D852E2 /* MaoChatConversation.swift */; };
+		1641F13B1E07DB2F00D852E2 /* MaoChatVoiceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1641F13A1E07DB2F00D852E2 /* MaoChatVoiceCollectionViewCell.swift */; };
+		1641F13D1E07E2D500D852E2 /* MaoChatMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1641F13C1E07E2D500D852E2 /* MaoChatMessageModel.swift */; };
+		1641F13F1E08D88F00D852E2 /* MaoChatCollectionViewController+Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1641F13E1E08D88F00D852E2 /* MaoChatCollectionViewController+Message.swift */; };
+		16434A831E0B833700DB72BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16434A821E0B833700DB72BB /* AppDelegate.swift */; };
+		16434A851E0B833700DB72BB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16434A841E0B833700DB72BB /* ViewController.swift */; };
+		16434A881E0B833700DB72BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16434A861E0B833700DB72BB /* Main.storyboard */; };
+		16434A8A1E0B833700DB72BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16434A891E0B833700DB72BB /* Assets.xcassets */; };
+		16434A8D1E0B833700DB72BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16434A8B1E0B833700DB72BB /* LaunchScreen.storyboard */; };
+		16434A981E0B833700DB72BB /* demoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16434A971E0B833700DB72BB /* demoTests.swift */; };
+		16434AA31E0B833800DB72BB /* demoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16434AA21E0B833800DB72BB /* demoUITests.swift */; };
+		16434AAF1E0B879600DB72BB /* MaoChatFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16434AAE1E0B879600DB72BB /* MaoChatFunctions.swift */; };
+		16559C7A1E0A1A6A00317DA3 /* MaoChatInputBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16559C791E0A1A6A00317DA3 /* MaoChatInputBaseView.swift */; };
+		16559C7C1E0A1EA100317DA3 /* SIMChat.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16559C7B1E0A1EA100317DA3 /* SIMChat.xcassets */; };
+		16559C7E1E0A256200317DA3 /* MaoChatInputTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16559C7D1E0A256200317DA3 /* MaoChatInputTextFieldView.swift */; };
+		16559C801E0A5BA400317DA3 /* MaoChatInputButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16559C7F1E0A5BA400317DA3 /* MaoChatInputButton.swift */; };
+		16559C821E0A5DA500317DA3 /* MaoChatImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16559C811E0A5DA500317DA3 /* MaoChatImage.swift */; };
+		16559C841E0A5EF700317DA3 /* String+Mao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16559C831E0A5EF700317DA3 /* String+Mao.swift */; };
+		166AAEFF1E0BF8D300661C78 /* UIView+MaoAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166AAEFE1E0BF8D300661C78 /* UIView+MaoAnchor.swift */; };
+		166AAF011E0BFA1900661C78 /* MaoLayoutAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166AAF001E0BFA1900661C78 /* MaoLayoutAnchor.swift */; };
+		166AAF031E0C05AE00661C78 /* MaoNumerical.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166AAF021E0C05AE00661C78 /* MaoNumerical.swift */; };
+		166AAF051E0C08C600661C78 /* MaoPriority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166AAF041E0C08C600661C78 /* MaoPriority.swift */; };
 		1864E1301D824C430042876C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1864E12F1D824C430042876C /* AppDelegate.swift */; };
 		1864E1321D824C430042876C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1864E1311D824C430042876C /* ViewController.swift */; };
 		1864E1351D824C430042876C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1864E1331D824C430042876C /* Main.storyboard */; };
@@ -41,6 +70,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		16434A941E0B833700DB72BB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1864E1241D824C430042876C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 16434A7F1E0B833700DB72BB;
+			remoteInfo = demo;
+		};
+		16434A9F1E0B833800DB72BB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1864E1241D824C430042876C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 16434A7F1E0B833700DB72BB;
+			remoteInfo = demo;
+		};
 		1864E1411D824C430042876C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1864E1241D824C430042876C /* Project object */;
@@ -60,6 +103,41 @@
 /* Begin PBXFileReference section */
 		1625E3351DC7752400CB71FF /* DataOperators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataOperators.swift; sourceTree = "<group>"; };
 		1625E3371DC77FF900CB71FF /* DataConversionTypeEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataConversionTypeEnum.swift; sourceTree = "<group>"; };
+		1641F1291E03EBD300D852E2 /* MaoChatBaseCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoChatBaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		1641F12B1E03EF9200D852E2 /* UIImageView+Mao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Mao.swift"; sourceTree = "<group>"; };
+		1641F12D1E054A7700D852E2 /* MaoChatLabelCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoChatLabelCollectionViewCell.swift; sourceTree = "<group>"; };
+		1641F12F1E07807500D852E2 /* MaoChatEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoChatEnum.swift; sourceTree = "<group>"; };
+		1641F1311E07867300D852E2 /* MaoChatImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoChatImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		1641F1341E078AD700D852E2 /* MaoUserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoUserModel.swift; sourceTree = "<group>"; };
+		1641F1361E078C6000D852E2 /* MaoChatCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoChatCollectionViewController.swift; sourceTree = "<group>"; };
+		1641F1381E078ED300D852E2 /* MaoChatConversation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoChatConversation.swift; sourceTree = "<group>"; };
+		1641F13A1E07DB2F00D852E2 /* MaoChatVoiceCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoChatVoiceCollectionViewCell.swift; sourceTree = "<group>"; };
+		1641F13C1E07E2D500D852E2 /* MaoChatMessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoChatMessageModel.swift; sourceTree = "<group>"; };
+		1641F13E1E08D88F00D852E2 /* MaoChatCollectionViewController+Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MaoChatCollectionViewController+Message.swift"; sourceTree = "<group>"; };
+		16434A801E0B833700DB72BB /* demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		16434A821E0B833700DB72BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		16434A841E0B833700DB72BB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		16434A871E0B833700DB72BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		16434A891E0B833700DB72BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		16434A8C1E0B833700DB72BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		16434A8E1E0B833700DB72BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		16434A931E0B833700DB72BB /* demoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = demoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		16434A971E0B833700DB72BB /* demoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = demoTests.swift; sourceTree = "<group>"; };
+		16434A991E0B833800DB72BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		16434A9E1E0B833800DB72BB /* demoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = demoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		16434AA21E0B833800DB72BB /* demoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = demoUITests.swift; sourceTree = "<group>"; };
+		16434AA41E0B833800DB72BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		16434AAE1E0B879600DB72BB /* MaoChatFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoChatFunctions.swift; sourceTree = "<group>"; };
+		16559C791E0A1A6A00317DA3 /* MaoChatInputBaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoChatInputBaseView.swift; sourceTree = "<group>"; };
+		16559C7B1E0A1EA100317DA3 /* SIMChat.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SIMChat.xcassets; sourceTree = "<group>"; };
+		16559C7D1E0A256200317DA3 /* MaoChatInputTextFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoChatInputTextFieldView.swift; sourceTree = "<group>"; };
+		16559C7F1E0A5BA400317DA3 /* MaoChatInputButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoChatInputButton.swift; sourceTree = "<group>"; };
+		16559C811E0A5DA500317DA3 /* MaoChatImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoChatImage.swift; sourceTree = "<group>"; };
+		16559C831E0A5EF700317DA3 /* String+Mao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Mao.swift"; sourceTree = "<group>"; };
+		166AAEFE1E0BF8D300661C78 /* UIView+MaoAnchor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+MaoAnchor.swift"; sourceTree = "<group>"; };
+		166AAF001E0BFA1900661C78 /* MaoLayoutAnchor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoLayoutAnchor.swift; sourceTree = "<group>"; };
+		166AAF021E0C05AE00661C78 /* MaoNumerical.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoNumerical.swift; sourceTree = "<group>"; };
+		166AAF041E0C08C600661C78 /* MaoPriority.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoPriority.swift; sourceTree = "<group>"; };
 		1864E12C1D824C430042876C /* DataDriver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DataDriver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1864E12F1D824C430042876C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1864E1311D824C430042876C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -100,6 +178,27 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		16434A7D1E0B833700DB72BB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		16434A901E0B833700DB72BB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		16434A9B1E0B833800DB72BB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1864E1291D824C430042876C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -126,12 +225,98 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1641F1281E03E67A00D852E2 /* MaoConversation */ = {
+			isa = PBXGroup;
+			children = (
+				16559C7B1E0A1EA100317DA3 /* SIMChat.xcassets */,
+				1641F1401E0903A700D852E2 /* MaoChatInput */,
+				1641F1331E0787CD00D852E2 /* MaoChatCell */,
+				1641F12F1E07807500D852E2 /* MaoChatEnum.swift */,
+				16559C811E0A5DA500317DA3 /* MaoChatImage.swift */,
+				1641F1361E078C6000D852E2 /* MaoChatCollectionViewController.swift */,
+				1641F13E1E08D88F00D852E2 /* MaoChatCollectionViewController+Message.swift */,
+				1641F1341E078AD700D852E2 /* MaoUserModel.swift */,
+				1641F13C1E07E2D500D852E2 /* MaoChatMessageModel.swift */,
+				1641F1381E078ED300D852E2 /* MaoChatConversation.swift */,
+				1641F12B1E03EF9200D852E2 /* UIImageView+Mao.swift */,
+				16559C831E0A5EF700317DA3 /* String+Mao.swift */,
+				16434AAE1E0B879600DB72BB /* MaoChatFunctions.swift */,
+			);
+			name = MaoConversation;
+			sourceTree = "<group>";
+		};
+		1641F1331E0787CD00D852E2 /* MaoChatCell */ = {
+			isa = PBXGroup;
+			children = (
+				1641F1291E03EBD300D852E2 /* MaoChatBaseCollectionViewCell.swift */,
+				1641F12D1E054A7700D852E2 /* MaoChatLabelCollectionViewCell.swift */,
+				1641F1311E07867300D852E2 /* MaoChatImageCollectionViewCell.swift */,
+				1641F13A1E07DB2F00D852E2 /* MaoChatVoiceCollectionViewCell.swift */,
+			);
+			name = MaoChatCell;
+			sourceTree = "<group>";
+		};
+		1641F1401E0903A700D852E2 /* MaoChatInput */ = {
+			isa = PBXGroup;
+			children = (
+				16559C791E0A1A6A00317DA3 /* MaoChatInputBaseView.swift */,
+				16559C7D1E0A256200317DA3 /* MaoChatInputTextFieldView.swift */,
+				16559C7F1E0A5BA400317DA3 /* MaoChatInputButton.swift */,
+			);
+			name = MaoChatInput;
+			sourceTree = "<group>";
+		};
+		16434A811E0B833700DB72BB /* demo */ = {
+			isa = PBXGroup;
+			children = (
+				16434A821E0B833700DB72BB /* AppDelegate.swift */,
+				16434A841E0B833700DB72BB /* ViewController.swift */,
+				16434A861E0B833700DB72BB /* Main.storyboard */,
+				16434A891E0B833700DB72BB /* Assets.xcassets */,
+				16434A8B1E0B833700DB72BB /* LaunchScreen.storyboard */,
+				16434A8E1E0B833700DB72BB /* Info.plist */,
+			);
+			path = demo;
+			sourceTree = "<group>";
+		};
+		16434A961E0B833700DB72BB /* demoTests */ = {
+			isa = PBXGroup;
+			children = (
+				16434A971E0B833700DB72BB /* demoTests.swift */,
+				16434A991E0B833800DB72BB /* Info.plist */,
+			);
+			path = demoTests;
+			sourceTree = "<group>";
+		};
+		16434AA11E0B833800DB72BB /* demoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				16434AA21E0B833800DB72BB /* demoUITests.swift */,
+				16434AA41E0B833800DB72BB /* Info.plist */,
+			);
+			path = demoUITests;
+			sourceTree = "<group>";
+		};
+		166AAEFD1E0BF8A900661C78 /* MaoAnchor */ = {
+			isa = PBXGroup;
+			children = (
+				166AAEFE1E0BF8D300661C78 /* UIView+MaoAnchor.swift */,
+				166AAF001E0BFA1900661C78 /* MaoLayoutAnchor.swift */,
+				166AAF021E0C05AE00661C78 /* MaoNumerical.swift */,
+				166AAF041E0C08C600661C78 /* MaoPriority.swift */,
+			);
+			name = MaoAnchor;
+			sourceTree = "<group>";
+		};
 		1864E1231D824C430042876C = {
 			isa = PBXGroup;
 			children = (
 				1864E12E1D824C430042876C /* DataDriver */,
 				1864E1431D824C430042876C /* DataDriverTests */,
 				1864E14E1D824C430042876C /* DataDriverUITests */,
+				16434A811E0B833700DB72BB /* demo */,
+				16434A961E0B833700DB72BB /* demoTests */,
+				16434AA11E0B833800DB72BB /* demoUITests */,
 				1864E12D1D824C430042876C /* Products */,
 				1864E18A1D8253430042876C /* Frameworks */,
 			);
@@ -143,6 +328,9 @@
 				1864E12C1D824C430042876C /* DataDriver.app */,
 				1864E1401D824C430042876C /* DataDriverTests.xctest */,
 				1864E14B1D824C430042876C /* DataDriverUITests.xctest */,
+				16434A801E0B833700DB72BB /* demo.app */,
+				16434A931E0B833700DB72BB /* demoTests.xctest */,
+				16434A9E1E0B833800DB72BB /* demoUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -186,6 +374,8 @@
 		1864E15D1D824D7B0042876C /* Compents */ = {
 			isa = PBXGroup;
 			children = (
+				166AAEFD1E0BF8A900661C78 /* MaoAnchor */,
+				1641F1281E03E67A00D852E2 /* MaoConversation */,
 				1864E1801D824E560042876C /* MLNetWork */,
 				1864E1731D824E140042876C /* MLImageDownload */,
 				1864E1701D824DF00042876C /* ALAnimate */,
@@ -262,6 +452,59 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		16434A7F1E0B833700DB72BB /* demo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 16434AA51E0B833800DB72BB /* Build configuration list for PBXNativeTarget "demo" */;
+			buildPhases = (
+				16434A7C1E0B833700DB72BB /* Sources */,
+				16434A7D1E0B833700DB72BB /* Frameworks */,
+				16434A7E1E0B833700DB72BB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = demo;
+			productName = demo;
+			productReference = 16434A801E0B833700DB72BB /* demo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		16434A921E0B833700DB72BB /* demoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 16434AA81E0B833800DB72BB /* Build configuration list for PBXNativeTarget "demoTests" */;
+			buildPhases = (
+				16434A8F1E0B833700DB72BB /* Sources */,
+				16434A901E0B833700DB72BB /* Frameworks */,
+				16434A911E0B833700DB72BB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				16434A951E0B833700DB72BB /* PBXTargetDependency */,
+			);
+			name = demoTests;
+			productName = demoTests;
+			productReference = 16434A931E0B833700DB72BB /* demoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		16434A9D1E0B833800DB72BB /* demoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 16434AAB1E0B833800DB72BB /* Build configuration list for PBXNativeTarget "demoUITests" */;
+			buildPhases = (
+				16434A9A1E0B833800DB72BB /* Sources */,
+				16434A9B1E0B833800DB72BB /* Frameworks */,
+				16434A9C1E0B833800DB72BB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				16434AA01E0B833800DB72BB /* PBXTargetDependency */,
+			);
+			name = demoUITests;
+			productName = demoUITests;
+			productReference = 16434A9E1E0B833800DB72BB /* demoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		1864E12B1D824C430042876C /* DataDriver */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1864E1541D824C430042876C /* Build configuration list for PBXNativeTarget "DataDriver" */;
@@ -321,10 +564,24 @@
 		1864E1241D824C430042876C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0800;
+				LastSwiftUpdateCheck = 0820;
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = apple;
 				TargetAttributes = {
+					16434A7F1E0B833700DB72BB = {
+						CreatedOnToolsVersion = 8.2;
+						ProvisioningStyle = Automatic;
+					};
+					16434A921E0B833700DB72BB = {
+						CreatedOnToolsVersion = 8.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 16434A7F1E0B833700DB72BB;
+					};
+					16434A9D1E0B833800DB72BB = {
+						CreatedOnToolsVersion = 8.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 16434A7F1E0B833700DB72BB;
+					};
 					1864E12B1D824C430042876C = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 5F9R5KPEXS;
@@ -361,16 +618,44 @@
 				1864E12B1D824C430042876C /* DataDriver */,
 				1864E13F1D824C430042876C /* DataDriverTests */,
 				1864E14A1D824C430042876C /* DataDriverUITests */,
+				16434A7F1E0B833700DB72BB /* demo */,
+				16434A921E0B833700DB72BB /* demoTests */,
+				16434A9D1E0B833800DB72BB /* demoUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		16434A7E1E0B833700DB72BB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				16434A8D1E0B833700DB72BB /* LaunchScreen.storyboard in Resources */,
+				16434A8A1E0B833700DB72BB /* Assets.xcassets in Resources */,
+				16434A881E0B833700DB72BB /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		16434A911E0B833700DB72BB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		16434A9C1E0B833800DB72BB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1864E12A1D824C430042876C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				1864E13A1D824C430042876C /* LaunchScreen.storyboard in Resources */,
+				16559C7C1E0A1EA100317DA3 /* SIMChat.xcassets in Resources */,
 				1864E1371D824C430042876C /* Assets.xcassets in Resources */,
 				1864E1351D824C430042876C /* Main.storyboard in Resources */,
 			);
@@ -393,34 +678,80 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		16434A7C1E0B833700DB72BB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				16434A851E0B833700DB72BB /* ViewController.swift in Sources */,
+				16434A831E0B833700DB72BB /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		16434A8F1E0B833700DB72BB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				16434A981E0B833700DB72BB /* demoTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		16434A9A1E0B833800DB72BB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				16434AA31E0B833800DB72BB /* demoUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1864E1281D824C430042876C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				1864E1321D824C430042876C /* ViewController.swift in Sources */,
 				1625E3361DC7752400CB71FF /* DataOperators.swift in Sources */,
+				1641F1301E07807500D852E2 /* MaoChatEnum.swift in Sources */,
 				1625E3381DC77FF900CB71FF /* DataConversionTypeEnum.swift in Sources */,
 				1864E17F1D824E4B0042876C /* String+MD5.swift in Sources */,
 				1864E17A1D824E4B0042876C /* Image.swift in Sources */,
 				18AE2AD51DD55A1500CA92BD /* DataToJSON.swift in Sources */,
 				18BFE71D1DD5C6060088AF50 /* DataFieldType.swift in Sources */,
+				1641F13F1E08D88F00D852E2 /* MaoChatCollectionViewController+Message.swift in Sources */,
 				1864E16E1D824DE20042876C /* DataConversionProtocol.swift in Sources */,
 				1864E1641D824DB80042876C /* Extensions.swift in Sources */,
+				166AAF031E0C05AE00661C78 /* MaoNumerical.swift in Sources */,
 				1864E17B1D824E4B0042876C /* ImageView+MLImageDowload.swift in Sources */,
 				1864E1681D824DB80042876C /* StorageProtocol.swift in Sources */,
+				16559C821E0A5DA500317DA3 /* MaoChatImage.swift in Sources */,
+				16559C7E1E0A256200317DA3 /* MaoChatInputTextFieldView.swift in Sources */,
+				1641F1391E078ED300D852E2 /* MaoChatConversation.swift in Sources */,
+				1641F12A1E03EBD300D852E2 /* MaoChatBaseCollectionViewCell.swift in Sources */,
 				1864E1721D824E0A0042876C /* Pop.swift in Sources */,
+				16559C841E0A5EF700317DA3 /* String+Mao.swift in Sources */,
+				166AAF011E0BFA1900661C78 /* MaoLayoutAnchor.swift in Sources */,
+				16559C7A1E0A1A6A00317DA3 /* MaoChatInputBaseView.swift in Sources */,
+				1641F12E1E054A7700D852E2 /* MaoChatLabelCollectionViewCell.swift in Sources */,
 				1864E1821D824E780042876C /* NetWork.swift in Sources */,
 				1864E17E1D824E4B0042876C /* MLImageDowloadManager.swift in Sources */,
 				1864E1661D824DB80042876C /* SrorageToSQLite.swift in Sources */,
 				1864E1301D824C430042876C /* AppDelegate.swift in Sources */,
 				1864E1651D824DB80042876C /* SQLiteManager.swift in Sources */,
+				1641F1351E078AD700D852E2 /* MaoUserModel.swift in Sources */,
 				1864E1671D824DB80042876C /* Storage.swift in Sources */,
 				1864E1921D8262EC0042876C /* view.m in Sources */,
 				1864E16F1D824DE20042876C /* DataMap.swift in Sources */,
+				16434AAF1E0B879600DB72BB /* MaoChatFunctions.swift in Sources */,
+				16559C801E0A5BA400317DA3 /* MaoChatInputButton.swift in Sources */,
 				1864E17D1D824E4B0042876C /* MLImageDowloader.swift in Sources */,
+				166AAEFF1E0BF8D300661C78 /* UIView+MaoAnchor.swift in Sources */,
+				1641F12C1E03EF9200D852E2 /* UIImageView+Mao.swift in Sources */,
+				1641F1321E07867300D852E2 /* MaoChatImageCollectionViewCell.swift in Sources */,
 				1864E16D1D824DE20042876C /* DataConversion.swift in Sources */,
+				1641F1371E078C6000D852E2 /* MaoChatCollectionViewController.swift in Sources */,
+				1641F13B1E07DB2F00D852E2 /* MaoChatVoiceCollectionViewCell.swift in Sources */,
 				1864E17C1D824E4B0042876C /* MLImageCache.swift in Sources */,
 				1864E1941D826AA90042876C /* TopicsModel.swift in Sources */,
+				166AAF051E0C08C600661C78 /* MaoPriority.swift in Sources */,
+				1641F13D1E07E2D500D852E2 /* MaoChatMessageModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,6 +774,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		16434A951E0B833700DB72BB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 16434A7F1E0B833700DB72BB /* demo */;
+			targetProxy = 16434A941E0B833700DB72BB /* PBXContainerItemProxy */;
+		};
+		16434AA01E0B833800DB72BB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 16434A7F1E0B833700DB72BB /* demo */;
+			targetProxy = 16434A9F1E0B833800DB72BB /* PBXContainerItemProxy */;
+		};
 		1864E1421D824C430042876C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 1864E12B1D824C430042876C /* DataDriver */;
@@ -456,6 +797,22 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		16434A861E0B833700DB72BB /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				16434A871E0B833700DB72BB /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		16434A8B1E0B833700DB72BB /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				16434A8C1E0B833700DB72BB /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
 		1864E1331D824C430042876C /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -475,6 +832,96 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		16434AA61E0B833800DB72BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				INFOPLIST_FILE = demo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = wang.demo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		16434AA71E0B833800DB72BB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				INFOPLIST_FILE = demo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = wang.demo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		16434AA91E0B833800DB72BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				INFOPLIST_FILE = demoTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = wang.demoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/demo.app/demo";
+			};
+			name = Debug;
+		};
+		16434AAA1E0B833800DB72BB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				INFOPLIST_FILE = demoTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = wang.demoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/demo.app/demo";
+			};
+			name = Release;
+		};
+		16434AAC1E0B833800DB72BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				INFOPLIST_FILE = demoUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = wang.demoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = demo;
+			};
+			name = Debug;
+		};
+		16434AAD1E0B833800DB72BB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				INFOPLIST_FILE = demoUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = wang.demoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = demo;
+			};
+			name = Release;
+		};
 		1864E1521D824C430042876C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -575,7 +1022,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 5F9R5KPEXS;
 				INFOPLIST_FILE = DataDriver/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = wang.DataDrivers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -592,7 +1039,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 5F9R5KPEXS;
 				INFOPLIST_FILE = DataDriver/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = wang.DataDrivers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -662,6 +1109,33 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		16434AA51E0B833800DB72BB /* Build configuration list for PBXNativeTarget "demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				16434AA61E0B833800DB72BB /* Debug */,
+				16434AA71E0B833800DB72BB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		16434AA81E0B833800DB72BB /* Build configuration list for PBXNativeTarget "demoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				16434AA91E0B833800DB72BB /* Debug */,
+				16434AAA1E0B833800DB72BB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		16434AAB1E0B833800DB72BB /* Build configuration list for PBXNativeTarget "demoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				16434AAC1E0B833800DB72BB /* Debug */,
+				16434AAD1E0B833800DB72BB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		1864E1271D824C430042876C /* Build configuration list for PBXProject "DataDriver" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

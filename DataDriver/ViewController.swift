@@ -13,6 +13,24 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        let views = UIView()
+        views.backgroundColor = UIColor.red
+        views.addSubview(views)
+        
+        let d = UILayoutGuide()
+//        d.widthAnchor = NSLayoutDimension().constraint(equalToConstant: 100)
+//        d.a
+//        views.addLayoutGuide(d)
+        
+        views.widthAnchor.constraint(equalToConstant: 100)
+        views.heightAnchor.constraint(equalToConstant: 100)
+        views.topAnchor.constraint(equalTo: self.view.topAnchor)
+        views.leftAnchor.constraint(equalTo: view.leftAnchor)
+//        views.addLayoutGuide(<#T##layoutGuide: UILayoutGuide##UILayoutGuide#>)
+        views.addLayoutGuide { (layout) in
+            
+        }
     }
 
     override func didReceiveMemoryWarning() {
