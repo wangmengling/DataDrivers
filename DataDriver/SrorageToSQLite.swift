@@ -65,7 +65,9 @@ extension SrorageToSQLite {
     }
     
     func sorted(_ property: String, ascending: Bool = false) -> SrorageToSQLite{
-        self.sort = "order by \(property) " + (ascending == true ? "ASC" : "DESC")
+        if property.characters.count > 0 {
+            self.sort = "order by \(property) " + (ascending == true ? "ASC" : "DESC")
+        }
         return self
     }
     
@@ -82,7 +84,7 @@ extension SrorageToSQLite {
             return Array<T>()
         }
         let objectArray = data.mapArray(dicArrays)
-        return objectArray!
+        return objectArray
     }
     
     func value<T:DataConversionProtocol>(_ type:T.Type) -> T? {

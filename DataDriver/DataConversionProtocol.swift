@@ -9,10 +9,8 @@
 import Foundation
 public protocol DataConversionProtocol{
     init?()
-    /// This function is where all variable mappings should occur. It is executed by Mapper during the mapping (serialization and deserialization) process.
     mutating func mapping(_ map: DataMap)
     func primaryKey() -> String
-//    var description: String { get }
     
     
 }
@@ -25,8 +23,6 @@ extension DataConversionProtocol {
     func ignoredProperties() -> [String] {
         return []
     }
-    
-    
 }
 
 extension DataConversionProtocol{
@@ -45,38 +41,25 @@ extension DataConversionProtocol{
         return value
     }
     
-    init?(value:[String : AnyObject]){
-        self.init()
-        self.dataConversion(self,value:value)
-    }
-    
-    func dataConversion<E:DataConversionProtocol>(_ object:E,value:[String : AnyObject]) {
-        let d = DataConversion<E>().map(value)
-        d.customMirror.children.forEach { (child) in
-            print(child.value)
-        }
-        print(d!)
-    }
-    
-    func value<T:DataConversionProtocol>(_ value:[String : AnyObject],type:T.Type) -> T?{
-        let s = DataConversion<T>().map(value)
-        return s
-    }
 }
 
-
-
-struct BaseDataConversion:DataConversionProtocol {
-    init() {
-        
+extension DataConversionProtocol {
+    
+    func value(_ value:[String : Any]) -> Any {
+        return self.value(value, object: self)
     }
     
-    init<T:DataConversionProtocol>(value:[String : AnyObject],type:T? = nil){
-        let s = DataConversion<T>().map(value)
-        print(s)
+    private func value<T:DataConversionProtocol>(_ value:[String : Any],object:T) -> T?{
+        let data = DataConversion<T>().map(value)
+        return data
     }
     
-    func mapping(_ map: DataMap) {
-        
+    func values(_ values:[[String : Any]]) -> Any? {
+        return self.values(values, object: self)
+    }
+    
+    private func values<T:DataConversionProtocol>(_ values:[[String : Any]],object:T) -> [T]? {
+        let dataArray = DataConversion<T>().mapArray(values)
+        return dataArray
     }
 }

@@ -13,6 +13,25 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        let views = UIView()
+        views.backgroundColor = UIColor.red
+        views.addSubview(views)
+        views.frame.origin
+        
+        let d = UILayoutGuide()
+//        d.widthAnchor = NSLayoutDimension().constraint(equalToConstant: 100)
+//        d.a
+//        views.addLayoutGuide(d)
+        
+        views.widthAnchor.constraint(equalToConstant: 100)
+        views.heightAnchor.constraint(equalToConstant: 100)
+        views.topAnchor.constraint(equalTo: self.view.topAnchor)
+        views.leftAnchor.constraint(equalTo: view.leftAnchor)
+//        views.addLayoutGuide(<#T##layoutGuide: UILayoutGuide##UILayoutGuide#>)
+        views.addLayoutGuides { (layoutGuide) in
+            
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,10 +50,18 @@ class ViewController: UIViewController {
 //        print(ps)
         
 //        let t = TopicsModel().value(["content":"wangmengling" as AnyObject],type: TopicsModel.self)
-        let s = TopicsModel(value: ["content":"wangmengling" as AnyObject])
-        
+//        let s = TopicsModel(value: ["content":"wangmengling" as AnyObject])
+//        let s = TopicsModel().value(["content":"wangmengling" as AnyObject])
+//        let d = TopicsModel(value: ["content":"wangmengling"])
 //        TopicsModel(["content":"wangmengling" as AnyObject],type:TopicsModel.self)
-        print(s)
+        let sd = TopicsModel().values([["content":"wangmengling"]]) as! [TopicsModel]
+//        let s = TopicsModel().value(["content":"wangmengling" as AnyObject],type: TopicsModel.self)
+//        let ds = TopicsModel()
+//        ds.value(["content":"wangmengling" as AnyObject])
+        print(sd)
+//        print(s)
+        let ds = TopicsModel().value(["content":"wangmengling"]) as! TopicsModel
+//        print(d)
 //        t.value(["content":"wangmengling" as AnyObject])
 //        t.value(["content":"wangmengling" as AnyObject])
 //
@@ -59,7 +86,39 @@ class ViewController: UIViewController {
 //            var store = Storage()
 //            store.addArray(data)
 //        }
+//        self.getObject()
+        self.useWorkItem()
     }
 
+    
+    func getObject()  {
+        let tmpData = Date()
+        let asd = Storage().objects().filters("").sorted("").valueOfArray(TopicsModel.self)
+        let d = Date().timeIntervalSince(tmpData)
+        
+        print(d)
+        print(asd)
+        let delTime = Date().timeIntervalSince(tmpData)
+        print(delTime)
+    }
+
+    
+    func useWorkItem() {
+        var value = 10
+        
+        let workItem = DispatchWorkItem {
+            value += 5
+        }
+        
+        workItem.perform()
+        
+        let queue = DispatchQueue.global(qos: .utility)
+        
+        queue.async(execute: workItem)
+        
+        workItem.notify(queue: DispatchQueue.main) {
+            print("value = ", value)
+        }
+    }
 }
 

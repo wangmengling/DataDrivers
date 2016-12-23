@@ -18,7 +18,7 @@ public struct DataConversion<Element:DataConversionProtocol> {
 // MARK: - JSON Map
 extension DataConversion {
     /// Maps a JSON dictionary to an object that conforms to Mappable
-    public func map(_ JSONDictionary: [String : AnyObject]) -> E? {
+    public func map(_ JSONDictionary: [String : Any]) -> E? {
         let dataMap = DataMap(JSONDictionary: JSONDictionary)
         if var object = E() {
             object.mapping(dataMap)
@@ -36,8 +36,8 @@ extension DataConversion {
         return nil
     }
     
-    public func map(_ JSON:AnyObject?) -> E? {
-        if let JSON = JSON as? [String : AnyObject] {
+    public func map(_ JSON:Any?) -> E? {
+        if let JSON = JSON as? [String : Any] {
             return map(JSON)
         }
         return nil
@@ -46,13 +46,13 @@ extension DataConversion {
 
 // MARK: - Array
 extension DataConversion {
-    public func mapArray(_ JSONDictionaryArray: [[String : AnyObject]]) -> [E]? {
+    public func mapArray(_ JSONDictionaryArray: [[String : Any]]) -> [E]? {
         let result = JSONDictionaryArray.flatMap(map)
         return result
     }
     
-    public func mapArray(_ JSON: AnyObject?) -> [E] {
-        if let JSONArray = JSON as? [[String : AnyObject]] {
+    public func mapArray(_ JSON: Any?) -> [E] {
+        if let JSONArray = JSON as? [[String : Any]] {
             return mapArray(JSONArray)!
         }
         return []
