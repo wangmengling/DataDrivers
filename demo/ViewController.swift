@@ -33,6 +33,14 @@ class ViewController: UIViewController {
         let v = views.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 20)
         let u = views.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20)
         NSLayoutConstraint.activate([s,d,v,u])
+        
+//        views <<- [
+//            Width(100).anchor(self.view.widthAnchor),
+//            Height(100).anchor(self.view.heightAnchor),
+//            Left(10).anchor(self.view.leftAnchor),
+//            Top(10).anchor(self.view.topAnchor)
+//        ]
+        
     }
     
     override func didReceiveMemoryWarning() {

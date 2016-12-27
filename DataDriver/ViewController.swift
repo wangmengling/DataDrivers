@@ -16,27 +16,52 @@ class ViewController: UIViewController {
         
         let views = UIView()
         views.backgroundColor = UIColor.red
-        views.addSubview(views)
-        views.frame.origin
+        views.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(views)
         
-        let d = UILayoutGuide()
-//        d.widthAnchor = NSLayoutDimension().constraint(equalToConstant: 100)
-//        d.a
-//        views.addLayoutGuide(d)
+        print("sd")
         
-        views.widthAnchor.constraint(equalToConstant: 100)
-        views.heightAnchor.constraint(equalToConstant: 100)
-        views.topAnchor.constraint(equalTo: self.view.topAnchor)
-        views.leftAnchor.constraint(equalTo: view.leftAnchor)
-//        views.addLayoutGuide(<#T##layoutGuide: UILayoutGuide##UILayoutGuide#>)
-        views.addLayoutGuides { (layoutGuide) in
-            
+//        let width = views.widthAnchor.constraint(equalToConstant: 100)
+//        let height = views.heightAnchor.constraint(equalToConstant: 100)
+//        let top = views.topAnchor.constraint(equalTo: self.view.topAnchor)
+//        let left = views.leftAnchor.constraint(equalTo: view.leftAnchor)
+//        NSLayoutConstraint.activate([width,height,top,left])
+
+        
+//        views <<- [
+//            Width(100),
+//            Height(100),
+//            Left(>=10).anchor(self.view.leftAnchor),
+//            Top(>=10).anchor(self.view.topAnchor)
+//        ]
+        
+        views.addLayoutAnchors([
+            Width(100),
+            Height(100),
+            Left(>=10).anchor(self.view.leftAnchor),
+            Top(>=10).anchor(self.view.topAnchor)
+            ])
+        
+        views <<- [
+            Height(200),
+            Width(200)
+        ]
+        
+        views.addLayoutAnchor(Left(20).anchor(self.view.leftAnchor))
+        
+        views.maoAnchor.addLayoutAnchor { (anchor) in
+//            anchor.top
         }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("sds")
     }
 
     @IBAction func ceshiAction(_ sender: AnyObject) {
