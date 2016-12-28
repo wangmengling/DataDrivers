@@ -91,9 +91,44 @@ class MaoChatInputTextFieldView: MaoChatInputBaseView, UITextViewDelegate {
             if let btn = button as? MaoChatInputButton {
                 btn.addTarget(self, action: Selector(("onItemAction:")), for: .touchUpInside)
             }
-//            UILayoutGuide()
-//            button.addLayoutGuide(<#T##layoutGuide: UILayoutGuide##UILayoutGuide#>)
-//            button.topAnchor
+            
+            if index < 1 {
+                button <<- [
+                    Left(10).anchor(self.leftAnchor)
+                ]
+            }else {
+                button <<- [
+                    Left(10).anchor(buttons[index-1].rightAnchor)
+                ]
+            }
+            
+            if index == buttons.count - 1 {
+                button <<- [
+                    Right(10).anchor(self.rightAnchor)
+                ]
+            }
+            
+            if button is UITextView { // is textView
+                button <<- [
+                    Top(5).anchor(self.topAnchor)
+                ]
+            } else {
+                button <<- [
+                    Top(6).anchor(self.topAnchor)
+                ]
+            }
+            
+            // bottom
+            if button is UITextView { // is textView
+                button <<- [
+                    Bottom(5).anchor(self.bottomAnchor)
+                ]
+            } else {
+                button <<- [
+                    Width(34),
+                    Height(34)
+                ]
+            }
         }
         
         

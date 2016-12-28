@@ -14,7 +14,7 @@ class MaoLayoutXAxisAnchor: MaoLayoutAnchor {
         return self.anchorView.leftAnchor
     }
     
-    func anchor(_ xAxisAnchor: NSLayoutXAxisAnchor) -> Self {
+    override func anchor(_ xAxisAnchor: NSLayoutXAxisAnchor) -> Self {
         self.xAxisAnchor = xAxisAnchor
         return self
     }
@@ -87,7 +87,7 @@ class MaoLayoutYAxisAnchor: MaoLayoutAnchor {
         return self.anchorView.topAnchor
     }
     
-    func anchor(_ yAxisAnchor: NSLayoutYAxisAnchor) -> Self {
+    override func anchor(_ yAxisAnchor: NSLayoutYAxisAnchor) -> Self {
         self.yAxisAnchor = yAxisAnchor
         return self
     }
@@ -143,7 +143,7 @@ class MaoLayoutDimensionAnchor: MaoLayoutAnchor {
         return self.anchorView.widthAnchor
     }
     
-    func anchor(_ demensionAnchor: NSLayoutDimension) -> Self {
+    override func anchor(_ demensionAnchor: NSLayoutDimension) -> Self {
         self.demensionAnchor = demensionAnchor
         return self
     }

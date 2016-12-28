@@ -28,30 +28,34 @@ class ViewController: UIViewController {
 //        NSLayoutConstraint.activate([width,height,top,left])
 
         
-//        views <<- [
-//            Width(100),
-//            Height(100),
-//            Left(>=10).anchor(self.view.leftAnchor),
-//            Top(>=10).anchor(self.view.topAnchor)
-//        ]
-        
-        views.addLayoutAnchors([
+        views <<- [
             Width(100),
             Height(100),
             Left(>=10).anchor(self.view.leftAnchor),
             Top(>=10).anchor(self.view.topAnchor)
-            ])
-        
-        views <<- [
-            Height(200),
-            Width(200)
         ]
         
-        views.addLayoutAnchor(Left(20).anchor(self.view.leftAnchor))
+//        views.addLayoutAnchors([
+//            Width(100),
+//            Height(100),
+//            Left(>=10).anchor(self.view.leftAnchor),
+//            Top(>=10).anchor(self.view.topAnchor)
+//            ])
+//        
+//        views <<- [
+//            Height(200),
+//            Width(200)
+//        ]
         
-        views.maoAnchor.addLayoutAnchor { (anchor) in
-//            anchor.top
-        }
+//        views.addLayoutAnchor(Left(20).anchor(self.view.leftAnchor))
+        
+//        views.maoAnchor.addLayoutAnchors { (anchor) in
+////            anchor.top
+//            anchor.top(10).anchor(self.view.topAnchor)
+//            anchor.left(10).anchor(self.view.leftAnchor)
+//            anchor.width(100)
+//            anchor.height(100)
+//        }
     }
 
     override func didReceiveMemoryWarning() {

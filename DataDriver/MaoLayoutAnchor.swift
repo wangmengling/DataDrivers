@@ -63,6 +63,18 @@ public class MaoLayoutAnchor {
         }
         return deactivateConstant
     }
+    
+    func anchor(_ xAxisAnchor: NSLayoutXAxisAnchor) -> Self {
+        return self
+    }
+    
+    func anchor(_ yAxisAnchor: NSLayoutYAxisAnchor) -> Self {
+        return self
+    }
+    
+    func anchor(_ demensionAnchor: NSLayoutDimension) -> Self {
+        return self
+    }
 }
 
 extension MaoLayoutAnchor {
