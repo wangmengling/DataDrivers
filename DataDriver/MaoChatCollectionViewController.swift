@@ -17,6 +17,11 @@ class MaoChatCollectionViewController: UIViewController, UICollectionViewDelegat
         return collectionView
     }()
     
+    lazy var maoChatInputTextFieldView:MaoChatInputTextFieldView = {
+        let maoChatInputTextFieldView = MaoChatInputTextFieldView()
+        return maoChatInputTextFieldView
+    }()
+    
     lazy var chatArray = Array<MaoUserModel>()
 
     override func viewDidLoad() {
@@ -62,6 +67,13 @@ extension MaoChatCollectionViewController {
     func buildView() {
         
         self.view.addSubview(collectionView)
+        self.view.addSubview(maoChatInputTextFieldView)
+        maoChatInputTextFieldView <<- [
+            Width().anchor(self.view.widthAnchor),
+            Height(40),
+            Bottom(0).anchor(self.view.bottomAnchor),
+            Left(0).anchor(self.view.leftAnchor)
+        ]
         
         
         //collectionView register
