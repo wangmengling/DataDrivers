@@ -35,10 +35,10 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
-        <!--View Controller-->
+        <!--Chat View Controller-->
         <scene sceneID="V1Q-wy-N2P">
             <objects>
-                <viewController id="PBt-pA-E01" sceneMemberID="viewController">
+                <viewController restorationIdentifier="ChatViewController" storyboardIdentifier="ChatViewController" id="PBt-pA-E01" customClass="ChatViewController" customModule="DataDriver" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ip4-gi-mys"/>
                         <viewControllerLayoutGuide type="bottom" id="s60-1c-Znb"/>

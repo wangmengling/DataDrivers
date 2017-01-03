@@ -50,6 +50,7 @@ infix operator <<-
 
 
 public func <<- (view: UIView!, right: [MaoLayoutAnchor]) {
+    view.translatesAutoresizingMaskIntoConstraints = false
     var deactivateLayoutConstraintArray: [NSLayoutConstraint] = []
     let layoutConstraint =   right.map { (layoutAnchor) -> NSLayoutConstraint in
         layoutAnchor.anchorView = view

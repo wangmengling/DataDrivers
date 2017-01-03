@@ -6,4 +6,13 @@
 //  Copyright © 2016年 apple. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+final class MaoChatVoiceCollectionViewCell: MaoChatBaseCollectionViewCell {
+    lazy var contentImageView: UIImageView = {
+        let imageView = UIImageView(frame: CGRect.zero)
+        imageView.contentMode = UIViewContentMode.scaleAspectFit
+        imageView.tapImageView(tap: #selector(tapd))
+        return imageView
+    }()
+}
