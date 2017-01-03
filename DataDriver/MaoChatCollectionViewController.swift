@@ -10,22 +10,28 @@ import UIKit
 
 class MaoChatCollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
+    lazy var layout: UICollectionViewFlowLayout = {
+        let layout = UICollectionViewFlowLayout()
+        return layout
+    }()
+    
     lazy var collectionView:UICollectionView = {
-        let collectionView = UICollectionView()
-        collectionView.backgroundColor = UIColor.blue
+        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: self.layout)
+//        collectionView.backgroundColor = UIColor.blue
         collectionView.delegate = self
         collectionView.dataSource = self
         return collectionView
     }()
     
-<<<<<<< HEAD
     lazy var maoChatInputTextFieldView: MaoChatInputTextFieldView = {
-=======
-    lazy var maoChatInputTextFieldView:MaoChatInputTextFieldView = {
->>>>>>> origin/master
-        let maoChatInputTextFieldView = MaoChatInputTextFieldView()
+        let maoChatInputTextFieldView = MaoChatInputTextFieldView(frame: .zero)
 //        maoChatInputTextFieldView.backgroundColor = UIColor.red
         return maoChatInputTextFieldView
+    }()
+    
+    lazy var maoChatCollectionViewModel: MaoChatCollectionViewModel = {
+        let maoChatCollectionViewModel = MaoChatCollectionViewModel()
+        return maoChatCollectionViewModel
     }()
     
     lazy var backView: UIView = {
@@ -78,30 +84,31 @@ class MaoChatCollectionViewController: UIViewController, UICollectionViewDelegat
 extension MaoChatCollectionViewController {
     func buildView() {
         
-<<<<<<< HEAD
-        
-//        self.view.addSubview(collectionView)
-=======
         self.view.addSubview(collectionView)
-<<<<<<< HEAD
-        self.view.addSubview(self.maoChatInputTextFieldView)
-=======
->>>>>>> origin/master
         self.view.addSubview(maoChatInputTextFieldView)
         
+        
+        
         maoChatInputTextFieldView <<- [
-            Height(40),
+            Height(44),
             Bottom().anchor(self.view.bottomAnchor),
-            Left
+            Left().anchor(self.view.leftAnchor),
+            Right().anchor(self.view.rightAnchor)
         ]
->>>>>>> origin/master
+        
+        collectionView <<- [
+            Bottom().anchor(self.maoChatInputTextFieldView.topAnchor),
+            Left().anchor(self.view.leftAnchor),
+            Right().anchor(self.view.rightAnchor),
+            Top().anchor(self.view.topAnchor)
+        ]
         
         
-//        print(maoChatInputTextFieldView.widthAnchor)
-        //collectionView register
-//        self.collectionView.register(MaoChatLabelCollectionViewCell.self, forCellWithReuseIdentifier: MaoChatBaseCollectionViewCellStyle.label.description)
-//        self.collectionView.register(MaoChatImageCollectionViewCell.self, forCellWithReuseIdentifier: MaoChatBaseCollectionViewCellStyle.image.description)
-//        self.collectionView.register(MaoChatLabelCollectionViewCell.self, forCellWithReuseIdentifier: MaoChatBaseCollectionViewCellStyle.voice.description)
+        self.collectionView.register(MaoChatLabelCollectionViewCell.self, forCellWithReuseIdentifier: MaoChatBaseCollectionViewCellStyle.label.description)
+        self.collectionView.register(MaoChatImageCollectionViewCell.self, forCellWithReuseIdentifier: MaoChatBaseCollectionViewCellStyle.image.description)
+        self.collectionView.register(MaoChatLabelCollectionViewCell.self, forCellWithReuseIdentifier: MaoChatBaseCollectionViewCellStyle.voice.description)
+        
+//        maoChatCollectionViewModel.style
         
     }
 }

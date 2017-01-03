@@ -42,6 +42,8 @@
 		167849821E10C1E7006BDC17 /* MaoLayoutAnchorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167849811E10C1E7006BDC17 /* MaoLayoutAnchorProtocol.swift */; };
 		167849841E110CDD006BDC17 /* MaoConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167849831E110CDD006BDC17 /* MaoConstant.swift */; };
 		167849861E121C10006BDC17 /* MaoAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167849851E121C10006BDC17 /* MaoAnchor.swift */; };
+		16ABEBEA1E1B8E3100BAFB8A /* MaoChatTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16ABEBE91E1B8E3100BAFB8A /* MaoChatTextView.swift */; };
+		16ABEBEC1E1B9FD200BAFB8A /* MaoChatCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16ABEBEB1E1B9FD200BAFB8A /* MaoChatCollectionViewModel.swift */; };
 		183BFBA91E0CD84B00CF302B /* MaoLayoutRectAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183BFBA81E0CD84B00CF302B /* MaoLayoutRectAnchor.swift */; };
 		1864E1301D824C430042876C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1864E12F1D824C430042876C /* AppDelegate.swift */; };
 		1864E1321D824C430042876C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1864E1311D824C430042876C /* ViewController.swift */; };
@@ -72,7 +74,6 @@
 		1864E1941D826AA90042876C /* TopicsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1864E1931D826AA90042876C /* TopicsModel.swift */; };
 		18AE2AD51DD55A1500CA92BD /* DataToJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AE2AD41DD55A1500CA92BD /* DataToJSON.swift */; };
 		18BFE71D1DD5C6060088AF50 /* DataFieldType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BFE71C1DD5C6060088AF50 /* DataFieldType.swift */; };
-		18C04CBB1E15065C00C2BD4D /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C04CBA1E15065B00C2BD4D /* ChatViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -148,6 +149,8 @@
 		167849811E10C1E7006BDC17 /* MaoLayoutAnchorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoLayoutAnchorProtocol.swift; sourceTree = "<group>"; };
 		167849831E110CDD006BDC17 /* MaoConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoConstant.swift; sourceTree = "<group>"; };
 		167849851E121C10006BDC17 /* MaoAnchor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoAnchor.swift; sourceTree = "<group>"; };
+		16ABEBE91E1B8E3100BAFB8A /* MaoChatTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoChatTextView.swift; sourceTree = "<group>"; };
+		16ABEBEB1E1B9FD200BAFB8A /* MaoChatCollectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoChatCollectionViewModel.swift; sourceTree = "<group>"; };
 		183BFBA81E0CD84B00CF302B /* MaoLayoutRectAnchor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoLayoutRectAnchor.swift; sourceTree = "<group>"; };
 		1864E12C1D824C430042876C /* DataDriver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DataDriver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1864E12F1D824C430042876C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -186,7 +189,6 @@
 		1864E1931D826AA90042876C /* TopicsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicsModel.swift; sourceTree = "<group>"; };
 		18AE2AD41DD55A1500CA92BD /* DataToJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataToJSON.swift; sourceTree = "<group>"; };
 		18BFE71C1DD5C6060088AF50 /* DataFieldType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataFieldType.swift; sourceTree = "<group>"; };
-		18C04CBA1E15065B00C2BD4D /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,6 +248,7 @@
 				1641F12F1E07807500D852E2 /* MaoChatEnum.swift */,
 				16559C811E0A5DA500317DA3 /* MaoChatImage.swift */,
 				1641F1361E078C6000D852E2 /* MaoChatCollectionViewController.swift */,
+				16ABEBEB1E1B9FD200BAFB8A /* MaoChatCollectionViewModel.swift */,
 				1641F13E1E08D88F00D852E2 /* MaoChatCollectionViewController+Message.swift */,
 				1641F1341E078AD700D852E2 /* MaoUserModel.swift */,
 				1641F13C1E07E2D500D852E2 /* MaoChatMessageModel.swift */,
@@ -273,6 +276,7 @@
 			children = (
 				16559C791E0A1A6A00317DA3 /* MaoChatInputBaseView.swift */,
 				16559C7D1E0A256200317DA3 /* MaoChatInputTextFieldView.swift */,
+				16ABEBE91E1B8E3100BAFB8A /* MaoChatTextView.swift */,
 				16559C7F1E0A5BA400317DA3 /* MaoChatInputButton.swift */,
 			);
 			name = MaoChatInput;
@@ -356,11 +360,7 @@
 			children = (
 				1864E12F1D824C430042876C /* AppDelegate.swift */,
 				1864E1311D824C430042876C /* ViewController.swift */,
-<<<<<<< HEAD
-				18C04CBA1E15065B00C2BD4D /* ChatViewController.swift */,
-=======
 				1650BCD01E19231D006B0994 /* ChatViewController.swift */,
->>>>>>> origin/master
 				1864E1931D826AA90042876C /* TopicsModel.swift */,
 				1864E1901D8262EC0042876C /* view.h */,
 				1864E1911D8262EC0042876C /* view.m */,
@@ -746,11 +746,7 @@
 				167849821E10C1E7006BDC17 /* MaoLayoutAnchorProtocol.swift in Sources */,
 				16559C7E1E0A256200317DA3 /* MaoChatInputTextFieldView.swift in Sources */,
 				1641F1391E078ED300D852E2 /* MaoChatConversation.swift in Sources */,
-<<<<<<< HEAD
-				18C04CBB1E15065C00C2BD4D /* ChatViewController.swift in Sources */,
-=======
 				1650BCD11E19231D006B0994 /* ChatViewController.swift in Sources */,
->>>>>>> origin/master
 				1641F12A1E03EBD300D852E2 /* MaoChatBaseCollectionViewCell.swift in Sources */,
 				167849841E110CDD006BDC17 /* MaoConstant.swift in Sources */,
 				1864E1721D824E0A0042876C /* Pop.swift in Sources */,
@@ -768,6 +764,7 @@
 				1864E1671D824DB80042876C /* Storage.swift in Sources */,
 				1864E1921D8262EC0042876C /* view.m in Sources */,
 				1864E16F1D824DE20042876C /* DataMap.swift in Sources */,
+				16ABEBEC1E1B9FD200BAFB8A /* MaoChatCollectionViewModel.swift in Sources */,
 				16434AAF1E0B879600DB72BB /* MaoChatFunctions.swift in Sources */,
 				16559C801E0A5BA400317DA3 /* MaoChatInputButton.swift in Sources */,
 				1864E17D1D824E4B0042876C /* MLImageDowloader.swift in Sources */,
@@ -780,6 +777,7 @@
 				1641F13B1E07DB2F00D852E2 /* MaoChatVoiceCollectionViewCell.swift in Sources */,
 				1864E17C1D824E4B0042876C /* MLImageCache.swift in Sources */,
 				1864E1941D826AA90042876C /* TopicsModel.swift in Sources */,
+				16ABEBEA1E1B8E3100BAFB8A /* MaoChatTextView.swift in Sources */,
 				166AAF051E0C08C600661C78 /* MaoPriority.swift in Sources */,
 				1641F13D1E07E2D500D852E2 /* MaoChatMessageModel.swift in Sources */,
 			);

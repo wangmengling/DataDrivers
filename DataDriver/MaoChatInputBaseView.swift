@@ -18,6 +18,17 @@ class MaoChatInputBaseView: UIView {
     }
     */
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.buildView()
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: .zero)
+        self.buildView()
+    }
+    
+    
     fileprivate lazy var inputBackView: UIView = {
         let inputBackView = UIView()
         return inputBackView

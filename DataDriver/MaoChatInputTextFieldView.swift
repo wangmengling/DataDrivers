@@ -20,6 +20,7 @@ class MaoChatInputTextFieldView: MaoChatInputBaseView, UITextViewDelegate {
     
     private lazy var textView: UITextView = {
         let textView = UITextView()
+        textView.backgroundColor = UIColor.red
         return textView
     }()
     
@@ -37,6 +38,7 @@ class MaoChatInputTextFieldView: MaoChatInputBaseView, UITextViewDelegate {
     
     private lazy var backgroundView:UIImageView = {
         let imageView = UIImageView()
+        imageView.image = UIImage(named: MaoChatImageName.InputView.chat_bottom_textfield.rawValue)
         return imageView
     }()
     
@@ -67,22 +69,9 @@ class MaoChatInputTextFieldView: MaoChatInputBaseView, UITextViewDelegate {
         textView.scrollIndicatorInsets = UIEdgeInsetsMake(2, 0, 2, 0)
         textView.returnKeyType = UIReturnKeyType.send
         textView.delegate = self
-//        backgroundView.image = SIMChatImageManager.defautlInputBackground
-        backgroundView.translatesAutoresizingMaskIntoConstraints = false
         
         // add view
         addSubview(backgroundView)
-        
-//        for button in buttons {
-//            // disable translates
-//            button.translatesAutoresizingMaskIntoConstraints = false
-//            // add
-//            addSubview(button)
-//            // add tag, if need
-//            if let btn = button as? MaoChatInputButton {
-//                btn.addTarget(self, action: Selector(("onItemAction:")), for: .touchUpInside)
-//            }
-//        }
         
         for index in 0 ..< buttons.count {
             let button = buttons[index]
@@ -94,17 +83,18 @@ class MaoChatInputTextFieldView: MaoChatInputBaseView, UITextViewDelegate {
             
             if index < 1 {
                 button <<- [
-                    Left(10).anchor(self.leftAnchor)
+                    Leading(10).anchor(self.leadingAnchor)
                 ]
             }else {
+                let preItem = buttons[index-1]
                 button <<- [
-                    Left(10).anchor(buttons[index-1].rightAnchor)
+                    Leading(10).anchor(preItem.trailingAnchor)
                 ]
             }
             
             if index == buttons.count - 1 {
                 button <<- [
-                    Right(10).anchor(self.rightAnchor)
+                    Trailing(-10).anchor(self.trailingAnchor)
                 ]
             }
             
@@ -121,7 +111,8 @@ class MaoChatInputTextFieldView: MaoChatInputBaseView, UITextViewDelegate {
             // bottom
             if button is UITextView { // is textView
                 button <<- [
-                    Bottom(5).anchor(self.bottomAnchor)
+//                    Bottom(5).anchor(self.bottomAnchor)
+                    Height(36)
                 ]
             } else {
                 button <<- [
@@ -132,12 +123,32 @@ class MaoChatInputTextFieldView: MaoChatInputBaseView, UITextViewDelegate {
         }
         
         
+        backgroundView <<- [
+            Top(5).anchor(self.topAnchor),
+            Leading(0).anchor(self.textView.leadingAnchor),
+            Bottom(5).anchor(self.bottomAnchor),
+            Trailing(0).anchor(self.textView.trailingAnchor)
+        ]
+        
+    }
+    
+    func onItemAction(sender:MaoChatInputButton) {
+        print(sender.style)
     }
 }
 
 extension MaoChatInputTextFieldView {
-    func onItemAction(sender:MaoChatInputButton) {
-        print(sender.style)
+//    func onItemAction(sender:MaoChatInputButton) {
+//        print(sender.style)
+//    }
+}
+
+extension MaoChatInputTextFieldView {
+    public func textViewShouldBeginEditing(_ textView: UITextView) -> Bool{
+        return true
+    }
+    public func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+        return true
     }
 }
 

@@ -8,6 +8,17 @@
 
 import UIKit
 
+protocol MaoChatImageNameProtocol {
+    func image() -> UIImage
+}
+
+extension MaoChatImageNameProtocol {
+//    func image(maoChatImageName: MaoChatImageName) -> UIImage {
+//        maoChatImageName.
+//        return UIImage(named: maoChatImageName.)
+//    }
+}
+
 
 struct MaoChatImageName {
     enum InputView: String {
@@ -19,6 +30,7 @@ struct MaoChatImageName {
         case chat_bottom_smile_press
         case chat_bottom_up_nor
         case chat_bottom_up_press
+        case chat_bottom_textfield
     }
 }
 
