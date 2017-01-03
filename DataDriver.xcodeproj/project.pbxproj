@@ -28,6 +28,7 @@
 		16434A981E0B833700DB72BB /* demoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16434A971E0B833700DB72BB /* demoTests.swift */; };
 		16434AA31E0B833800DB72BB /* demoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16434AA21E0B833800DB72BB /* demoUITests.swift */; };
 		16434AAF1E0B879600DB72BB /* MaoChatFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16434AAE1E0B879600DB72BB /* MaoChatFunctions.swift */; };
+		1650BCD11E19231D006B0994 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1650BCD01E19231D006B0994 /* ChatViewController.swift */; };
 		16559C7A1E0A1A6A00317DA3 /* MaoChatInputBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16559C791E0A1A6A00317DA3 /* MaoChatInputBaseView.swift */; };
 		16559C7C1E0A1EA100317DA3 /* SIMChat.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16559C7B1E0A1EA100317DA3 /* SIMChat.xcassets */; };
 		16559C7E1E0A256200317DA3 /* MaoChatInputTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16559C7D1E0A256200317DA3 /* MaoChatInputTextFieldView.swift */; };
@@ -133,6 +134,7 @@
 		16434AA21E0B833800DB72BB /* demoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = demoUITests.swift; sourceTree = "<group>"; };
 		16434AA41E0B833800DB72BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		16434AAE1E0B879600DB72BB /* MaoChatFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoChatFunctions.swift; sourceTree = "<group>"; };
+		1650BCD01E19231D006B0994 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		16559C791E0A1A6A00317DA3 /* MaoChatInputBaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoChatInputBaseView.swift; sourceTree = "<group>"; };
 		16559C7B1E0A1EA100317DA3 /* SIMChat.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SIMChat.xcassets; sourceTree = "<group>"; };
 		16559C7D1E0A256200317DA3 /* MaoChatInputTextFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoChatInputTextFieldView.swift; sourceTree = "<group>"; };
@@ -354,7 +356,11 @@
 			children = (
 				1864E12F1D824C430042876C /* AppDelegate.swift */,
 				1864E1311D824C430042876C /* ViewController.swift */,
+<<<<<<< HEAD
 				18C04CBA1E15065B00C2BD4D /* ChatViewController.swift */,
+=======
+				1650BCD01E19231D006B0994 /* ChatViewController.swift */,
+>>>>>>> origin/master
 				1864E1931D826AA90042876C /* TopicsModel.swift */,
 				1864E1901D8262EC0042876C /* view.h */,
 				1864E1911D8262EC0042876C /* view.m */,
@@ -740,7 +746,11 @@
 				167849821E10C1E7006BDC17 /* MaoLayoutAnchorProtocol.swift in Sources */,
 				16559C7E1E0A256200317DA3 /* MaoChatInputTextFieldView.swift in Sources */,
 				1641F1391E078ED300D852E2 /* MaoChatConversation.swift in Sources */,
+<<<<<<< HEAD
 				18C04CBB1E15065C00C2BD4D /* ChatViewController.swift in Sources */,
+=======
+				1650BCD11E19231D006B0994 /* ChatViewController.swift in Sources */,
+>>>>>>> origin/master
 				1641F12A1E03EBD300D852E2 /* MaoChatBaseCollectionViewCell.swift in Sources */,
 				167849841E110CDD006BDC17 /* MaoConstant.swift in Sources */,
 				1864E1721D824E0A0042876C /* Pop.swift in Sources */,
