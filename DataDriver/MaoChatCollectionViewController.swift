@@ -18,7 +18,11 @@ class MaoChatCollectionViewController: UIViewController, UICollectionViewDelegat
         return collectionView
     }()
     
+<<<<<<< HEAD
+    lazy var maoChatInputTextFieldView: MaoChatInputTextFieldView = {
+=======
     lazy var maoChatInputTextFieldView:MaoChatInputTextFieldView = {
+>>>>>>> origin/master
         let maoChatInputTextFieldView = MaoChatInputTextFieldView()
 //        maoChatInputTextFieldView.backgroundColor = UIColor.red
         return maoChatInputTextFieldView
@@ -74,8 +78,15 @@ class MaoChatCollectionViewController: UIViewController, UICollectionViewDelegat
 extension MaoChatCollectionViewController {
     func buildView() {
         
+<<<<<<< HEAD
         
 //        self.view.addSubview(collectionView)
+=======
+        self.view.addSubview(collectionView)
+<<<<<<< HEAD
+        self.view.addSubview(self.maoChatInputTextFieldView)
+=======
+>>>>>>> origin/master
         self.view.addSubview(maoChatInputTextFieldView)
         
         maoChatInputTextFieldView <<- [
@@ -83,6 +94,7 @@ extension MaoChatCollectionViewController {
             Bottom().anchor(self.view.bottomAnchor),
             Left
         ]
+>>>>>>> origin/master
         
         
 //        print(maoChatInputTextFieldView.widthAnchor)

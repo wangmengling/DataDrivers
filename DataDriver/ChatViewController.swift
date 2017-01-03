@@ -2,8 +2,13 @@
 //  ChatViewController.swift
 //  DataDriver
 //
+<<<<<<< HEAD
+//  Created by apple on 16/12/29.
+//  Copyright © 2016年 apple. All rights reserved.
+=======
 //  Created by jackWang on 2017/1/1.
 //  Copyright © 2017年 apple. All rights reserved.
+>>>>>>> origin/master
 //
 
 import UIKit
