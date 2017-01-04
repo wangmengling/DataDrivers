@@ -9,7 +9,7 @@
 import Foundation
 
 struct MaoUserModel: DataConversionProtocol {
-    var userId:String!
+    var userId:Int!
     var name:String!
     var headImage:String!
     var isMe:MaoChatIsMe = .True

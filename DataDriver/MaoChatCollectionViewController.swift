@@ -65,7 +65,7 @@ class MaoChatCollectionViewController: UIViewController, UICollectionViewDelegat
     */
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        return self.chatArray.count
     }
     
     
@@ -110,5 +110,26 @@ extension MaoChatCollectionViewController {
         
 //        maoChatCollectionViewModel.style
         
+    }
+    
+    func getChatArray() -> [MaoUserModel] {
+        var userModel = MaoUserModel()
+        userModel.isMe = .True
+        userModel.contentType = .label
+        userModel.headImage = ""
+        userModel.name = "JackWang"
+        userModel.userId = 10000
+        
+        var freindUserModel = MaoUserModel()
+        userModel.isMe = .True
+        userModel.contentType = .label
+        userModel.headImage = ""
+        userModel.name = "zhangyan"
+        userModel.userId = 10001
+        return [
+            userModel,freindUserModel
+        ]
+        
+        self.collectionView.reloadData()
     }
 }
