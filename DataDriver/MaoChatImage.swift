@@ -33,6 +33,11 @@ struct MaoChatImageName {
         case chat_bottom_textfield
     }
     
+    enum Cell: String {
+        case simchat_bubble_recive
+        case simchat_bubble_send
+    }
+    
     enum CellView: String {
         case MaoChatDefaultAvtatar
     }

@@ -28,10 +28,10 @@ class MaoChatLabelCollectionViewCell: MaoChatBaseCollectionViewCell {
         super.buildLayout(isMe)
         
         contentLabel <<- [
-            Trailing(0).anchor(self.contentBackView.trailingAnchor),
-            Leading(0).anchor(self.contentBackView.leadingAnchor),
-            Top(4).anchor(self.contentBackView.topAnchor),
-            Bottom(-4).anchor(self.contentBackView.bottomAnchor)
+            Trailing(-12).anchor(self.contentBackView.trailingAnchor),
+            Leading(12).anchor(self.contentBackView.leadingAnchor),
+            Top(8).anchor(self.contentBackView.topAnchor),
+            Bottom(-8).anchor(self.contentBackView.bottomAnchor)
         ]
     }
     

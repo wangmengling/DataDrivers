@@ -134,11 +134,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DataDriver/MaoChatBaseCollectionViewCell.swift"
-            timestampString = "505303217.862147"
+            timestampString = "505318760.32648"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
             landmarkName = "buildLayout(_:)"
             landmarkType = "7">
          </BreakpointContent>

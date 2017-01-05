@@ -123,7 +123,7 @@ extension MaoChatCollectionViewController {
         userModel.isMe = .False
         userModel.contentType = .label
         userModel.headImage = ""
-        userModel.name = "JackWang"
+        userModel.name = "JackWangJackWangJackWangJackWangJackWangJackWangJackWangJackWangJackWangJackWangJackWangJackWang"
         userModel.userId = 10000
         
         var freindUserModel = MaoUserModel()
