@@ -12,12 +12,15 @@ class MaoChatCollectionViewController: UIViewController, UICollectionViewDelegat
     
     lazy var layout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
+        layout.estimatedItemSize = CGSize(width: self.view.bounds.size.width, height: 50)
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 0
         return layout
     }()
     
     lazy var collectionView:UICollectionView = {
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: self.layout)
-//        collectionView.backgroundColor = UIColor.blue
+        collectionView.backgroundColor = UIColor.white
         collectionView.delegate = self
         collectionView.dataSource = self
         return collectionView
@@ -45,6 +48,8 @@ class MaoChatCollectionViewController: UIViewController, UICollectionViewDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         self.buildView()
+        self.getChatArray()
+        
         // Do any additional setup after loading the view.
     }
 
@@ -75,10 +80,11 @@ class MaoChatCollectionViewController: UIViewController, UICollectionViewDelegat
         
         let userModel = self.chatArray[indexPath.row]
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: (MaoChatBaseCollectionViewCellStyle(rawValue: userModel.contentType.rawValue)?.rawValue)!, for: indexPath)
-        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MaoChatBaseCollectionViewCellStyle.styleOfChatType( userModel.contentType,userModel.isMe), for: indexPath) as! MaoChatBaseCollectionViewCell
+        cell.userModel = userModel
         return cell
     }
+    
 }
 
 extension MaoChatCollectionViewController {
@@ -104,32 +110,33 @@ extension MaoChatCollectionViewController {
         ]
         
         
-        self.collectionView.register(MaoChatLabelCollectionViewCell.self, forCellWithReuseIdentifier: MaoChatBaseCollectionViewCellStyle.label.description)
-        self.collectionView.register(MaoChatImageCollectionViewCell.self, forCellWithReuseIdentifier: MaoChatBaseCollectionViewCellStyle.image.description)
-        self.collectionView.register(MaoChatLabelCollectionViewCell.self, forCellWithReuseIdentifier: MaoChatBaseCollectionViewCellStyle.voice.description)
-        
-//        maoChatCollectionViewModel.style
-        
+        self.collectionView.register(MaoChatLabelLeftCollectionViewCell.self, forCellWithReuseIdentifier: MaoChatBaseCollectionViewCellStyle.labelLeft.description)
+        self.collectionView.register(MaoChatLabelRightCollectionViewCell.self, forCellWithReuseIdentifier: MaoChatBaseCollectionViewCellStyle.labelRight.description)
+        self.collectionView.register(MaoChatImageLeftCollectionViewCell.self, forCellWithReuseIdentifier: MaoChatBaseCollectionViewCellStyle.imageLeft.description)
+        self.collectionView.register(MaoChatImageRightCollectionViewCell.self, forCellWithReuseIdentifier: MaoChatBaseCollectionViewCellStyle.imageRight.description)
+        self.collectionView.register(MaoChatVoiceLeftCollectionViewCell.self, forCellWithReuseIdentifier: MaoChatBaseCollectionViewCellStyle.voiceLeft.description)
+        self.collectionView.register(MaoChatVoiceRightCollectionViewCell.self, forCellWithReuseIdentifier: MaoChatBaseCollectionViewCellStyle.imageRight.description)
     }
     
-    func getChatArray() -> [MaoUserModel] {
+    func getChatArray() {
         var userModel = MaoUserModel()
-        userModel.isMe = .True
+        userModel.isMe = .False
         userModel.contentType = .label
         userModel.headImage = ""
         userModel.name = "JackWang"
         userModel.userId = 10000
         
         var freindUserModel = MaoUserModel()
-        userModel.isMe = .True
-        userModel.contentType = .label
-        userModel.headImage = ""
-        userModel.name = "zhangyan"
-        userModel.userId = 10001
-        return [
-            userModel,freindUserModel
+        freindUserModel.isMe = .True
+        freindUserModel.contentType = .label
+        freindUserModel.headImage = ""
+        freindUserModel.name = "zhangyan"
+        freindUserModel.userId = 10001
+        self.chatArray = [
+            userModel,freindUserModel,freindUserModel,freindUserModel,freindUserModel,freindUserModel,freindUserModel,freindUserModel,freindUserModel,freindUserModel,freindUserModel,freindUserModel,freindUserModel,freindUserModel,freindUserModel
         ]
         
         self.collectionView.reloadData()
+        
     }
 }

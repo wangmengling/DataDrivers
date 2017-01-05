@@ -7,8 +7,7 @@
 //
 
 import UIKit
-
-final class MaoChatVoiceCollectionViewCell: MaoChatBaseCollectionViewCell {
+ class MaoChatVoiceCollectionViewCell: MaoChatBaseCollectionViewCell {
     lazy var contentImageView: UIImageView = {
         let imageView = UIImageView(frame: CGRect.zero)
         imageView.contentMode = UIViewContentMode.scaleAspectFit

@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		160F63BD1E1E2C6000E0F7FA /* MaoChatLabelLeftCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160F63BC1E1E2C6000E0F7FA /* MaoChatLabelLeftCollectionViewCell.swift */; };
+		160F63BF1E1E2CCD00E0F7FA /* MaoChatLabelRightCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160F63BE1E1E2CCD00E0F7FA /* MaoChatLabelRightCollectionViewCell.swift */; };
+		160F63C11E1E2CE500E0F7FA /* MaoChatImageLeftCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160F63C01E1E2CE500E0F7FA /* MaoChatImageLeftCollectionViewCell.swift */; };
+		160F63C31E1E2CF500E0F7FA /* MaoChatImageRightCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160F63C21E1E2CF500E0F7FA /* MaoChatImageRightCollectionViewCell.swift */; };
+		160F63C51E1E2D0700E0F7FA /* MaoChatVoiceLeftCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160F63C41E1E2D0700E0F7FA /* MaoChatVoiceLeftCollectionViewCell.swift */; };
+		160F63C71E1E2D2000E0F7FA /* MaoChatVoiceRightCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160F63C61E1E2D2000E0F7FA /* MaoChatVoiceRightCollectionViewCell.swift */; };
 		1625E3361DC7752400CB71FF /* DataOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1625E3351DC7752400CB71FF /* DataOperators.swift */; };
 		1625E3381DC77FF900CB71FF /* DataConversionTypeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1625E3371DC77FF900CB71FF /* DataConversionTypeEnum.swift */; };
 		1641F12A1E03EBD300D852E2 /* MaoChatBaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1641F1291E03EBD300D852E2 /* MaoChatBaseCollectionViewCell.swift */; };
@@ -108,6 +114,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		160F63BC1E1E2C6000E0F7FA /* MaoChatLabelLeftCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoChatLabelLeftCollectionViewCell.swift; sourceTree = "<group>"; };
+		160F63BE1E1E2CCD00E0F7FA /* MaoChatLabelRightCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoChatLabelRightCollectionViewCell.swift; sourceTree = "<group>"; };
+		160F63C01E1E2CE500E0F7FA /* MaoChatImageLeftCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoChatImageLeftCollectionViewCell.swift; sourceTree = "<group>"; };
+		160F63C21E1E2CF500E0F7FA /* MaoChatImageRightCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoChatImageRightCollectionViewCell.swift; sourceTree = "<group>"; };
+		160F63C41E1E2D0700E0F7FA /* MaoChatVoiceLeftCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoChatVoiceLeftCollectionViewCell.swift; sourceTree = "<group>"; };
+		160F63C61E1E2D2000E0F7FA /* MaoChatVoiceRightCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoChatVoiceRightCollectionViewCell.swift; sourceTree = "<group>"; };
 		1625E3351DC7752400CB71FF /* DataOperators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataOperators.swift; sourceTree = "<group>"; };
 		1625E3371DC77FF900CB71FF /* DataConversionTypeEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataConversionTypeEnum.swift; sourceTree = "<group>"; };
 		1641F1291E03EBD300D852E2 /* MaoChatBaseCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoChatBaseCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -265,8 +277,14 @@
 			children = (
 				1641F1291E03EBD300D852E2 /* MaoChatBaseCollectionViewCell.swift */,
 				1641F12D1E054A7700D852E2 /* MaoChatLabelCollectionViewCell.swift */,
+				160F63BC1E1E2C6000E0F7FA /* MaoChatLabelLeftCollectionViewCell.swift */,
+				160F63BE1E1E2CCD00E0F7FA /* MaoChatLabelRightCollectionViewCell.swift */,
 				1641F1311E07867300D852E2 /* MaoChatImageCollectionViewCell.swift */,
+				160F63C01E1E2CE500E0F7FA /* MaoChatImageLeftCollectionViewCell.swift */,
+				160F63C21E1E2CF500E0F7FA /* MaoChatImageRightCollectionViewCell.swift */,
 				1641F13A1E07DB2F00D852E2 /* MaoChatVoiceCollectionViewCell.swift */,
+				160F63C41E1E2D0700E0F7FA /* MaoChatVoiceLeftCollectionViewCell.swift */,
+				160F63C61E1E2D2000E0F7FA /* MaoChatVoiceRightCollectionViewCell.swift */,
 			);
 			name = MaoChatCell;
 			sourceTree = "<group>";
@@ -591,6 +609,7 @@
 				TargetAttributes = {
 					16434A7F1E0B833700DB72BB = {
 						CreatedOnToolsVersion = 8.2;
+						DevelopmentTeam = 5F9R5KPEXS;
 						ProvisioningStyle = Automatic;
 					};
 					16434A921E0B833700DB72BB = {
@@ -736,6 +755,7 @@
 				1864E17A1D824E4B0042876C /* Image.swift in Sources */,
 				18AE2AD51DD55A1500CA92BD /* DataToJSON.swift in Sources */,
 				18BFE71D1DD5C6060088AF50 /* DataFieldType.swift in Sources */,
+				160F63C11E1E2CE500E0F7FA /* MaoChatImageLeftCollectionViewCell.swift in Sources */,
 				1641F13F1E08D88F00D852E2 /* MaoChatCollectionViewController+Message.swift in Sources */,
 				1864E16E1D824DE20042876C /* DataConversionProtocol.swift in Sources */,
 				1864E1641D824DB80042876C /* Extensions.swift in Sources */,
@@ -752,8 +772,10 @@
 				1864E1721D824E0A0042876C /* Pop.swift in Sources */,
 				16559C841E0A5EF700317DA3 /* String+Mao.swift in Sources */,
 				166AAF011E0BFA1900661C78 /* MaoLayoutAnchor.swift in Sources */,
+				160F63C31E1E2CF500E0F7FA /* MaoChatImageRightCollectionViewCell.swift in Sources */,
 				16559C7A1E0A1A6A00317DA3 /* MaoChatInputBaseView.swift in Sources */,
 				1641F12E1E054A7700D852E2 /* MaoChatLabelCollectionViewCell.swift in Sources */,
+				160F63C71E1E2D2000E0F7FA /* MaoChatVoiceRightCollectionViewCell.swift in Sources */,
 				1864E1821D824E780042876C /* NetWork.swift in Sources */,
 				1864E17E1D824E4B0042876C /* MLImageDowloadManager.swift in Sources */,
 				1864E1661D824DB80042876C /* SrorageToSQLite.swift in Sources */,
@@ -769,6 +791,8 @@
 				16559C801E0A5BA400317DA3 /* MaoChatInputButton.swift in Sources */,
 				1864E17D1D824E4B0042876C /* MLImageDowloader.swift in Sources */,
 				166AAEFF1E0BF8D300661C78 /* UIView+MaoAnchor.swift in Sources */,
+				160F63BD1E1E2C6000E0F7FA /* MaoChatLabelLeftCollectionViewCell.swift in Sources */,
+				160F63C51E1E2D0700E0F7FA /* MaoChatVoiceLeftCollectionViewCell.swift in Sources */,
 				1641F12C1E03EF9200D852E2 /* UIImageView+Mao.swift in Sources */,
 				1641F1321E07867300D852E2 /* MaoChatImageCollectionViewCell.swift in Sources */,
 				183BFBA91E0CD84B00CF302B /* MaoLayoutRectAnchor.swift in Sources */,
@@ -777,6 +801,7 @@
 				1641F13B1E07DB2F00D852E2 /* MaoChatVoiceCollectionViewCell.swift in Sources */,
 				1864E17C1D824E4B0042876C /* MLImageCache.swift in Sources */,
 				1864E1941D826AA90042876C /* TopicsModel.swift in Sources */,
+				160F63BF1E1E2CCD00E0F7FA /* MaoChatLabelRightCollectionViewCell.swift in Sources */,
 				16ABEBEA1E1B8E3100BAFB8A /* MaoChatTextView.swift in Sources */,
 				166AAF051E0C08C600661C78 /* MaoPriority.swift in Sources */,
 				1641F13D1E07E2D500D852E2 /* MaoChatMessageModel.swift in Sources */,
@@ -865,8 +890,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				DEVELOPMENT_TEAM = 5F9R5KPEXS;
 				INFOPLIST_FILE = demo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = wang.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -879,8 +905,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				DEVELOPMENT_TEAM = 5F9R5KPEXS;
 				INFOPLIST_FILE = demo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = wang.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1050,7 +1077,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 5F9R5KPEXS;
 				INFOPLIST_FILE = DataDriver/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = wang.DataDrivers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1067,7 +1094,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 5F9R5KPEXS;
 				INFOPLIST_FILE = DataDriver/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = wang.DataDrivers;
 				PRODUCT_NAME = "$(TARGET_NAME)";

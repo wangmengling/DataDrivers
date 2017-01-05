@@ -20,24 +20,39 @@ public enum MaoChatType: String, CustomStringConvertible {
 }
 
 public enum MaoChatBaseCollectionViewCellStyle: String, CustomStringConvertible {
-    case label = "MaoChatLabelCollectionViewCell"
-    case image = "MaoChatImageCollectionViewCell"
-    case voice = "MaoChatVoiceCollectionViewCell"
+    case labelLeft = "MaoChatLabelLeftCollectionViewCell"
+    case imageLeft = "MaoChatImageLeftCollectionViewCell"
+    case voiceLeft = "MaoChatVoiceLeftCollectionViewCell"
+    
+    case labelRight = "MaoChatLabelRightCollectionViewCell"
+    case imageRight = "MaoChatImageRightCollectionViewCell"
+    case voiceRight = "MaoChatVoiceRightCollectionViewCell"
     
     public var description: String {
         return self.rawValue
     }
     
-    public func styleOfChatType(chatType:MaoChatType) -> String{
-        switch chatType {
-        case .label:
-            return MaoChatBaseCollectionViewCellStyle.label.description
-        case .image:
-            return MaoChatBaseCollectionViewCellStyle.image.description
-        case .voice:
-            return MaoChatBaseCollectionViewCellStyle.voice.description
-        default:
-            return MaoChatBaseCollectionViewCellStyle.label.description
+    static public func styleOfChatType(_ chatType: MaoChatType , _ isMe: MaoChatIsMe) -> String{
+        switch isMe {
+        case .True:
+            switch chatType {
+            case .label:
+                return MaoChatBaseCollectionViewCellStyle.labelLeft.description
+            case .image:
+                return MaoChatBaseCollectionViewCellStyle.imageLeft.description
+            case .voice:
+                return MaoChatBaseCollectionViewCellStyle.voiceLeft.description
+            }
+        case .False:
+            switch chatType {
+            case .label:
+                return MaoChatBaseCollectionViewCellStyle.labelRight.description
+            case .image:
+                return MaoChatBaseCollectionViewCellStyle.imageRight.description
+            case .voice:
+                return MaoChatBaseCollectionViewCellStyle.voiceRight.description
+            }
+            
         }
     }
 }
@@ -53,6 +68,13 @@ public enum MaoChatInputViewStyle {
     case voice
     case emoji
     case tool
+}
+
+struct MaoChatEnum {
+//    enum Screen: CGFloat {
+////        case Width = UIScreen.main.bounds.width
+////        case Height = UIScreen.main.bounds.height
+//    }
 }
 
 

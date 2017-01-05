@@ -32,6 +32,10 @@ struct MaoChatImageName {
         case chat_bottom_up_press
         case chat_bottom_textfield
     }
+    
+    enum CellView: String {
+        case MaoChatDefaultAvtatar
+    }
 }
 
 struct MaoChatImage {

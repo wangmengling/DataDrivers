@@ -56,10 +56,11 @@
                         <viewControllerLayoutGuide type="bottom" id="s60-1c-Znb"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="cLS-00-Ffi">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yy5-en-c3B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

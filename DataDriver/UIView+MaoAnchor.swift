@@ -47,6 +47,7 @@ extension UIView {
 }
 
 infix operator <<-
+infix operator ->>
 
 
 public func <<- (view: UIView!, right: [MaoLayoutAnchor]) {
@@ -63,4 +64,18 @@ public func <<- (view: UIView!, right: [MaoLayoutAnchor]) {
     NSLayoutConstraint.deactivate(deactivateLayoutConstraintArray)
     NSLayoutConstraint.activate(layoutConstraint)
 }
+
+public func ->> (view: UIView!, right: [MaoLayoutAnchor]) {
+    view.translatesAutoresizingMaskIntoConstraints = false
+    let deactivateLayoutConstraintArray =   right.flatMap { (layoutAnchor) -> NSLayoutConstraint? in
+        layoutAnchor.anchorView = view
+        if let deactivate = layoutAnchor.deactivate(){
+            return deactivate
+        }
+        return nil
+    }
+    NSLayoutConstraint.deactivate(deactivateLayoutConstraintArray)
+}
+
+
 
