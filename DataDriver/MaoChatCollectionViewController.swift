@@ -43,7 +43,7 @@ class MaoChatCollectionViewController: UIViewController, UICollectionViewDelegat
         return backView
     }()
     
-    lazy var chatArray = Array<MaoUserModel>()
+    lazy var contentModelArray = Array<MaoChatContentModel>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,7 +70,7 @@ class MaoChatCollectionViewController: UIViewController, UICollectionViewDelegat
     */
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.chatArray.count
+        return self.contentModelArray.count
     }
     
     
@@ -78,10 +78,10 @@ class MaoChatCollectionViewController: UIViewController, UICollectionViewDelegat
     // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let userModel = self.chatArray[indexPath.row]
+        let contentModel = self.contentModelArray[indexPath.row]
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MaoChatBaseCollectionViewCellStyle.styleOfChatType( userModel.contentType,userModel.isMe), for: indexPath) as! MaoChatBaseCollectionViewCell
-        cell.userModel = userModel
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MaoChatBaseCollectionViewCellStyle.styleOfChatType( contentModel.contentType,contentModel.isMe), for: indexPath) as! MaoChatBaseCollectionViewCell
+        cell.contentModel = contentModel
         return cell
     }
     
@@ -119,24 +119,48 @@ extension MaoChatCollectionViewController {
     }
     
     func getChatArray() {
-        var userModel = MaoUserModel()
-        userModel.isMe = .False
-        userModel.contentType = .label
-        userModel.headImage = ""
-        userModel.name = "JackWangJackWangJackWangJackWangJackWangJackWangJackWangJackWangJackWangJackWangJackWangJackWang"
+        var userModel = MaoChatUserModel()
+        userModel.headImage = "MessageNotice"
+        userModel.name = "王国仲"
         userModel.userId = 10000
         
-        var freindUserModel = MaoUserModel()
-        freindUserModel.isMe = .True
-        freindUserModel.contentType = .label
-        freindUserModel.headImage = ""
-        freindUserModel.name = "zhangyan"
+        var freindUserModel = MaoChatUserModel()
+        freindUserModel.headImage = "MessageHeadUserIcon"
+        freindUserModel.name = "张燕"
         freindUserModel.userId = 10001
-        self.chatArray = [
-            userModel,freindUserModel,freindUserModel,freindUserModel,freindUserModel,freindUserModel,freindUserModel,freindUserModel,freindUserModel,freindUserModel,freindUserModel,freindUserModel,freindUserModel,freindUserModel,freindUserModel
+        
+        var maochatContentModel = MaoChatContentModel()
+        maochatContentModel.content = "我要上头条,怎么办，哦多尅，帮帮我！可以么！我要上头条,怎么办，哦多尅，帮帮我！可以么！我要上头条,怎么办，哦多尅，帮帮我！可以么！我要上头条,怎么办，哦多尅，帮帮我！可以么！我要上头条,怎么办，哦多尅，帮帮我！可以么！我要上头条,怎么办，哦多尅，帮帮我！可以么！"
+        maochatContentModel.contentType = .label
+        maochatContentModel.isMe = .True
+        maochatContentModel.userModel = userModel
+//        maochatContentModel.reciveTime = 
+        
+        var fmaochatContentModel = MaoChatContentModel()
+        fmaochatContentModel.content = "你上啊"
+        fmaochatContentModel.contentType = .label
+        fmaochatContentModel.isMe = .False
+        fmaochatContentModel.userModel = freindUserModel
+        
+        var imageContentModel  = MaoChatContentModel()
+        imageContentModel.content = "comment"
+        imageContentModel.contentType = .image
+        imageContentModel.isMe = .True
+        imageContentModel.userModel = userModel
+        
+        var fimageContentModel  = MaoChatContentModel()
+        fimageContentModel.content = "space"
+        fimageContentModel.contentType = .image
+        fimageContentModel.isMe = .True
+        fimageContentModel.userModel = userModel
+        
+        self.contentModelArray = [
+            maochatContentModel,fmaochatContentModel,imageContentModel,fimageContentModel
         ]
         
         self.collectionView.reloadData()
         
     }
+    
+    
 }

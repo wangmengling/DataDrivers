@@ -9,7 +9,7 @@
 import Foundation
 
 struct MaoChatConversation {
-    lazy var userModel:MaoUserModel = MaoUserModel()
+    lazy var userModel:MaoChatUserModel = MaoChatUserModel()
     lazy var chatType:MaoChatType = .label
     
 }

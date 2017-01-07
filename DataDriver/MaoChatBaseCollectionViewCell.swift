@@ -49,7 +49,19 @@ open class MaoChatBaseCollectionViewCell: UICollectionViewCell {
     }()
     
     
-    lazy var userModel:MaoUserModel = MaoUserModel()
+//    lazy var userModel:MaoUserModel = MaoUserModel()
+    var model:MaoChatContentModel = MaoChatContentModel()
+    
+    var contentModel: MaoChatContentModel {
+        get {
+            return model
+        }
+        set {
+            model = newValue
+            avatarImageView.image = UIImage(named:model.userModel.headImage)
+            self.layoutIfNeeded()
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)

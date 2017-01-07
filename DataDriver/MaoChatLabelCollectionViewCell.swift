@@ -14,7 +14,7 @@ class MaoChatLabelCollectionViewCell: MaoChatBaseCollectionViewCell {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 10)
         label.textColor = UIColor.darkGray
-        label.text = "ceshiceshiceshiceshiceshiceshiceshiceshiceshiceshiceshiceshiceshiceshiceshiceshiceshiceshiceshiceshiceshiceshiceshiceshi"
+        label.text = ""
         label.numberOfLines = 0
         return label
     }()
@@ -37,7 +37,22 @@ class MaoChatLabelCollectionViewCell: MaoChatBaseCollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.contentLabel.text = userModel.name
+        self.contentLabel.text = contentModel.content
+        
     }
 
+}
+
+class MaoChatLabelLeftCollectionViewCell: MaoChatLabelCollectionViewCell {
+    override func buildView() {
+        super.buildView()
+        self.buildLayout(.True)
+    }
+}
+
+class MaoChatLabelRightCollectionViewCell: MaoChatLabelCollectionViewCell {
+    override func buildView() {
+        super.buildView()
+        self.buildLayout(.False)
+    }
 }

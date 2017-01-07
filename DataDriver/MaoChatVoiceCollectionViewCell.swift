@@ -15,3 +15,18 @@ import UIKit
         return imageView
     }()
 }
+
+
+class MaoChatVoiceLeftCollectionViewCell: MaoChatVoiceCollectionViewCell {
+    override func buildView() {
+        super.buildView()
+        self.buildLayout(.True)
+    }
+}
+
+class MaoChatVoiceRightCollectionViewCell: MaoChatVoiceCollectionViewCell {
+    override func buildView() {
+        super.buildView()
+        self.buildLayout(.False)
+    }
+}
