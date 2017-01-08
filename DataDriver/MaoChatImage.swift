@@ -38,6 +38,18 @@ struct MaoChatImageName {
         case simchat_bubble_send
     }
     
+    enum CellVoiceSend: String {
+        case simchat_audio_send_icon_1
+        case simchat_audio_send_icon_2
+        case simchat_audio_send_icon_3
+    }
+    
+    enum CellVoiceReceive: String {
+        case simchat_audio_receive_icon_1
+        case simchat_audio_receive_icon_2
+        case simchat_audio_receive_icon_3
+    }
+    
     enum CellView: String {
         case MaoChatDefaultAvtatar
     }

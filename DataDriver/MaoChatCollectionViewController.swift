@@ -154,8 +154,39 @@ extension MaoChatCollectionViewController {
         fimageContentModel.isMe = .True
         fimageContentModel.userModel = userModel
         
+        var dimageContentModel  = MaoChatContentModel()
+        dimageContentModel.content = "desktop"
+        dimageContentModel.contentType = .image
+        dimageContentModel.isMe = .True
+        dimageContentModel.userModel = userModel
+        
+        var cimageContentModel  = MaoChatContentModel()
+        cimageContentModel.content = "ceshi1"
+        cimageContentModel.contentType = .image
+        cimageContentModel.isMe = .True
+        cimageContentModel.userModel = userModel
+        
+        var voicecontentModel = MaoChatContentModel()
+        voicecontentModel.content = "ceshi1"
+        voicecontentModel.contentType = .voice
+        voicecontentModel.isMe = .False
+        voicecontentModel.userModel = userModel
+        
+        var mvoicecontentModel = MaoChatContentModel()
+        mvoicecontentModel.content = "ceshi1"
+        mvoicecontentModel.contentType = .voice
+        mvoicecontentModel.isMe = .True
+        mvoicecontentModel.userModel = userModel
+        
         self.contentModelArray = [
-            maochatContentModel,fmaochatContentModel,imageContentModel,fimageContentModel
+//            maochatContentModel,
+//            fmaochatContentModel,
+//            imageContentModel,
+//            fimageContentModel,
+//            dimageContentModel,
+//            cimageContentModel,
+            voicecontentModel,
+            mvoicecontentModel
         ]
         
         self.collectionView.reloadData()

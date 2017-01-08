@@ -37,8 +37,6 @@ open class MaoChatBaseCollectionViewCell: UICollectionViewCell {
     lazy var contentBackImageView: UIImageView = {
         let imageView = UIImageView(frame: CGRect.zero)
 //        imageView.contentMode = UIViewContentMode.scaleAspectFit
-//        imageView.image = UIImage(named: MaoChatImageName.CellView.MaoChatDefaultAvtatar.rawValue)
-//        imageView.tapImageView(tap: #selector(tapd))
         return imageView
     }()
     
@@ -91,6 +89,7 @@ open class MaoChatBaseCollectionViewCell: UICollectionViewCell {
             Width(44),
             Height(44),
         ]
+        
         contentBackView <<- [
             Top(5).anchor(self.topAnchor),
             Height(>=44),

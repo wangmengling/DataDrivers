@@ -35,15 +35,7 @@ public enum MaoChatBaseCollectionViewCellStyle: String, CustomStringConvertible 
     static public func styleOfChatType(_ chatType: MaoChatType , _ isMe: MaoChatIsMe) -> String{
         switch isMe {
         case .True:
-            switch chatType {
-            case .label:
-                return MaoChatBaseCollectionViewCellStyle.labelLeft.description
-            case .image:
-                return MaoChatBaseCollectionViewCellStyle.imageLeft.description
-            case .voice:
-                return MaoChatBaseCollectionViewCellStyle.voiceLeft.description
-            }
-        case .False:
+            
             switch chatType {
             case .label:
                 return MaoChatBaseCollectionViewCellStyle.labelRight.description
@@ -52,7 +44,15 @@ public enum MaoChatBaseCollectionViewCellStyle: String, CustomStringConvertible 
             case .voice:
                 return MaoChatBaseCollectionViewCellStyle.voiceRight.description
             }
-            
+        case .False:
+            switch chatType {
+            case .label:
+                return MaoChatBaseCollectionViewCellStyle.labelLeft.description
+            case .image:
+                return MaoChatBaseCollectionViewCellStyle.imageLeft.description
+            case .voice:
+                return MaoChatBaseCollectionViewCellStyle.voiceLeft.description
+            }
         }
     }
 }
