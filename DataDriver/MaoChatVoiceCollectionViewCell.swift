@@ -11,6 +11,7 @@ import UIKit
     
     lazy var voiceButton: UIButton = {
         let button = UIButton(type: UIButtonType.custom)
+        button.addTarget(self, action: "voiceAction", for: UIControlEvents.touchUpInside)
         return button
     }()
     
@@ -38,7 +39,7 @@ import UIKit
             Top(8).anchor(self.contentBackView.topAnchor),
             Trailing(-8).anchor(self.contentBackView.trailingAnchor),
             Leading(8).anchor(self.contentBackView.leadingAnchor),
-            Width(40),
+            Width(>=40),
             Bottom(-8).anchor(self.contentBackView.bottomAnchor)
         ]
         
@@ -48,12 +49,16 @@ import UIKit
         case .False:
             voiceButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.left
         }
-        
-        
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
+    }
+}
+
+extension MaoChatVoiceCollectionViewCell {
+    func voiceAction() {
         
     }
 }

@@ -115,7 +115,7 @@ extension MaoChatCollectionViewController {
         self.collectionView.register(MaoChatImageLeftCollectionViewCell.self, forCellWithReuseIdentifier: MaoChatBaseCollectionViewCellStyle.imageLeft.description)
         self.collectionView.register(MaoChatImageRightCollectionViewCell.self, forCellWithReuseIdentifier: MaoChatBaseCollectionViewCellStyle.imageRight.description)
         self.collectionView.register(MaoChatVoiceLeftCollectionViewCell.self, forCellWithReuseIdentifier: MaoChatBaseCollectionViewCellStyle.voiceLeft.description)
-        self.collectionView.register(MaoChatVoiceRightCollectionViewCell.self, forCellWithReuseIdentifier: MaoChatBaseCollectionViewCellStyle.imageRight.description)
+        self.collectionView.register(MaoChatVoiceRightCollectionViewCell.self, forCellWithReuseIdentifier: MaoChatBaseCollectionViewCellStyle.voiceRight.description)
     }
     
     func getChatArray() {

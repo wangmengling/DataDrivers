@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AsyncSocket
 
 class ChatViewController: MaoChatCollectionViewController {
 
