@@ -54,6 +54,7 @@ public enum MaoChatBaseCollectionViewCellStyle: String, CustomStringConvertible 
                 return MaoChatBaseCollectionViewCellStyle.voiceLeft.description
             }
         }
+        
     }
 }
 
@@ -71,10 +72,10 @@ public enum MaoChatInputViewStyle {
 }
 
 struct MaoChatEnum {
-//    enum Screen: CGFloat {
-////        case Width = UIScreen.main.bounds.width
-////        case Height = UIScreen.main.bounds.height
-//    }
+    enum Screen: CGFloat {
+        case Width = UIScreen.main.bounds.size.width
+        case Height = UIScreen.main.bounds.size.height
+    }
 }
 
 

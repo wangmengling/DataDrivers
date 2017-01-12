@@ -96,7 +96,8 @@ extension MaoChatCollectionViewController {
         
         
         maoChatInputTextFieldView <<- [
-            Height(44),
+            Height(>=44),
+            Height(<=350),
             Bottom().anchor(self.view.bottomAnchor),
             Left().anchor(self.view.leftAnchor),
             Right().anchor(self.view.rightAnchor)
@@ -179,12 +180,12 @@ extension MaoChatCollectionViewController {
         mvoicecontentModel.userModel = userModel
         
         self.contentModelArray = [
-//            maochatContentModel,
-//            fmaochatContentModel,
-//            imageContentModel,
-//            fimageContentModel,
-//            dimageContentModel,
-//            cimageContentModel,
+            maochatContentModel,
+            fmaochatContentModel,
+            imageContentModel,
+            fimageContentModel,
+            dimageContentModel,
+            cimageContentModel,
             voicecontentModel,
             mvoicecontentModel
         ]

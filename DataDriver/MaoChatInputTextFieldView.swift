@@ -36,7 +36,7 @@ class MaoChatInputTextFieldView: MaoChatInputBaseView, UITextViewDelegate {
         didSet  { self.selectedItem?.actived = true }
     }
     
-    private lazy var backgroundView:UIImageView = {
+    fileprivate lazy var textFieldBackImageView:UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: MaoChatImageName.InputView.chat_bottom_textfield.rawValue)
         return imageView
@@ -57,6 +57,26 @@ class MaoChatInputTextFieldView: MaoChatInputBaseView, UITextViewDelegate {
     
     lazy var style:MaoChatInputViewStyle = .keyboard
     
+    var inputStyle:MaoChatInputViewStyle {
+        get{
+            return style
+        } set {
+            style = newValue
+            showToolsView(style: style)
+        }
+    }
+    
+    lazy var toolsBackView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.red
+        return view
+    }()
+    
+    lazy var toolsView: MaoChatInputToolsView = {
+        let view = MaoChatInputToolsView()
+        return view
+    }()
+    
     
     override func buildView() {
         super.buildView()
@@ -71,14 +91,16 @@ class MaoChatInputTextFieldView: MaoChatInputBaseView, UITextViewDelegate {
         textView.delegate = self
         
         // add view
-        addSubview(backgroundView)
+        addSubview(textFieldBackImageView)
+        addSubview(toolsBackView)
+        toolsBackView.addSubview(toolsView)
         
         for index in 0 ..< buttons.count {
             let button = buttons[index]
             button.translatesAutoresizingMaskIntoConstraints = false
             addSubview(button)
             if let btn = button as? MaoChatInputButton {
-                btn.addTarget(self, action: Selector(("onItemAction:")), for: .touchUpInside)
+                btn.addTarget(self, action: #selector(onItemAction(_:)), for: .touchUpInside)
             }
             
             if index < 1 {
@@ -110,6 +132,7 @@ class MaoChatInputTextFieldView: MaoChatInputBaseView, UITextViewDelegate {
             
             // bottom
             if button is UITextView { // is textView
+                (button as! UITextView).delegate = self
                 button <<- [
 //                    Bottom(5).anchor(self.bottomAnchor)
                     Height(36)
@@ -123,33 +146,79 @@ class MaoChatInputTextFieldView: MaoChatInputBaseView, UITextViewDelegate {
         }
         
         
-        backgroundView <<- [
+        textFieldBackImageView <<- [
             Top(5).anchor(self.topAnchor),
             Leading(0).anchor(self.textView.leadingAnchor),
-            Bottom(5).anchor(self.bottomAnchor),
+            Bottom(-5).anchor(self.bottomAnchor),
+//            Height(36),
             Trailing(0).anchor(self.textView.trailingAnchor)
         ]
         
+        toolsBackView <<- [
+            Top(44).anchor(self.topAnchor),
+            Leading(0).anchor(self.leadingAnchor),
+            Bottom(0).anchor(self.bottomAnchor),
+            Trailing(0).anchor(self.trailingAnchor),
+        ]
+        
+        toolsView <<- [
+            Top(0).anchor(self.toolsBackView.topAnchor),
+            Leading(0).anchor(self.toolsBackView.leadingAnchor),
+            Bottom(0).anchor(self.toolsBackView.bottomAnchor),
+            Trailing(0).anchor(self.toolsBackView.trailingAnchor),
+        ]
     }
     
-    func onItemAction(sender:MaoChatInputButton) {
-        print(sender.style)
+    func onItemAction(_ sender: MaoChatInputButton) {
+        self.endEditing(true)
+        self.inputStyle = sender.style
     }
 }
 
 extension MaoChatInputTextFieldView {
-//    func onItemAction(sender:MaoChatInputButton) {
-//        print(sender.style)
-//    }
+    
+    func showToolsView(style:MaoChatInputViewStyle) {
+        switch style {
+        case .keyboard:
+            let keyboardHeight = KeyboardStore.shared.keyBoardHeight < 10 ? 258 : KeyboardStore.shared.keyBoardHeight
+            toolsBackView <<- [
+                Height(keyboardHeight)
+            ]
+            textFieldBackImageView <<- [
+                Bottom(-(keyboardHeight+5)).anchor(self.bottomAnchor)
+            ]
+        case .voice:
+            toolsBackView <<- [
+                Height(0)
+            ]
+            textFieldBackImageView <<- [
+                Bottom(-5).anchor(self.bottomAnchor)
+            ]
+        case .tool:
+            self.toolsView.collectionView.reloadData()
+            toolsBackView <<- [
+                Height(224)
+            ]
+            textFieldBackImageView <<- [
+                Bottom(-229).anchor(self.bottomAnchor)
+            ]
+        default:
+            return
+        }
+        self.layoutIfNeeded()
+        self.toolsView.layoutIfNeeded()
+    }
 }
 
 extension MaoChatInputTextFieldView {
     public func textViewShouldBeginEditing(_ textView: UITextView) -> Bool{
+        self.inputStyle = .keyboard
         return true
     }
     public func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
         return true
     }
+    
 }
 
 

@@ -24,7 +24,7 @@ open class MaoChatBaseCollectionViewCell: UICollectionViewCell {
         let imageView = UIImageView(frame: CGRect.zero)
         imageView.contentMode = UIViewContentMode.scaleAspectFit
         imageView.image = UIImage(named: MaoChatImageName.CellView.MaoChatDefaultAvtatar.rawValue)
-        imageView.tapImageView(tap: #selector(tapd))
+        imageView.tapImageView(tap: #selector(MaoChatBaseCollectionViewCell.tapd))
         return imageView
     }()
     
@@ -38,6 +38,20 @@ open class MaoChatBaseCollectionViewCell: UICollectionViewCell {
         let imageView = UIImageView(frame: CGRect.zero)
 //        imageView.contentMode = UIViewContentMode.scaleAspectFit
         return imageView
+    }()
+    
+    lazy var sendStatusImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: MaoChatImageName.CellSendStatus.simchat_message_fail.rawValue)
+        imageView.isHidden = true
+        return imageView
+    }()
+    
+    lazy var sendingIndicatorView: UIActivityIndicatorView = {
+        let activityIndicatorView = UIActivityIndicatorView()
+        activityIndicatorView.isHidden = true
+        activityIndicatorView.color = UIColor.lightGray
+        return activityIndicatorView
     }()
     
     lazy var bottomLine: UIView = {
@@ -57,9 +71,27 @@ open class MaoChatBaseCollectionViewCell: UICollectionViewCell {
         set {
             model = newValue
             avatarImageView.image = UIImage(named:model.userModel.headImage)
+            sending = true
             self.layoutIfNeeded()
         }
     }
+    
+    var sending: Bool {
+        get{
+            return true
+        }
+        set {
+            if newValue == true {
+                sendingIndicatorView.startAnimating()
+                sendingIndicatorView.isHidden = false
+            } else {
+                sendingIndicatorView.stopAnimating()
+                sendingIndicatorView.isHidden = true
+            }
+        }
+    }
+    
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -105,6 +137,7 @@ open class MaoChatBaseCollectionViewCell: UICollectionViewCell {
             Bottom(0).anchor(self.contentBackView.bottomAnchor)
         ]
         
+        
         bottomLine <<- [
             Width(375),
             Height(1),
@@ -116,6 +149,8 @@ open class MaoChatBaseCollectionViewCell: UICollectionViewCell {
         
         switch isMe {
         case .True:
+            addSubview(sendStatusImage)
+            addSubview(sendingIndicatorView)
             
             avatarImageView <<- [
                 Right(-15).anchor(self.rightAnchor)
@@ -130,6 +165,21 @@ open class MaoChatBaseCollectionViewCell: UICollectionViewCell {
             ]
             
             contentBackImageView.image = UIImage(named: MaoChatImageName.Cell.simchat_bubble_send.rawValue)
+            
+            sendStatusImage <<- [
+                Width(25),
+                Height(25),
+                Top(13).anchor(self.topAnchor),
+                Right(-4).anchor(self.contentBackView.leftAnchor)
+            ]
+            
+            sendingIndicatorView <<- [
+                Width(25),
+                Height(25),
+                Top(13).anchor(self.topAnchor),
+                Right(-4).anchor(self.contentBackView.leftAnchor)
+            ]
+            sendingIndicatorView.startAnimating()
         case .False:
             
             avatarImageView <<- [

@@ -50,6 +50,11 @@ struct MaoChatImageName {
         case simchat_audio_receive_icon_3
     }
     
+    enum CellSendStatus: String {
+        case simchat_message_fail
+        case simchat_message_succ
+    }
+    
     enum CellView: String {
         case MaoChatDefaultAvtatar
     }

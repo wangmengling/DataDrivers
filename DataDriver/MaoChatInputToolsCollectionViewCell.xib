@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2338c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="MaoChatInputToolsCollectionViewCell" reuseIdentifier="MaoChatInputToolsCollectionViewCell" id="aLT-GV-mQp" customClass="MaoChatInputToolsCollectionViewCell" customModule="DataDriver" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="70" height="85"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="70" height="85"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="simchat_icons_camera" translatesAutoresizingMaskIntoConstraints="NO" id="2fm-HJ-NE3">
+                        <rect key="frame" x="5" y="5" width="60" height="60"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="60" id="Xyb-yH-IMw"/>
+                            <constraint firstAttribute="width" constant="60" id="x0g-HY-cWQ"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="照片" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OhX-X5-W1c">
+                        <rect key="frame" x="0.0" y="68" width="70" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="2fm-HJ-NE3" secondAttribute="trailing" constant="5" id="7eZ-Ep-rOa"/>
+                <constraint firstItem="OhX-X5-W1c" firstAttribute="top" secondItem="2fm-HJ-NE3" secondAttribute="bottom" constant="3" id="7xH-f0-OI3"/>
+                <constraint firstAttribute="trailing" secondItem="OhX-X5-W1c" secondAttribute="trailing" id="8kT-xi-dSP"/>
+                <constraint firstItem="OhX-X5-W1c" firstAttribute="leading" secondItem="aLT-GV-mQp" secondAttribute="leading" id="9Rl-aZ-a9M"/>
+                <constraint firstItem="2fm-HJ-NE3" firstAttribute="top" secondItem="aLT-GV-mQp" secondAttribute="top" constant="5" id="I9O-Hm-dbg"/>
+                <constraint firstAttribute="bottom" secondItem="OhX-X5-W1c" secondAttribute="bottom" id="Qki-J7-NZP"/>
+                <constraint firstItem="2fm-HJ-NE3" firstAttribute="leading" secondItem="aLT-GV-mQp" secondAttribute="leading" constant="5" id="v01-M7-S7U"/>
+            </constraints>
+            <size key="customSize" width="89" height="80"/>
+            <connections>
+                <outlet property="toolImageView" destination="2fm-HJ-NE3" id="3f8-Xz-oqg"/>
+                <outlet property="toolNameLabel" destination="OhX-X5-W1c" id="dFw-2d-Egy"/>
+            </connections>
+            <point key="canvasLocation" x="-49" y="-197.5"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="simchat_icons_camera" width="50" height="50"/>
+    </resources>
+</document>
