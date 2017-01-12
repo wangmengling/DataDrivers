@@ -48,6 +48,11 @@
 		16ADD6B51E24E17D00BF1667 /* MaoChatInputToolsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16ADD6B41E24E17D00BF1667 /* MaoChatInputToolsCollectionViewCell.swift */; };
 		16ADD6B71E24E19200BF1667 /* MaoChatInputToolsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16ADD6B61E24E19200BF1667 /* MaoChatInputToolsCollectionViewCell.xib */; };
 		16ADD6B91E25DF0B00BF1667 /* KeyboardStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16ADD6B81E25DF0B00BF1667 /* KeyboardStore.swift */; };
+		16ADD6BB1E27212D00BF1667 /* MaoChatCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16ADD6BA1E27212D00BF1667 /* MaoChatCollectionViewFlowLayout.swift */; };
+		16ADD6BD1E2764E000BF1667 /* MaoChatInputEmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16ADD6BC1E2764E000BF1667 /* MaoChatInputEmojiView.swift */; };
+		16ADD6BF1E2768A800BF1667 /* MaoChatInputEmojiCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16ADD6BE1E2768A800BF1667 /* MaoChatInputEmojiCollectionViewCell.swift */; };
+		16ADD6C11E2768B600BF1667 /* MaoChatInputEmojiCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16ADD6C01E2768B600BF1667 /* MaoChatInputEmojiCollectionViewCell.xib */; };
+		16ADD6C31E276F1F00BF1667 /* MaoChatEmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16ADD6C21E276F1F00BF1667 /* MaoChatEmojiView.swift */; };
 		183BFBA91E0CD84B00CF302B /* MaoLayoutRectAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183BFBA81E0CD84B00CF302B /* MaoLayoutRectAnchor.swift */; };
 		1864E1301D824C430042876C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1864E12F1D824C430042876C /* AppDelegate.swift */; };
 		1864E1321D824C430042876C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1864E1311D824C430042876C /* ViewController.swift */; };
@@ -159,6 +164,11 @@
 		16ADD6B41E24E17D00BF1667 /* MaoChatInputToolsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoChatInputToolsCollectionViewCell.swift; sourceTree = "<group>"; };
 		16ADD6B61E24E19200BF1667 /* MaoChatInputToolsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MaoChatInputToolsCollectionViewCell.xib; sourceTree = "<group>"; };
 		16ADD6B81E25DF0B00BF1667 /* KeyboardStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardStore.swift; sourceTree = "<group>"; };
+		16ADD6BA1E27212D00BF1667 /* MaoChatCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoChatCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		16ADD6BC1E2764E000BF1667 /* MaoChatInputEmojiView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoChatInputEmojiView.swift; sourceTree = "<group>"; };
+		16ADD6BE1E2768A800BF1667 /* MaoChatInputEmojiCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoChatInputEmojiCollectionViewCell.swift; sourceTree = "<group>"; };
+		16ADD6C01E2768B600BF1667 /* MaoChatInputEmojiCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MaoChatInputEmojiCollectionViewCell.xib; sourceTree = "<group>"; };
+		16ADD6C21E276F1F00BF1667 /* MaoChatEmojiView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoChatEmojiView.swift; sourceTree = "<group>"; };
 		183BFBA81E0CD84B00CF302B /* MaoLayoutRectAnchor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoLayoutRectAnchor.swift; sourceTree = "<group>"; };
 		1864E12C1D824C430042876C /* DataDriver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DataDriver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1864E12F1D824C430042876C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -286,9 +296,14 @@
 				16559C7D1E0A256200317DA3 /* MaoChatInputTextFieldView.swift */,
 				16ABEBE91E1B8E3100BAFB8A /* MaoChatTextView.swift */,
 				16559C7F1E0A5BA400317DA3 /* MaoChatInputButton.swift */,
+				16ADD6BC1E2764E000BF1667 /* MaoChatInputEmojiView.swift */,
+				16ADD6C21E276F1F00BF1667 /* MaoChatEmojiView.swift */,
+				16ADD6BE1E2768A800BF1667 /* MaoChatInputEmojiCollectionViewCell.swift */,
+				16ADD6C01E2768B600BF1667 /* MaoChatInputEmojiCollectionViewCell.xib */,
 				16ADD6B21E24E04900BF1667 /* MaoChatInputToolsView.swift */,
 				16ADD6B41E24E17D00BF1667 /* MaoChatInputToolsCollectionViewCell.swift */,
 				16ADD6B61E24E19200BF1667 /* MaoChatInputToolsCollectionViewCell.xib */,
+				16ADD6BA1E27212D00BF1667 /* MaoChatCollectionViewFlowLayout.swift */,
 			);
 			name = MaoChatInput;
 			sourceTree = "<group>";
@@ -688,6 +703,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16ADD6C11E2768B600BF1667 /* MaoChatInputEmojiCollectionViewCell.xib in Resources */,
 				1864E13A1D824C430042876C /* LaunchScreen.storyboard in Resources */,
 				16559C7C1E0A1EA100317DA3 /* SIMChat.xcassets in Resources */,
 				1864E1371D824C430042876C /* Assets.xcassets in Resources */,
@@ -761,6 +777,7 @@
 				167849821E10C1E7006BDC17 /* MaoLayoutAnchorProtocol.swift in Sources */,
 				16559C7E1E0A256200317DA3 /* MaoChatInputTextFieldView.swift in Sources */,
 				1641F1391E078ED300D852E2 /* MaoChatConversation.swift in Sources */,
+				16ADD6C31E276F1F00BF1667 /* MaoChatEmojiView.swift in Sources */,
 				1650BCD11E19231D006B0994 /* ChatViewController.swift in Sources */,
 				1641F12A1E03EBD300D852E2 /* MaoChatBaseCollectionViewCell.swift in Sources */,
 				167849841E110CDD006BDC17 /* MaoConstant.swift in Sources */,
@@ -782,7 +799,9 @@
 				16ADD6B91E25DF0B00BF1667 /* KeyboardStore.swift in Sources */,
 				16ABEBEC1E1B9FD200BAFB8A /* MaoChatCollectionViewModel.swift in Sources */,
 				16434AAF1E0B879600DB72BB /* MaoChatFunctions.swift in Sources */,
+				16ADD6BF1E2768A800BF1667 /* MaoChatInputEmojiCollectionViewCell.swift in Sources */,
 				16559C801E0A5BA400317DA3 /* MaoChatInputButton.swift in Sources */,
+				16ADD6BD1E2764E000BF1667 /* MaoChatInputEmojiView.swift in Sources */,
 				1864E17D1D824E4B0042876C /* MLImageDowloader.swift in Sources */,
 				166AAEFF1E0BF8D300661C78 /* UIView+MaoAnchor.swift in Sources */,
 				1641F12C1E03EF9200D852E2 /* UIImageView+Mao.swift in Sources */,
@@ -792,6 +811,7 @@
 				1641F1371E078C6000D852E2 /* MaoChatCollectionViewController.swift in Sources */,
 				1641F13B1E07DB2F00D852E2 /* MaoChatVoiceCollectionViewCell.swift in Sources */,
 				1864E17C1D824E4B0042876C /* MLImageCache.swift in Sources */,
+				16ADD6BB1E27212D00BF1667 /* MaoChatCollectionViewFlowLayout.swift in Sources */,
 				16ADD6B51E24E17D00BF1667 /* MaoChatInputToolsCollectionViewCell.swift in Sources */,
 				1864E1941D826AA90042876C /* TopicsModel.swift in Sources */,
 				16ABEBEA1E1B8E3100BAFB8A /* MaoChatTextView.swift in Sources */,

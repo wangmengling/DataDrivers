@@ -28,33 +28,6 @@ class MaoChatInputBaseView: UIView {
         self.buildView()
     }
     
-    
-    fileprivate lazy var inputBackView: UIView = {
-        let inputBackView = UIView()
-        return inputBackView
-    }()
-    
-    lazy var leftItemBackView: UIView = {
-        let leftItemBackView = UIView()
-        return leftItemBackView
-    }()
-    
-    
-    lazy var rightItemBackView: UIView = {
-        let rightItemBackView = UIView()
-        return rightItemBackView
-    }()
-    
-    lazy var centerItemBackView: UIView = {
-        let centerItemBackView = UIView()
-        return centerItemBackView
-    }()
-    
-    lazy var keyBoardBackView: UIView = {
-        let keyBoardBackView = UIView()
-        return keyBoardBackView
-    }()
-    
     lazy var maoChatType:MaoChatType = .label
     
     func buildView() {

@@ -1,14 +1,14 @@
 //
-//  MaoChatInputToolsView.swift
+//  MaoChatInputEmojiView.swift
 //  DataDriver
 //
-//  Created by jackWang on 2017/1/10.
+//  Created by jackWang on 2017/1/12.
 //  Copyright © 2017年 apple. All rights reserved.
 //
 
 import UIKit
 
-class MaoChatInputToolsView: UIView{
+class MaoChatInputEmojiView: UIView {
 
     /*
     // Only override draw() if you perform custom drawing.
@@ -17,9 +17,8 @@ class MaoChatInputToolsView: UIView{
         // Drawing code
     }
     */
-    
     lazy var minimumLineSpacing = (MaoChatEnum.UISCREEN.WIDTH - 280) / 5
-
+    
     lazy var layout: MaoChatCollectionViewFlowLayout = {
         let layout = MaoChatCollectionViewFlowLayout()
         layout.estimatedItemSize = CGSize(width: 70, height: 85)
@@ -33,11 +32,12 @@ class MaoChatInputToolsView: UIView{
         let collectionView:UICollectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: self.layout)
         collectionView.backgroundColor = UIColor.white
         collectionView.delegate = self
-//        collectionView.contentInset = UIEdgeInsetsMake(0, 10, 0, 0)
+        //        collectionView.contentInset = UIEdgeInsetsMake(0, 10, 0, 0)
         collectionView.dataSource = self
         collectionView.alwaysBounceHorizontal = true
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.isPagingEnabled = true
+        collectionView.delaysContentTouches = false
         return collectionView
     }()
     
@@ -49,14 +49,30 @@ class MaoChatInputToolsView: UIView{
         return pageControl
     }()
     
-    var toolsArray:Array<[[String]]>  {
-        get{
-            return [[["simchat_icons_pic","相册"],["simchat_icons_camera","相机"],["simchat_icons_freeaudio","电话"],["simchat_icons_location","位置"]]]
-        }set {
-            self.pageControl.numberOfPages = newValue.count
-            
+    /// 生成表情列表
+    private(set) lazy var emojis: [String] = {
+        let emoji = { (x:UInt32) -> String in
+            // 生成数字
+            var idx = ((((0x808080F0 | (x & 0x3F000) >> 4) | (x & 0xFC0) << 10) | (x & 0x1C0000) << 18) | (x & 0x3F) << 24)
+            // 生成字符串.
+            return withUnsafePointer(to: &idx) {
+                return NSString(bytes: $0, length: MemoryLayout<(UInt32)>.size, encoding: String.Encoding.utf8.rawValue) as! String
+            }
         }
-    }
+        var rs = [String]()
+        for i:UInt32 in 0x1F600 ..< 0x1F64F {
+            if i < 0x1F641 || i > 0x1F644 {
+                rs.append(emoji(i))
+            }
+        }
+        for i:UInt32 in 0x1F680 ..< 0x1F6A4 {
+            rs.append(emoji(i))
+        }
+        for i:UInt32 in 0x1F6A5 ..< 0x1F6C5 {
+            rs.append(emoji(i))
+        }
+        return rs
+    }()
     
     
     required init?(coder aDecoder: NSCoder) {
@@ -68,10 +84,9 @@ class MaoChatInputToolsView: UIView{
         super.init(frame: frame)
         self.buildView()
     }
-
 }
 
-extension MaoChatInputToolsView {
+extension MaoChatInputEmojiView {
     func buildView() {
         
         let cellNib = UINib(nibName: "MaoChatInputToolsCollectionViewCell", bundle: Bundle.main)
@@ -79,7 +94,10 @@ extension MaoChatInputToolsView {
         addSubview(collectionView)
         addSubview(pageControl)
         
-        self.pageControl.numberOfPages = self.toolsArray.count
+        
+        pageControl.currentPage = 0
+        pageControl.numberOfPages = (collectionView.numberOfItems(inSection: 0) + 21 - 1) / 21
+        pageControl.hidesForSinglePage = true
     }
     
     override func layoutSubviews() {
@@ -98,47 +116,26 @@ extension MaoChatInputToolsView {
             Height(20)
         ]
         
-//        self.collectionView.contentSize = CGSize(width: MaoChatEnum.UISCREEN.WIDTH * 4, height: 199)
+        //        self.collectionView.contentSize = CGSize(width: MaoChatEnum.UISCREEN.WIDTH * 4, height: 199)
     }
 }
 
+extension MaoChatInputEmojiView: UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,MaoChatCollectionViewDelegateFlowLayout {
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, cellCenteredAt indexPath: IndexPath, page: Int) {
+        
+    }
 
-extension MaoChatInputToolsView: UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,MaoChatCollectionViewDelegateFlowLayout {
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.toolsArray[section].count
+        return 0
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return self.toolsArray.count
+        return 0
     }
     
     // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MaoChatInputToolsCollectionViewCell", for: indexPath) as! MaoChatInputToolsCollectionViewCell
-        let sectionS = self.toolsArray[indexPath.section]
-        cell.items = sectionS[indexPath.row]
         return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        if section == 0 {
-            return UIEdgeInsetsMake(10, minimumLineSpacing, 25, minimumLineSpacing)
-        }else if section == self.toolsArray.count - 1 {
-            let lastArray = self.toolsArray.last
-            let space = (8 - (lastArray?.count)!) / 2
-            print(space)
-            return UIEdgeInsetsMake(10,minimumLineSpacing * 2, 25, minimumLineSpacing * 2 +  CGFloat(space) * (70 + minimumLineSpacing))
-        }else{
-            return UIEdgeInsetsMake(10, minimumLineSpacing * 2, 25, minimumLineSpacing)
-        }
-        
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return self.minimumLineSpacing
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, cellCenteredAt indexPath: IndexPath, page: Int){
-        self.pageControl.currentPage = page
     }
 }

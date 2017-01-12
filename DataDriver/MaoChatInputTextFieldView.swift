@@ -46,7 +46,7 @@ class MaoChatInputTextFieldView: MaoChatInputBaseView, UITextViewDelegate {
         MaoChatInputButton(style: .voice)
     ]
     private lazy var rightButtons: [MaoChatInputButton] = [
-        MaoChatInputButton(style: .emoji),
+//        MaoChatInputButton(style: .emoji),
         MaoChatInputButton(style: .tool)
     ]
     
@@ -178,6 +178,7 @@ class MaoChatInputTextFieldView: MaoChatInputBaseView, UITextViewDelegate {
 extension MaoChatInputTextFieldView {
     
     func showToolsView(style:MaoChatInputViewStyle) {
+        
         switch style {
         case .keyboard:
             let keyboardHeight = KeyboardStore.shared.keyBoardHeight < 10 ? 258 : KeyboardStore.shared.keyBoardHeight
@@ -185,8 +186,9 @@ extension MaoChatInputTextFieldView {
                 Height(keyboardHeight)
             ]
             textFieldBackImageView <<- [
-                Bottom(-(keyboardHeight+5)).anchor(self.bottomAnchor)
+                Bottom(-(keyboardHeight+5)).anchor(self.bottomAnchor).priority(750)
             ]
+            self.toolsBackView.isHidden = true
         case .voice:
             toolsBackView <<- [
                 Height(0)
@@ -194,6 +196,7 @@ extension MaoChatInputTextFieldView {
             textFieldBackImageView <<- [
                 Bottom(-5).anchor(self.bottomAnchor)
             ]
+            self.toolsBackView.isHidden = true
         case .tool:
             self.toolsView.collectionView.reloadData()
             toolsBackView <<- [
@@ -202,11 +205,10 @@ extension MaoChatInputTextFieldView {
             textFieldBackImageView <<- [
                 Bottom(-229).anchor(self.bottomAnchor)
             ]
+            self.toolsBackView.isHidden = false
         default:
             return
         }
-        self.layoutIfNeeded()
-        self.toolsView.layoutIfNeeded()
     }
 }
 
