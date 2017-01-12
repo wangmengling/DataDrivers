@@ -36,6 +36,8 @@ struct MaoChatImageName {
     enum Cell: String {
         case simchat_bubble_recive
         case simchat_bubble_send
+        case MaoChatCellRecive
+        case MaoChatCellSend
     }
     
     enum CellVoiceSend: String {

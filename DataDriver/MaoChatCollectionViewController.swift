@@ -93,22 +93,22 @@ extension MaoChatCollectionViewController {
         self.view.addSubview(collectionView)
         self.view.addSubview(maoChatInputTextFieldView)
         
-        
-        
-        maoChatInputTextFieldView <<- [
-            Height(>=44),
-            Height(<=350),
-            Bottom().anchor(self.view.bottomAnchor),
-            Left().anchor(self.view.leftAnchor),
-            Right().anchor(self.view.rightAnchor)
-        ]
-        
         collectionView <<- [
             Bottom().anchor(self.maoChatInputTextFieldView.topAnchor),
             Left().anchor(self.view.leftAnchor),
             Right().anchor(self.view.rightAnchor),
             Top().anchor(self.view.topAnchor)
         ]
+        
+        maoChatInputTextFieldView <<- [
+//            Height(>=44),
+//            Height(<=350),
+            Bottom().anchor(self.view.bottomAnchor),
+            Left().anchor(self.view.leftAnchor),
+            Right().anchor(self.view.rightAnchor)
+        ]
+        
+        
         
         
         self.collectionView.register(MaoChatLabelLeftCollectionViewCell.self, forCellWithReuseIdentifier: MaoChatBaseCollectionViewCellStyle.labelLeft.description)

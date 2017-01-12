@@ -182,29 +182,50 @@ extension MaoChatInputTextFieldView {
         switch style {
         case .keyboard:
             let keyboardHeight = KeyboardStore.shared.keyBoardHeight < 10 ? 258 : KeyboardStore.shared.keyBoardHeight
-            toolsBackView <<- [
-                Height(keyboardHeight)
-            ]
-            textFieldBackImageView <<- [
-                Bottom(-(keyboardHeight+5)).anchor(self.bottomAnchor).priority(750)
-            ]
             self.toolsBackView.isHidden = true
+            
+            UIView.animate(withDuration: 0.2, animations: {
+                self ->> [
+                    Bottom()
+                ]
+                self.toolsBackView <<- [
+                    Height(keyboardHeight)
+                ]
+                let bottom = -(keyboardHeight+5)
+                
+                self.textFieldBackImageView <<- [
+                    Bottom(bottom).anchor(self.bottomAnchor)
+                ]
+            })
         case .voice:
-            toolsBackView <<- [
-                Height(0)
-            ]
-            textFieldBackImageView <<- [
-                Bottom(-5).anchor(self.bottomAnchor)
-            ]
+            
+            UIView.animate(withDuration: 0.2, animations: {
+                self ->> [
+                    Bottom()
+                ]
+                self.toolsBackView <<- [
+                    Height(0)
+                ]
+                self.textFieldBackImageView <<- [
+                    Bottom(-5).anchor(self.bottomAnchor)
+                ]
+            })
+            
             self.toolsBackView.isHidden = true
         case .tool:
-            self.toolsView.collectionView.reloadData()
-            toolsBackView <<- [
-                Height(224)
-            ]
-            textFieldBackImageView <<- [
-                Bottom(-229).anchor(self.bottomAnchor)
-            ]
+            UIView.animate(withDuration: 0.5, animations: {
+                self ->> [
+                    Bottom()
+                ]
+                self.toolsBackView <<- [
+                    
+                    Height(224)
+                ]
+                self.textFieldBackImageView <<- [
+                    Bottom(-229).anchor(self.bottomAnchor)
+                ]
+            })
+            
             self.toolsBackView.isHidden = false
         default:
             return
