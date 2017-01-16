@@ -39,6 +39,7 @@
 		166AAF011E0BFA1900661C78 /* MaoLayoutAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166AAF001E0BFA1900661C78 /* MaoLayoutAnchor.swift */; };
 		166AAF031E0C05AE00661C78 /* MaoNumerical.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166AAF021E0C05AE00661C78 /* MaoNumerical.swift */; };
 		166AAF051E0C08C600661C78 /* MaoPriority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166AAF041E0C08C600661C78 /* MaoPriority.swift */; };
+		16703EC41E2BAF6A00260465 /* MaoScanImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16703EC31E2BAF6A00260465 /* MaoScanImageView.swift */; };
 		167849821E10C1E7006BDC17 /* MaoLayoutAnchorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167849811E10C1E7006BDC17 /* MaoLayoutAnchorProtocol.swift */; };
 		167849841E110CDD006BDC17 /* MaoConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167849831E110CDD006BDC17 /* MaoConstant.swift */; };
 		167849861E121C10006BDC17 /* MaoAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167849851E121C10006BDC17 /* MaoAnchor.swift */; };
@@ -155,6 +156,7 @@
 		166AAF001E0BFA1900661C78 /* MaoLayoutAnchor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoLayoutAnchor.swift; sourceTree = "<group>"; };
 		166AAF021E0C05AE00661C78 /* MaoNumerical.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoNumerical.swift; sourceTree = "<group>"; };
 		166AAF041E0C08C600661C78 /* MaoPriority.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoPriority.swift; sourceTree = "<group>"; };
+		16703EC31E2BAF6A00260465 /* MaoScanImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoScanImageView.swift; sourceTree = "<group>"; };
 		167849811E10C1E7006BDC17 /* MaoLayoutAnchorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoLayoutAnchorProtocol.swift; sourceTree = "<group>"; };
 		167849831E110CDD006BDC17 /* MaoConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoConstant.swift; sourceTree = "<group>"; };
 		167849851E121C10006BDC17 /* MaoAnchor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoAnchor.swift; sourceTree = "<group>"; };
@@ -391,6 +393,7 @@
 				16ADD6B81E25DF0B00BF1667 /* KeyboardStore.swift */,
 				1864E1901D8262EC0042876C /* view.h */,
 				1864E1911D8262EC0042876C /* view.m */,
+				16703EC31E2BAF6A00260465 /* MaoScanImageView.swift */,
 				1864E15D1D824D7B0042876C /* Compents */,
 				1864E1331D824C430042876C /* Main.storyboard */,
 				1864E1361D824C430042876C /* Assets.xcassets */,
@@ -787,6 +790,7 @@
 				16559C7A1E0A1A6A00317DA3 /* MaoChatInputBaseView.swift in Sources */,
 				1641F12E1E054A7700D852E2 /* MaoChatLabelCollectionViewCell.swift in Sources */,
 				1864E1821D824E780042876C /* NetWork.swift in Sources */,
+				16703EC41E2BAF6A00260465 /* MaoScanImageView.swift in Sources */,
 				1864E17E1D824E4B0042876C /* MLImageDowloadManager.swift in Sources */,
 				1864E1661D824DB80042876C /* SrorageToSQLite.swift in Sources */,
 				1864E1301D824C430042876C /* AppDelegate.swift in Sources */,

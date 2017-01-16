@@ -68,6 +68,7 @@ public enum MaoChatInputViewStyle {
     case voice
     case emoji
     case tool
+    case none
 }
 
 struct MaoChatEnum {

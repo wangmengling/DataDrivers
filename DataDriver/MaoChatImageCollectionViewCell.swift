@@ -11,16 +11,16 @@ import UIKit
     lazy var contentImageView: UIImageView = {
         let imageView = UIImageView(frame: CGRect.zero)
         imageView.contentMode = UIViewContentMode.scaleAspectFit
-        imageView.tapImageView(tap: #selector(tapd))
+        imageView.tapImageView(self,action:#selector(MaoChatImageCollectionViewCell.contentImageAction))
+        imageView.layer.cornerRadius = 5
+        imageView.layer.masksToBounds = true
         return imageView
     }()
     
     var scale:CGFloat = 1
     var maxWidth:CGFloat = 200
     var maxHeight:CGFloat = 200
-    
-//    var minSize:CGSize = 
-    
+
     
     override func buildView() {
         super.buildView()
@@ -31,10 +31,10 @@ import UIKit
         super.buildLayout(isMe)
         
         contentImageView <<- [
-            Trailing(-8).anchor(self.contentBackView.trailingAnchor),
-            Leading(8).anchor(self.contentBackView.leadingAnchor),
-            Top(8).anchor(self.contentBackView.topAnchor),
-            Bottom(-8).anchor(self.contentBackView.bottomAnchor)
+            Trailing(0).anchor(self.contentBackImageView.trailingAnchor),
+            Leading(0).anchor(self.contentBackImageView.leadingAnchor),
+            Top(0).anchor(self.contentBackImageView.topAnchor),
+            Bottom(0).anchor(self.contentBackImageView.bottomAnchor)
         ]
         
     }
@@ -66,6 +66,21 @@ import UIKit
             Height((self.scale * size.height * minScale)),
             Width((self.scale * size.width * minScale))
         ]
+        
+        print(size)
+        print(self.scale * size.width * minScale)
+        print(self.scale * size.height * minScale)
+        
+    }
+}
+
+extension MaoChatImageCollectionViewCell {
+    func contentImageAction() {
+//        print(self.contentImageView.image!)
+//        print(self.contentImageView)
+//        print("sd")
+        
+        MaoScanImage.shared.scanImageView(self.contentImageView.image!)
     }
 }
 

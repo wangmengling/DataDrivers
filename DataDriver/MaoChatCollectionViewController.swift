@@ -158,8 +158,8 @@ extension MaoChatCollectionViewController {
         var dimageContentModel  = MaoChatContentModel()
         dimageContentModel.content = "desktop"
         dimageContentModel.contentType = .image
-        dimageContentModel.isMe = .True
-        dimageContentModel.userModel = userModel
+        dimageContentModel.isMe = .False
+        dimageContentModel.userModel = freindUserModel
         
         var cimageContentModel  = MaoChatContentModel()
         cimageContentModel.content = "ceshi1"
@@ -179,6 +179,12 @@ extension MaoChatCollectionViewController {
         mvoicecontentModel.isMe = .True
         mvoicecontentModel.userModel = userModel
         
+        var fmvoicecontentModel = MaoChatContentModel()
+        fmvoicecontentModel.content = "ceshi1"
+        fmvoicecontentModel.contentType = .voice
+        fmvoicecontentModel.isMe = .False
+        fmvoicecontentModel.userModel = freindUserModel
+        
         self.contentModelArray = [
             maochatContentModel,
             fmaochatContentModel,
@@ -187,7 +193,8 @@ extension MaoChatCollectionViewController {
             dimageContentModel,
             cimageContentModel,
             voicecontentModel,
-            mvoicecontentModel
+            mvoicecontentModel,
+            fmvoicecontentModel
         ]
         
         self.collectionView.reloadData()

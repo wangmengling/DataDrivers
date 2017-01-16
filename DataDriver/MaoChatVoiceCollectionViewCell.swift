@@ -21,12 +21,10 @@ import UIKit
         label.textColor = UIColor.darkGray
         label.numberOfLines = 1
         label.contentMode = UIViewContentMode.center
-        label.isHidden = true
+//        label.isHidden = true
         label.text = "44''"
         return label
     }()
-    
-    
     
     private var voiceImages:UIImage = UIImage()
     

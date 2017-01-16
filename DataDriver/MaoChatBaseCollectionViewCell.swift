@@ -24,7 +24,7 @@ open class MaoChatBaseCollectionViewCell: UICollectionViewCell {
         let imageView = UIImageView(frame: CGRect.zero)
         imageView.contentMode = UIViewContentMode.scaleAspectFit
         imageView.image = UIImage(named: MaoChatImageName.CellView.MaoChatDefaultAvtatar.rawValue)
-        imageView.tapImageView(tap: #selector(MaoChatBaseCollectionViewCell.tapd))
+        imageView.tapImageView(self, action:#selector(MaoChatBaseCollectionViewCell.tapd))
         return imageView
     }()
     
@@ -71,7 +71,7 @@ open class MaoChatBaseCollectionViewCell: UICollectionViewCell {
         set {
             model = newValue
             avatarImageView.image = UIImage(named:model.userModel.headImage)
-            sending = true
+            sending = false
             self.layoutIfNeeded()
         }
     }

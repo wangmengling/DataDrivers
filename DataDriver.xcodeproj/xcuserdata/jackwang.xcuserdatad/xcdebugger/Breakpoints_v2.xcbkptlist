@@ -133,22 +133,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DataDriver/MaoChatBaseCollectionViewCell.swift"
-            timestampString = "505713135.112256"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
-            landmarkName = "tapd()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "DataDriver/KeyboardStore.swift"
             timestampString = "505813798.709245"
             startingColumnNumber = "9223372036854775807"
@@ -165,13 +149,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DataDriver/MaoLayoutRectAnchor.swift"
-            timestampString = "505919615.884893"
+            filePath = "DataDriver/MaoScanImageView.swift"
+            timestampString = "506231488.422874"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
-            landmarkName = "excite()"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "buildCollectionView()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
