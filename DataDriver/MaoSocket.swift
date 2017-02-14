@@ -24,9 +24,10 @@ struct MaoSocketEnum {
             }
         }
         
-        func getFamily(family: Int32) -> Int32 {
-            
+        static func getFamily(_ family: Int32) -> MaoSocketEnum.Family? {
+            return .inet
         }
+        
     }
     
     public enum SocketType {
@@ -45,6 +46,9 @@ struct MaoSocketEnum {
             }
         }
         
+        static func getType(_ type: Int32) -> MaoSocketEnum.SocketType? {
+            return .stream
+        }
     }
     
     enum SocketProtocol {
@@ -58,6 +62,10 @@ struct MaoSocketEnum {
             case .udp:
                 return IPPROTO_UDP
             }
+        }
+        
+        static func getProtocol(_ protocol: Int32) -> MaoSocketEnum.SocketProtocol? {
+            return .tcp
         }
         
     }
@@ -230,7 +238,7 @@ struct MaoSocketSignature {
     ///
     /// Socket Protocol. (Readonly)
     ///
-    public internal(set) var proto: MaoSocketEnum.SocketProtocol
+    public internal(set) var socketProtocol: MaoSocketEnum.SocketProtocol
     
     ///
     /// Host name for connection. (Readonly)
@@ -266,7 +274,7 @@ struct MaoSocketSignature {
     ///
     public var description: String {
         
-        return "Signature: family: \(self.family), type: \(socketType), protocol: \(proto), address: \(address as MaoSocketEnum.Address?), hostname: \(hostname as String?), port: \(port), path: \(String(describing: path)), bound: \(isBound), secure: \(isSecure)"
+        return "Signature: family: \(self.family), type: \(socketType), protocol: \(socketProtocol), address: \(address as MaoSocketEnum.Address?), hostname: \(hostname as String?), port: \(port), path: \(String(describing: path)), bound: \(isBound), secure: \(isSecure)"
     }
     
     // MARK: -- Public Functions
@@ -282,32 +290,32 @@ struct MaoSocketSignature {
     ///
     /// - Returns: New Signature instance
     ///
-    public init?(protocolFamily: Int32, socketType: Int32, proto: Int32, address: MaoSocketEnum.Address?) throws {
+    public init?(family: Int32, socketType: Int32, sockProtocol: Int32, address: MaoSocketEnum.Address?) throws {
         
-        guard let family = MaoSocketEnum.Family.getFamily(forValue: protocolFamily),
-            let type = MaoSocketEnum.SocketType.getType(forValue: socketType),
-            let pro = MaoSocketEnum.SocketProtocol.getProtocol(forValue: proto) else {
+        guard let family = MaoSocketEnum.Family.getFamily(family),
+            let type = MaoSocketEnum.SocketType.getType(socketType),
+            let pro = MaoSocketEnum.SocketProtocol.getProtocol(sockProtocol) else {
                 
                 throw MaoSocketError(MaoSocketTip.SOCKET_ERR_BAD_SIGNATURE_PARAMETERS, "Bad family, type or protocol passed.")
         }
         
         // Validate the parameters...
         if type == .stream {
-            guard pro == .tcp || pro == .unix else {
+            guard pro == .tcp else {
                 
                 throw MaoSocketError( MaoSocketTip.SOCKET_ERR_BAD_SIGNATURE_PARAMETERS, "Stream socket must use either .tcp or .unix for the protocol.")
             }
         }
-        if type == .datagram {
-            guard pro == .udp || pro == .unix else {
+        if type == .dgram {
+            guard pro == .udp  else {
                 
                 throw MaoSocketError(MaoSocketTip.SOCKET_ERR_BAD_SIGNATURE_PARAMETERS, "Datagram socket must use .udp or .unix for the protocol.")
             }
         }
         
-        self.protocolFamily = family
+        self.family = family
         self.socketType = type
-        self.proto = pro
+        self.socketProtocol = pro
         
         self.address = address
         
@@ -325,7 +333,7 @@ struct MaoSocketSignature {
     ///
     /// - Returns: New Signature instance
     ///
-    public init?(family: MaoSocketEnum.Family, socketType: MaoSocketEnum.SocketType, proto: MaoSocketEnum.SocketProtocol, hostname: String?, port: Int32?) throws {
+    public init?(family: MaoSocketEnum.Family, socketType: MaoSocketEnum.SocketType, socketProtocol: MaoSocketEnum.SocketProtocol, hostname: String?, port: Int32?) throws {
         
         // Make sure we have what we need...
         guard let _ = hostname,
@@ -337,20 +345,20 @@ struct MaoSocketSignature {
         
         // Validate the parameters...
         if socketType == .stream {
-            guard proto == .tcp  else {
+            guard socketProtocol == .tcp  else {
                 
                 throw MaoSocketError(MaoSocketTip.SOCKET_ERR_BAD_SIGNATURE_PARAMETERS, "Stream socket must use either .tcp or .unix for the protocol.")
             }
         }
         if socketType == .dgram {
-            guard proto == .udp  else {
+            guard socketProtocol == .udp  else {
                 
                 throw MaoSocketError(MaoSocketTip.SOCKET_ERR_BAD_SIGNATURE_PARAMETERS, "Datagram socket must use .udp or .unix for the protocol.")
             }
         }
         
         self.socketType = socketType
-        self.proto = proto
+        self.socketProtocol = socketProtocol
         
         self.hostname = hostname
         self.port = port
