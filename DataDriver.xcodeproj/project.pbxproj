@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1601C7CA1E49BE1F005A1B3A /* Socket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16B298D21E2E57BD001F2EF6 /* Socket.framework */; };
 		1625E3361DC7752400CB71FF /* DataOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1625E3351DC7752400CB71FF /* DataOperators.swift */; };
 		1625E3381DC77FF900CB71FF /* DataConversionTypeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1625E3371DC77FF900CB71FF /* DataConversionTypeEnum.swift */; };
 		1641F12A1E03EBD300D852E2 /* MaoChatBaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1641F1291E03EBD300D852E2 /* MaoChatBaseCollectionViewCell.swift */; };
@@ -54,6 +55,11 @@
 		16ADD6BF1E2768A800BF1667 /* MaoChatInputEmojiCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16ADD6BE1E2768A800BF1667 /* MaoChatInputEmojiCollectionViewCell.swift */; };
 		16ADD6C11E2768B600BF1667 /* MaoChatInputEmojiCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16ADD6C01E2768B600BF1667 /* MaoChatInputEmojiCollectionViewCell.xib */; };
 		16ADD6C31E276F1F00BF1667 /* MaoChatEmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16ADD6C21E276F1F00BF1667 /* MaoChatEmojiView.swift */; };
+		16B298D41E2E57BD001F2EF6 /* EasyPeasy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16B298D11E2E57BD001F2EF6 /* EasyPeasy.framework */; };
+		16B298D51E2E57BD001F2EF6 /* Socket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16B298D21E2E57BD001F2EF6 /* Socket.framework */; };
+		16D353FB1E430ADF00275911 /* MaoSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D353FA1E430ADE00275911 /* MaoSocket.swift */; };
+		16D353FE1E430B6F00275911 /* MaoUDPSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D353FD1E430B6F00275911 /* MaoUDPSocket.swift */; };
+		16D354001E430B8F00275911 /* MaoTCPSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D353FF1E430B8F00275911 /* MaoTCPSocket.swift */; };
 		183BFBA91E0CD84B00CF302B /* MaoLayoutRectAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183BFBA81E0CD84B00CF302B /* MaoLayoutRectAnchor.swift */; };
 		1864E1301D824C430042876C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1864E12F1D824C430042876C /* AppDelegate.swift */; };
 		1864E1321D824C430042876C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1864E1311D824C430042876C /* ViewController.swift */; };
@@ -118,6 +124,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		160B49861E346CA6006ED149 /* CF.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CF.xcodeproj; path = ../../../../Downloads/CF/CF.xcodeproj; sourceTree = "<group>"; };
 		1625E3351DC7752400CB71FF /* DataOperators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataOperators.swift; sourceTree = "<group>"; };
 		1625E3371DC77FF900CB71FF /* DataConversionTypeEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataConversionTypeEnum.swift; sourceTree = "<group>"; };
 		1641F1291E03EBD300D852E2 /* MaoChatBaseCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoChatBaseCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -171,6 +178,12 @@
 		16ADD6BE1E2768A800BF1667 /* MaoChatInputEmojiCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoChatInputEmojiCollectionViewCell.swift; sourceTree = "<group>"; };
 		16ADD6C01E2768B600BF1667 /* MaoChatInputEmojiCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MaoChatInputEmojiCollectionViewCell.xib; sourceTree = "<group>"; };
 		16ADD6C21E276F1F00BF1667 /* MaoChatEmojiView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoChatEmojiView.swift; sourceTree = "<group>"; };
+		16B298D11E2E57BD001F2EF6 /* EasyPeasy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EasyPeasy.framework; path = Carthage/Build/iOS/EasyPeasy.framework; sourceTree = "<group>"; };
+		16B298D21E2E57BD001F2EF6 /* Socket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Socket.framework; path = Carthage/Build/iOS/Socket.framework; sourceTree = "<group>"; };
+		16B298D31E2E57BD001F2EF6 /* SwiftProtobuf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftProtobuf.framework; path = Carthage/Build/iOS/SwiftProtobuf.framework; sourceTree = "<group>"; };
+		16D353FA1E430ADE00275911 /* MaoSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoSocket.swift; sourceTree = "<group>"; };
+		16D353FD1E430B6F00275911 /* MaoUDPSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoUDPSocket.swift; sourceTree = "<group>"; };
+		16D353FF1E430B8F00275911 /* MaoTCPSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoTCPSocket.swift; sourceTree = "<group>"; };
 		183BFBA81E0CD84B00CF302B /* MaoLayoutRectAnchor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoLayoutRectAnchor.swift; sourceTree = "<group>"; };
 		1864E12C1D824C430042876C /* DataDriver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DataDriver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1864E12F1D824C430042876C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -237,6 +250,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16B298D41E2E57BD001F2EF6 /* EasyPeasy.framework in Frameworks */,
+				16B298D51E2E57BD001F2EF6 /* Socket.framework in Frameworks */,
 				1864E18E1D8262350042876C /* libsqlite3.tbd in Frameworks */,
 				1864E18C1D8253430042876C /* libsqlite3.0.tbd in Frameworks */,
 			);
@@ -246,6 +261,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1601C7CA1E49BE1F005A1B3A /* Socket.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +275,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		160B49871E346CA6006ED149 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		1641F1281E03E67A00D852E2 /* MaoConversation */ = {
 			isa = PBXGroup;
 			children = (
@@ -386,11 +409,15 @@
 		1864E12E1D824C430042876C /* DataDriver */ = {
 			isa = PBXGroup;
 			children = (
+				160B49861E346CA6006ED149 /* CF.xcodeproj */,
 				1864E12F1D824C430042876C /* AppDelegate.swift */,
 				1864E1311D824C430042876C /* ViewController.swift */,
 				1650BCD01E19231D006B0994 /* ChatViewController.swift */,
 				1864E1931D826AA90042876C /* TopicsModel.swift */,
 				16ADD6B81E25DF0B00BF1667 /* KeyboardStore.swift */,
+				16D353FA1E430ADE00275911 /* MaoSocket.swift */,
+				16D353FD1E430B6F00275911 /* MaoUDPSocket.swift */,
+				16D353FF1E430B8F00275911 /* MaoTCPSocket.swift */,
 				1864E1901D8262EC0042876C /* view.h */,
 				1864E1911D8262EC0042876C /* view.m */,
 				16703EC31E2BAF6A00260465 /* MaoScanImageView.swift */,
@@ -494,6 +521,9 @@
 		1864E18A1D8253430042876C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				16B298D11E2E57BD001F2EF6 /* EasyPeasy.framework */,
+				16B298D21E2E57BD001F2EF6 /* Socket.framework */,
+				16B298D31E2E57BD001F2EF6 /* SwiftProtobuf.framework */,
 				1864E18D1D8262350042876C /* libsqlite3.tbd */,
 				1864E18B1D8253430042876C /* libsqlite3.0.tbd */,
 			);
@@ -563,6 +593,7 @@
 				1864E1281D824C430042876C /* Sources */,
 				1864E1291D824C430042876C /* Frameworks */,
 				1864E12A1D824C430042876C /* Resources */,
+				16B298D71E2E57F9001F2EF6 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -636,7 +667,7 @@
 					};
 					1864E12B1D824C430042876C = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 5F9R5KPEXS;
+						DevelopmentTeam = TKPTNL5H7G;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
@@ -665,6 +696,12 @@
 			mainGroup = 1864E1231D824C430042876C;
 			productRefGroup = 1864E12D1D824C430042876C /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 160B49871E346CA6006ED149 /* Products */;
+					ProjectRef = 160B49861E346CA6006ED149 /* CF.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				1864E12B1D824C430042876C /* DataDriver */,
@@ -731,6 +768,25 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		16B298D71E2E57F9001F2EF6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Socket.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftProtobuf.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/EasyPeasy.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		16434A7C1E0B833700DB72BB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -781,7 +837,9 @@
 				16559C7E1E0A256200317DA3 /* MaoChatInputTextFieldView.swift in Sources */,
 				1641F1391E078ED300D852E2 /* MaoChatConversation.swift in Sources */,
 				16ADD6C31E276F1F00BF1667 /* MaoChatEmojiView.swift in Sources */,
+				16D354001E430B8F00275911 /* MaoTCPSocket.swift in Sources */,
 				1650BCD11E19231D006B0994 /* ChatViewController.swift in Sources */,
+				16D353FB1E430ADF00275911 /* MaoSocket.swift in Sources */,
 				1641F12A1E03EBD300D852E2 /* MaoChatBaseCollectionViewCell.swift in Sources */,
 				167849841E110CDD006BDC17 /* MaoConstant.swift in Sources */,
 				1864E1721D824E0A0042876C /* Pop.swift in Sources */,
@@ -792,6 +850,7 @@
 				1864E1821D824E780042876C /* NetWork.swift in Sources */,
 				16703EC41E2BAF6A00260465 /* MaoScanImageView.swift in Sources */,
 				1864E17E1D824E4B0042876C /* MLImageDowloadManager.swift in Sources */,
+				16D353FE1E430B6F00275911 /* MaoUDPSocket.swift in Sources */,
 				1864E1661D824DB80042876C /* SrorageToSQLite.swift in Sources */,
 				1864E1301D824C430042876C /* AppDelegate.swift in Sources */,
 				167849861E121C10006BDC17 /* MaoAnchor.swift in Sources */,
@@ -1091,7 +1150,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = 5F9R5KPEXS;
+				CODE_SIGN_IDENTITY = "iPhone Developer: 424080998@qq.com (PMX4L69ASV)";
+				DEVELOPMENT_TEAM = TKPTNL5H7G;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = DataDriver/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1108,7 +1172,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = 5F9R5KPEXS;
+				CODE_SIGN_IDENTITY = "iPhone Developer: 424080998@qq.com (PMX4L69ASV)";
+				DEVELOPMENT_TEAM = TKPTNL5H7G;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = DataDriver/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1125,6 +1194,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = TKPTNL5H7G;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = DataDriverTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = wang.DataDriverTests;
@@ -1140,6 +1213,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = TKPTNL5H7G;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = DataDriverTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = wang.DataDriverTests;

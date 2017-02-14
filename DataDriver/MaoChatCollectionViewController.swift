@@ -12,14 +12,15 @@ class MaoChatCollectionViewController: UIViewController, UICollectionViewDelegat
     
     lazy var layout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
-        layout.estimatedItemSize = CGSize(width: self.view.bounds.size.width, height: 50)
+        
+//        layout.itemSize = CGSize(width: self.view.bounds.size.width, height: 50)
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
         return layout
     }()
     
     lazy var collectionView:UICollectionView = {
-        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: self.layout)
+        let collectionView:UICollectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: self.layout)
         collectionView.backgroundColor = UIColor.white
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -49,7 +50,7 @@ class MaoChatCollectionViewController: UIViewController, UICollectionViewDelegat
         super.viewDidLoad()
         self.buildView()
         self.getChatArray()
-        
+        self.automaticallyAdjustsScrollViewInsets = false
         // Do any additional setup after loading the view.
     }
 
@@ -85,6 +86,10 @@ class MaoChatCollectionViewController: UIViewController, UICollectionViewDelegat
         return cell
     }
     
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        return CGSize(width: self.view.bounds.size.width, height: 50)
+//    }
+    
 }
 
 extension MaoChatCollectionViewController {
@@ -93,6 +98,14 @@ extension MaoChatCollectionViewController {
         self.view.addSubview(collectionView)
         self.view.addSubview(maoChatInputTextFieldView)
         
+        maoChatInputTextFieldView <<- [
+            Height(>=50),
+            //            Height(<=350),
+            Bottom().anchor(self.view.bottomAnchor),
+            Left().anchor(self.view.leftAnchor),
+            Right().anchor(self.view.rightAnchor)
+        ]
+        
         collectionView <<- [
             Bottom().anchor(self.maoChatInputTextFieldView.topAnchor),
             Left().anchor(self.view.leftAnchor),
@@ -100,14 +113,8 @@ extension MaoChatCollectionViewController {
             Top().anchor(self.view.topAnchor)
         ]
         
-        maoChatInputTextFieldView <<- [
-//            Height(>=44),
-//            Height(<=350),
-            Bottom().anchor(self.view.bottomAnchor),
-            Left().anchor(self.view.leftAnchor),
-            Right().anchor(self.view.rightAnchor)
-        ]
         
+        layout.estimatedItemSize = CGSize(width: self.view.bounds.size.width - 100, height: 54)
         
         
         
@@ -197,7 +204,7 @@ extension MaoChatCollectionViewController {
             fmvoicecontentModel
         ]
         
-        self.collectionView.reloadData()
+//        self.collectionView.reloadData()
         
     }
     

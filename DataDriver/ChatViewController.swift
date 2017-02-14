@@ -7,11 +7,16 @@
 //
 
 import UIKit
+import Socket
 
 class ChatViewController: MaoChatCollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        print("sd")
+//        let socket = try! Socket.create()
+//        try! socket.connect(to: "127.0.0.1", port: 41234)
 
         // Do any additional setup after loading the view.
     }

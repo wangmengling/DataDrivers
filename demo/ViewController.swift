@@ -22,6 +22,8 @@ class ViewController: UIViewController {
         
     }
 
+    @IBAction func sendMessage(_ sender: Any) {
+    }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         let views = UIView(frame: CGRect.zero)
