@@ -9,11 +9,12 @@
 import Foundation
 //import Darwin
 
-private let maoSocket:MaoSocket = MaoSocket()
+private let maoSocket:MaoSocket = MaoSocket(family: <#MaoSocketEnum.Family#>, sockType: <#MaoSocketEnum.SocketType#>, sockProtocol: <#MaoSocketEnum.SocketProtocol#>)
 struct MaoSocketEnum {
     enum Family {
         case inet
         case inet6
+        case unix
         
         var value:Int32 {
             switch self {
@@ -21,6 +22,8 @@ struct MaoSocketEnum {
                 return AF_INET
             case .inet6:
                 return AF_INET6
+            case .unix:
+                return AF_UNIX
             }
         }
         
@@ -54,6 +57,7 @@ struct MaoSocketEnum {
     enum SocketProtocol {
         case tcp
         case udp
+        case unix
         
         var value: Int32 {
             switch self {
@@ -61,6 +65,8 @@ struct MaoSocketEnum {
                 return IPPROTO_TCP
             case .udp:
                 return IPPROTO_UDP
+            case .unix:
+                return Int32(0)
             }
         }
         
@@ -141,6 +147,11 @@ struct MaoSocketError: Swift.Error, CustomStringConvertible {
 }
 
 struct MaoSocketTip {
+    
+    public static let SOCKET_INVALID_PORT					= Int32(0)
+    public static let SOCKET_INVALID_DESCRIPTOR 			= Int32(-1)
+    
+    
     public static let SOCKET_ERR_UNABLE_TO_CREATE_SOCKET    = -9999
     public static let SOCKET_ERR_BAD_DESCRIPTOR				= -9998
     public static let SOCKET_ERR_ALREADY_CONNECTED			= -9997
@@ -173,36 +184,39 @@ struct MaoSocketTip {
 }
 
 class MaoSocket {
-    
-    public static let SOCKET_INVALID_PORT					= Int32(0)
-    public static let SOCKET_INVALID_DESCRIPTOR 			= Int32(-1)
-    
-    
-
-    
     //socket 套字节
-    private let socketFd: Int32! = SOCKET_INVALID_DESCRIPTOR
+    private let socketFd: Int32! = MaoSocketTip.SOCKET_INVALID_DESCRIPTOR
     private let family: Int32!
     private let sockType: Int32!
     private let sockProtocol: Int32!
     
+    private let signature: MaoSocketSignature? = nil
+    private let isConnect: Bool
+    
     class var instance:MaoSocket  {
         return maoSocket
-    }
-    
-    init() {
-        
     }
     
     init(family: MaoSocketEnum.Family, sockType: MaoSocketEnum.SocketType, sockProtocol: MaoSocketEnum.SocketProtocol) {
         self.family = family.value
         self.sockType = sockType.value
         self.sockProtocol = sockProtocol.value
+        
+        self.socketFd = socket(self.family, self.sockType, self.sockProtocol)
+        
+        do {
+            self.signature = try MaoSocketSignature(family: family, socketType: sockType, socketProtocol: sockProtocol, hostname: nil, port: nil)
+        } catch let error {
+            print(error)
+        }
     }
     
     
     func connect() -> Void {
-//        self.socketFd = socket(family, sockType, sockProtocol)
+        if self.socketFd < 0 {
+            
+        }
+        connect(self.socketFd, <#T##UnsafePointer<sockaddr>!#>, <#T##socklen_t#>)
     }
     
     
@@ -282,48 +296,6 @@ struct MaoSocketSignature {
     ///
     /// Create a socket signature
     ///
-    /// - Parameters:
-    ///		- protocolFamily:	The family of the socket to create.
-    ///		- socketType:		The type of socket to create.
-    ///		- proto:			The protocool to use for the socket.
-    /// 	- address:			Address info for the socket.
-    ///
-    /// - Returns: New Signature instance
-    ///
-    public init?(family: Int32, socketType: Int32, sockProtocol: Int32, address: MaoSocketEnum.Address?) throws {
-        
-        guard let family = MaoSocketEnum.Family.getFamily(family),
-            let type = MaoSocketEnum.SocketType.getType(socketType),
-            let pro = MaoSocketEnum.SocketProtocol.getProtocol(sockProtocol) else {
-                
-                throw MaoSocketError(MaoSocketTip.SOCKET_ERR_BAD_SIGNATURE_PARAMETERS, "Bad family, type or protocol passed.")
-        }
-        
-        // Validate the parameters...
-        if type == .stream {
-            guard pro == .tcp else {
-                
-                throw MaoSocketError( MaoSocketTip.SOCKET_ERR_BAD_SIGNATURE_PARAMETERS, "Stream socket must use either .tcp or .unix for the protocol.")
-            }
-        }
-        if type == .dgram {
-            guard pro == .udp  else {
-                
-                throw MaoSocketError(MaoSocketTip.SOCKET_ERR_BAD_SIGNATURE_PARAMETERS, "Datagram socket must use .udp or .unix for the protocol.")
-            }
-        }
-        
-        self.family = family
-        self.socketType = type
-        self.socketProtocol = pro
-        
-        self.address = address
-        
-    }
-    
-    ///
-    /// Create a socket signature
-    ///
     ///	- Parameters:
     ///		- protocolFamily:	The protocol family to use (only `.inet` and `.inet6` supported by this `init` function).
     ///		- socketType:		The type of socket to create.
@@ -341,7 +313,7 @@ struct MaoSocketSignature {
                 throw MaoSocketError(MaoSocketTip.SOCKET_ERR_BAD_SIGNATURE_PARAMETERS, "Missing hostname, port or both or invalid protocol family.")
         }
         
-        self.family = family
+        
         
         // Validate the parameters...
         if socketType == .stream {
@@ -357,133 +329,13 @@ struct MaoSocketSignature {
             }
         }
         
+        self.family = family
         self.socketType = socketType
         self.socketProtocol = socketProtocol
         
         self.hostname = hostname
         self.port = port
     }
-    
-    ///
-    /// Create a socket signature
-    ///
-    ///	- Parameters:
-    ///		- socketType:		The type of socket to create.
-    ///		- proto:			The protocool to use for the socket.
-    /// 	- path:				Pathname for this signature.
-    ///
-    /// - Returns: New Signature instance
-    ///
-    public init?(socketType: MaoSocket.SocketType, proto: MaoSocket.SocketProtocol, path: String?) throws {
-        
-        // Make sure we have what we need...
-        guard let _ = path else {
-            
-            throw Error(code: Socket.SOCKET_ERR_BAD_SIGNATURE_PARAMETERS, reason: "Missing pathname.")
-        }
-        
-        // Default to Unix socket protocol family...
-        self.protocolFamily = .unix
-        
-        self.socketType = socketType
-        self.proto = proto
-        
-        // Validate the parameters...
-        if socketType == .stream {
-            guard proto == .tcp || proto == .unix else {
-                
-                throw Error(code: Socket.SOCKET_ERR_BAD_SIGNATURE_PARAMETERS, reason: "Stream socket must use either .tcp or .unix for the protocol.")
-            }
-        }
-        if socketType == .datagram {
-            guard proto == .udp || proto == .unix else {
-                
-                throw Error(code: Socket.SOCKET_ERR_BAD_SIGNATURE_PARAMETERS, reason: "Datagram socket must use .udp or .unix for the protocol.")
-            }
-        }
-        
-        self.path = path
-        
-        if path!.utf8.count == 0 {
-            
-            throw Error(code: Socket.SOCKET_ERR_BAD_SIGNATURE_PARAMETERS, reason: "Specified path contains zero (0) bytes.")
-        }
-        
-        // Create the address...
-        var remoteAddr = sockaddr_un()
-        remoteAddr.sun_family = sa_family_t(AF_UNIX)
-        
-        let lengthOfPath = path!.utf8.count
-        
-        // Validate the length...
-        guard lengthOfPath < MemoryLayout.size(ofValue: remoteAddr.sun_path) else {
-            
-            throw Error(code: Socket.SOCKET_ERR_BAD_SIGNATURE_PARAMETERS, reason: "Pathname supplied is too long.")
-        }
-        
-        _ = withUnsafeMutablePointer(to: &remoteAddr.sun_path.0) { ptr in
-            
-            path!.withCString {
-                strncpy(ptr, $0, lengthOfPath)
-            }
-        }
-        
-        #if !os(Linux)
-            remoteAddr.sun_len = UInt8(MemoryLayout<UInt8>.size + MemoryLayout<sa_family_t>.size + path!.utf8.count + 1)
-        #endif
-        
-        self.address = .unix(remoteAddr)
-    }
-    
-    ///
-    /// Create a socket signature
-    ///
-    /// - Parameters:
-    ///		- protocolFamily:	The family of the socket to create.
-    ///		- socketType:		The type of socket to create.
-    ///		- proto:			The protocool to use for the socket.
-    /// 	- address:			Address info for the socket.
-    /// 	- hostname:			Hostname for this signature.
-    /// 	- port:				Port for this signature.
-    ///
-    /// - Returns: New Signature instance
-    ///
-    internal init?(protocolFamily: Int32, socketType: Int32, proto: Int32, address: Address?, hostname: String?, port: Int32?) throws {
-        
-        // This constructor requires all items be present...
-        guard let family = ProtocolFamily.getFamily(forValue: protocolFamily),
-            let type = SocketType.getType(forValue: socketType),
-            let pro = SocketProtocol.getProtocol(forValue: proto),
-            let _ = hostname,
-            let port = port else {
-                
-                throw Error(code: Socket.SOCKET_ERR_BAD_SIGNATURE_PARAMETERS, reason: "Incomplete parameters.")
-        }
-        
-        self.protocolFamily = family
-        self.socketType = type
-        self.proto = pro
-        
-        // Validate the parameters...
-        if type == .stream {
-            guard (pro == .tcp || pro == .unix) else {
-                
-                throw Error(code: Socket.SOCKET_ERR_BAD_SIGNATURE_PARAMETERS, reason: "Stream socket must use either .tcp or .unix for the protocol.")
-            }
-        }
-        if type == .datagram {
-            guard pro == .udp else {
-                
-                throw Error(code: Socket.SOCKET_ERR_BAD_SIGNATURE_PARAMETERS, reason: "Datagram socket must use .udp for the protocol.")
-            }
-        }
-        
-        self.address = address
-        
-        self.hostname = hostname
-        self.port = port
-    }
-
 }
 
 
