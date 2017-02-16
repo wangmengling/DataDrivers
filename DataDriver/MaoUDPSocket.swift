@@ -39,11 +39,11 @@ class MaoUDPSocket{
     
     
     func connect() -> Void {
-        do {
-            addr = Socket.createAddress(for: self.host, on: port)!
-        } catch let error  {
-            print(error)
-        }
+//        do {
+//            addr = Socket.createAddress(for: self.host, on: port)!
+//        } catch let error  {
+//            print(error)
+//        }
     }
     
     

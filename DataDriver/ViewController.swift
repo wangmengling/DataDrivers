@@ -17,6 +17,9 @@ class ViewController: UIViewController {
     let path: String = "/tmp/server.test.socket"
     var thread:Thread!
     
+    var maoSocket: MaoSocket!
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,6 +81,14 @@ class ViewController: UIViewController {
 //            anchor.width(100)
 //            anchor.height(100)
 //        }
+        do {
+            maoSocket = try MaoSocket(family: .inet, socketType: .stream, socketProtocol: .tcp)
+            try maoSocket.connect(host: "127.0.0.1", port: 6969)
+            maoSocket.reciveMessage()
+        } catch let error {
+            print(error)
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -87,20 +98,37 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        //print("sds")
-        MaoUDPSocket.instance.connect()
-        MaoUDPSocket.instance.reciveMessage()
-        MaoTCPSocket.instance.connect()
-        MaoTCPSocket.instance.reciveMessage()
+//        //print("sds")
+//        MaoUDPSocket.instance.connect()
+//        MaoUDPSocket.instance.reciveMessage()
+//        MaoTCPSocket.instance.connect()
+//        MaoTCPSocket.instance.reciveMessage()
 //        self.thread = Thread(target: self, selector: #selector(ViewController.startThread), object: nil)
 //        self.thread.start()
+//        MaoSocket.instance.connect(host: <#T##String#>, port: <#T##Int32#>)
     }
 
     @IBAction func ceshiAction(_ sender: AnyObject) {
         
+        let queue: DispatchQueue? = DispatchQueue.global(qos: .userInteractive)
+        
         let params = ["name":"wangguozhong"]
-        MaoUDPSocket.instance.sendMessage(params: params)
-        MaoTCPSocket.instance.sendMessage()
+        
+//            maoSocket = try MaoSocket(family: .inet, socketType: .stream, socketProtocol: .tcp)
+//            try maoSocket.connect(host: "127.0.0.1", port: 6969)
+//            maoSocket.reciveMessage()
+            queue?.async {
+                do {
+                    try self.maoSocket.sendMessage(message: "测试")
+                } catch let error {
+                    print(error)
+                }
+            }
+            
+        
+        print("ceshi2")
+//        MaoUDPSocket.instance.sendMessage(params: params)
+//        MaoTCPSocket.instance.sendMessage()
 //        self.perform(#selector(ViewController.test))
 //        self.perform(#selector(ViewController.test), on: self.thread, with: nil, waitUntilDone: false)
 //        return
