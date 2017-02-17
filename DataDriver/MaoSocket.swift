@@ -187,6 +187,7 @@ class MaoSocket {
     fileprivate var isConnect: Bool = false
     
     fileprivate lazy var sendMessageQueue: DispatchQueue = DispatchQueue(label: MaoSocketEnum.SocketConst.sendMessagQueue.description)
+    fileprivate lazy var reciveMessageQueue: DispatchQueue = DispatchQueue(label: MaoSocketEnum.SocketConst.reciveMessageQueue.description)
     
     // MARK: -- Private
     
@@ -321,28 +322,35 @@ extension MaoSocket {
 
 extension MaoSocket {
     func reciveMessage() -> Void {
-        
+        var keepRunning = true
         var reciveFlags: Int32 = 0
         if (self.reciveData.length > 0) {
             reciveFlags |= Int32(MSG_DONTWAIT)
         }
-        
-        var count: Int = 0
-        repeat{
-            count = Darwin.recv(self.socketFd, self.reciveBuffer, self.reciveBufferSize, reciveFlags)
-            self.reciveData.append(self.reciveBuffer, length: count)
-            if count < self.reciveBufferSize {
-                break
-            }
-        } while count > 0
-        
-        guard let str = NSString(bytes: self.reciveData.bytes, length: self.reciveData.length, encoding: String.Encoding.utf8.rawValue),
-            count > 0 else {
-                print("error string of data")
-                return
-//                throw Error(code: Socket.SOCKET_ERR_INTERNAL, reason: "Unable to convert data to NSString.")
+        reciveMessageQueue.async {
+            repeat {
+                var count: Int = 0
+                // Clear the buffer...
+//                self.reciveBuffer.initialize(to: 0x0)
+                self.reciveData = NSMutableData(capacity: 0)!
+                
+                repeat{
+                    count = Darwin.recv(self.socketFd, self.reciveBuffer, self.reciveBufferSize, reciveFlags)
+                    self.reciveData.append(self.reciveBuffer, length: count)
+                    if count < self.reciveBufferSize {
+                        break
+                    }
+                } while count > 0
+                
+                guard let str = NSString(bytes: self.reciveData.bytes, length: self.reciveData.length, encoding: String.Encoding.utf8.rawValue),
+                    count > 0 else {
+                        print("error string of data")
+                        return
+                        //                throw Error(code: Socket.SOCKET_ERR_INTERNAL, reason: "Unable to convert data to NSString.")
+                }
+                print(str)
+            } while keepRunning
         }
-        print(str)
     }
 }
 
