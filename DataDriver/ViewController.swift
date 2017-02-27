@@ -9,7 +9,7 @@
 import UIKit
 import Socket
 
-class ViewController: UIViewController {
+class ViewController: UIViewController,MaoSocketTCPDelegate {
     
     let QUIT: String = "QUIT"
     let port: Int32 = 41234
@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     let path: String = "/tmp/server.test.socket"
     var thread:Thread!
     
-    var maoSocket: MaoSocket!
+    var maoSocket: MaoSocketTcp!
     
     
 
@@ -29,7 +29,7 @@ class ViewController: UIViewController {
         views.backgroundColor = UIColor.red
         views.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(views)
-        
+        self.protobufText()
         
 //        CFRunLoopGetCurrent()
 //        RunLoop().getCFRunLoop()
@@ -82,8 +82,9 @@ class ViewController: UIViewController {
 //            anchor.height(100)
 //        }
         do {
-            maoSocket = try MaoSocket(family: .inet, socketType: .stream, socketProtocol: .tcp)
-            try maoSocket.connect(host: "127.0.0.1", port: 6969)
+            maoSocket = try MaoSocketTcp(family: .inet, socketType: .stream, socketProtocol: .tcp)
+            maoSocket.delegate = self
+            maoSocket.connect(host: "127.0.0.1", port: 6969)
             maoSocket.reciveMessage()
         } catch let error {
             print(error)
@@ -109,21 +110,12 @@ class ViewController: UIViewController {
     }
 
     @IBAction func ceshiAction(_ sender: AnyObject) {
-        
-        let queue: DispatchQueue? = DispatchQueue.global(qos: .userInteractive)
-        
-        let params = ["name":"wangguozhong"]
-        
 //            maoSocket = try MaoSocket(family: .inet, socketType: .stream, socketProtocol: .tcp)
 //            try maoSocket.connect(host: "127.0.0.1", port: 6969)
 //            maoSocket.reciveMessage()
-            queue?.async {
-                do {
-                    try self.maoSocket.sendMessage(message: "测试")
-                } catch let error {
-                    print(error)
-                }
-            }
+        self.maoSocket.sendMessage(message: "ceshi") { (status) in
+            print(status)
+        }
             
         
         print("ceshi2")
@@ -518,3 +510,26 @@ extension ViewController {
     }
 }
 
+extension ViewController {
+    func protobufText() -> Void {
+//        let model = SubMessage().getBuilder()
+//        model.str = "2"
+//        model.str = "2"
+//        print(model.str)
+    }
+}
+
+extension ViewController {
+    func socketTCPDidConnect(socket: MaoSocketTcp) {
+        print("服务器连接成功")
+    }
+    func socketTCPDisConnect(socket: MaoSocketTcp, error: MaoSocketError?) {
+        print("服务器连接失败")
+    }
+    func socketTCPDidSendMessage(socket: MaoSocketTcp, error: MaoSocketError) {
+        print(error)
+    }
+    func socketTCPDidReciveMessage(data: NSMutableData,socket: MaoSocketTcp){
+        print(data)
+    }
+}

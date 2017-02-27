@@ -41,6 +41,8 @@
 		166AAF031E0C05AE00661C78 /* MaoNumerical.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166AAF021E0C05AE00661C78 /* MaoNumerical.swift */; };
 		166AAF051E0C08C600661C78 /* MaoPriority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166AAF041E0C08C600661C78 /* MaoPriority.swift */; };
 		16703EC41E2BAF6A00260465 /* MaoScanImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16703EC31E2BAF6A00260465 /* MaoScanImageView.swift */; };
+		1671246C1E5C87A5003498C6 /* DataModel.proto in Resources */ = {isa = PBXBuildFile; fileRef = 1671246B1E5C87A5003498C6 /* DataModel.proto */; };
+		1671246E1E5C8805003498C6 /* DataModel.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1671246D1E5C8805003498C6 /* DataModel.proto.swift */; };
 		167849821E10C1E7006BDC17 /* MaoLayoutAnchorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167849811E10C1E7006BDC17 /* MaoLayoutAnchorProtocol.swift */; };
 		167849841E110CDD006BDC17 /* MaoConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167849831E110CDD006BDC17 /* MaoConstant.swift */; };
 		167849861E121C10006BDC17 /* MaoAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167849851E121C10006BDC17 /* MaoAnchor.swift */; };
@@ -55,11 +57,12 @@
 		16ADD6BF1E2768A800BF1667 /* MaoChatInputEmojiCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16ADD6BE1E2768A800BF1667 /* MaoChatInputEmojiCollectionViewCell.swift */; };
 		16ADD6C11E2768B600BF1667 /* MaoChatInputEmojiCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16ADD6C01E2768B600BF1667 /* MaoChatInputEmojiCollectionViewCell.xib */; };
 		16ADD6C31E276F1F00BF1667 /* MaoChatEmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16ADD6C21E276F1F00BF1667 /* MaoChatEmojiView.swift */; };
-		16B298D41E2E57BD001F2EF6 /* EasyPeasy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16B298D11E2E57BD001F2EF6 /* EasyPeasy.framework */; };
 		16B298D51E2E57BD001F2EF6 /* Socket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16B298D21E2E57BD001F2EF6 /* Socket.framework */; };
 		16D353FB1E430ADF00275911 /* MaoSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D353FA1E430ADE00275911 /* MaoSocket.swift */; };
-		16D353FE1E430B6F00275911 /* MaoUDPSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D353FD1E430B6F00275911 /* MaoUDPSocket.swift */; };
-		16D354001E430B8F00275911 /* MaoTCPSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D353FF1E430B8F00275911 /* MaoTCPSocket.swift */; };
+		16FE2BC71E5D1FD000BE717B /* Message.proto in Resources */ = {isa = PBXBuildFile; fileRef = 16FE2BC61E5D1FD000BE717B /* Message.proto */; };
+		16FE2BC91E5D1FFE00BE717B /* Message.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FE2BC81E5D1FFE00BE717B /* Message.proto.swift */; };
+		16FE2BCB1E5D2E7000BE717B /* awesome.proto in Resources */ = {isa = PBXBuildFile; fileRef = 16FE2BCA1E5D2E7000BE717B /* awesome.proto */; };
+		16FE2BCD1E5D2E9200BE717B /* Awesome.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FE2BCC1E5D2E9200BE717B /* Awesome.proto.swift */; };
 		183BFBA91E0CD84B00CF302B /* MaoLayoutRectAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183BFBA81E0CD84B00CF302B /* MaoLayoutRectAnchor.swift */; };
 		1864E1301D824C430042876C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1864E12F1D824C430042876C /* AppDelegate.swift */; };
 		1864E1321D824C430042876C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1864E1311D824C430042876C /* ViewController.swift */; };
@@ -90,6 +93,7 @@
 		1864E1941D826AA90042876C /* TopicsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1864E1931D826AA90042876C /* TopicsModel.swift */; };
 		18AE2AD51DD55A1500CA92BD /* DataToJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AE2AD41DD55A1500CA92BD /* DataToJSON.swift */; };
 		18BFE71D1DD5C6060088AF50 /* DataFieldType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BFE71C1DD5C6060088AF50 /* DataFieldType.swift */; };
+		847F79B5EC2BA6CA23001CB6 /* Pods_DataDriver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC0CA640B89079FC8ACDAFA6 /* Pods_DataDriver.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -164,6 +168,8 @@
 		166AAF021E0C05AE00661C78 /* MaoNumerical.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoNumerical.swift; sourceTree = "<group>"; };
 		166AAF041E0C08C600661C78 /* MaoPriority.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoPriority.swift; sourceTree = "<group>"; };
 		16703EC31E2BAF6A00260465 /* MaoScanImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoScanImageView.swift; sourceTree = "<group>"; };
+		1671246B1E5C87A5003498C6 /* DataModel.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DataModel.proto; sourceTree = SOURCE_ROOT; };
+		1671246D1E5C8805003498C6 /* DataModel.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataModel.proto.swift; sourceTree = SOURCE_ROOT; };
 		167849811E10C1E7006BDC17 /* MaoLayoutAnchorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoLayoutAnchorProtocol.swift; sourceTree = "<group>"; };
 		167849831E110CDD006BDC17 /* MaoConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoConstant.swift; sourceTree = "<group>"; };
 		167849851E121C10006BDC17 /* MaoAnchor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoAnchor.swift; sourceTree = "<group>"; };
@@ -182,8 +188,10 @@
 		16B298D21E2E57BD001F2EF6 /* Socket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Socket.framework; path = Carthage/Build/iOS/Socket.framework; sourceTree = "<group>"; };
 		16B298D31E2E57BD001F2EF6 /* SwiftProtobuf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftProtobuf.framework; path = Carthage/Build/iOS/SwiftProtobuf.framework; sourceTree = "<group>"; };
 		16D353FA1E430ADE00275911 /* MaoSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoSocket.swift; sourceTree = "<group>"; };
-		16D353FD1E430B6F00275911 /* MaoUDPSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoUDPSocket.swift; sourceTree = "<group>"; };
-		16D353FF1E430B8F00275911 /* MaoTCPSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoTCPSocket.swift; sourceTree = "<group>"; };
+		16FE2BC61E5D1FD000BE717B /* Message.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Message.proto; sourceTree = SOURCE_ROOT; };
+		16FE2BC81E5D1FFE00BE717B /* Message.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.proto.swift; sourceTree = SOURCE_ROOT; };
+		16FE2BCA1E5D2E7000BE717B /* awesome.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = awesome.proto; sourceTree = SOURCE_ROOT; };
+		16FE2BCC1E5D2E9200BE717B /* Awesome.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Awesome.proto.swift; sourceTree = SOURCE_ROOT; };
 		183BFBA81E0CD84B00CF302B /* MaoLayoutRectAnchor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoLayoutRectAnchor.swift; sourceTree = "<group>"; };
 		1864E12C1D824C430042876C /* DataDriver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DataDriver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1864E12F1D824C430042876C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -222,6 +230,9 @@
 		1864E1931D826AA90042876C /* TopicsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicsModel.swift; sourceTree = "<group>"; };
 		18AE2AD41DD55A1500CA92BD /* DataToJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataToJSON.swift; sourceTree = "<group>"; };
 		18BFE71C1DD5C6060088AF50 /* DataFieldType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataFieldType.swift; sourceTree = "<group>"; };
+		75E1D341DB2B934735A78CC5 /* Pods-DataDriver.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DataDriver.release.xcconfig"; path = "Pods/Target Support Files/Pods-DataDriver/Pods-DataDriver.release.xcconfig"; sourceTree = "<group>"; };
+		7B78A58AC4CA421CE5C5BC70 /* Pods-DataDriver.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DataDriver.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DataDriver/Pods-DataDriver.debug.xcconfig"; sourceTree = "<group>"; };
+		EC0CA640B89079FC8ACDAFA6 /* Pods_DataDriver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DataDriver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,10 +261,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				16B298D41E2E57BD001F2EF6 /* EasyPeasy.framework in Frameworks */,
 				16B298D51E2E57BD001F2EF6 /* Socket.framework in Frameworks */,
 				1864E18E1D8262350042876C /* libsqlite3.tbd in Frameworks */,
 				1864E18C1D8253430042876C /* libsqlite3.0.tbd in Frameworks */,
+				847F79B5EC2BA6CA23001CB6 /* Pods_DataDriver.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,6 +401,7 @@
 				16434AA11E0B833800DB72BB /* demoUITests */,
 				1864E12D1D824C430042876C /* Products */,
 				1864E18A1D8253430042876C /* Frameworks */,
+				33464EEDE68FE47610C3A449 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -413,11 +425,15 @@
 				1864E12F1D824C430042876C /* AppDelegate.swift */,
 				1864E1311D824C430042876C /* ViewController.swift */,
 				1650BCD01E19231D006B0994 /* ChatViewController.swift */,
+				1671246B1E5C87A5003498C6 /* DataModel.proto */,
+				16FE2BC61E5D1FD000BE717B /* Message.proto */,
+				16FE2BCA1E5D2E7000BE717B /* awesome.proto */,
+				16FE2BCC1E5D2E9200BE717B /* Awesome.proto.swift */,
+				16FE2BC81E5D1FFE00BE717B /* Message.proto.swift */,
+				1671246D1E5C8805003498C6 /* DataModel.proto.swift */,
 				1864E1931D826AA90042876C /* TopicsModel.swift */,
 				16ADD6B81E25DF0B00BF1667 /* KeyboardStore.swift */,
 				16D353FA1E430ADE00275911 /* MaoSocket.swift */,
-				16D353FD1E430B6F00275911 /* MaoUDPSocket.swift */,
-				16D353FF1E430B8F00275911 /* MaoTCPSocket.swift */,
 				1864E1901D8262EC0042876C /* view.h */,
 				1864E1911D8262EC0042876C /* view.m */,
 				16703EC31E2BAF6A00260465 /* MaoScanImageView.swift */,
@@ -526,8 +542,18 @@
 				16B298D31E2E57BD001F2EF6 /* SwiftProtobuf.framework */,
 				1864E18D1D8262350042876C /* libsqlite3.tbd */,
 				1864E18B1D8253430042876C /* libsqlite3.0.tbd */,
+				EC0CA640B89079FC8ACDAFA6 /* Pods_DataDriver.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		33464EEDE68FE47610C3A449 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7B78A58AC4CA421CE5C5BC70 /* Pods-DataDriver.debug.xcconfig */,
+				75E1D341DB2B934735A78CC5 /* Pods-DataDriver.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -590,10 +616,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1864E1541D824C430042876C /* Build configuration list for PBXNativeTarget "DataDriver" */;
 			buildPhases = (
+				475F7F7603FD73EEF71AD2CD /* [CP] Check Pods Manifest.lock */,
 				1864E1281D824C430042876C /* Sources */,
 				1864E1291D824C430042876C /* Frameworks */,
 				1864E12A1D824C430042876C /* Resources */,
 				16B298D71E2E57F9001F2EF6 /* ShellScript */,
+				A67DF1889952125587DCAEC5 /* [CP] Embed Pods Frameworks */,
+				45001162BCF18AFE19B2BB37 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -744,8 +773,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				16ADD6C11E2768B600BF1667 /* MaoChatInputEmojiCollectionViewCell.xib in Resources */,
+				1671246C1E5C87A5003498C6 /* DataModel.proto in Resources */,
+				16FE2BCB1E5D2E7000BE717B /* awesome.proto in Resources */,
 				1864E13A1D824C430042876C /* LaunchScreen.storyboard in Resources */,
 				16559C7C1E0A1EA100317DA3 /* SIMChat.xcassets in Resources */,
+				16FE2BC71E5D1FD000BE717B /* Message.proto in Resources */,
 				1864E1371D824C430042876C /* Assets.xcassets in Resources */,
 				16ADD6B71E24E19200BF1667 /* MaoChatInputToolsCollectionViewCell.xib in Resources */,
 				1864E1351D824C430042876C /* Main.storyboard in Resources */,
@@ -784,6 +816,51 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+		45001162BCF18AFE19B2BB37 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DataDriver/Pods-DataDriver-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		475F7F7603FD73EEF71AD2CD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A67DF1889952125587DCAEC5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DataDriver/Pods-DataDriver-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -835,9 +912,9 @@
 				16559C821E0A5DA500317DA3 /* MaoChatImage.swift in Sources */,
 				167849821E10C1E7006BDC17 /* MaoLayoutAnchorProtocol.swift in Sources */,
 				16559C7E1E0A256200317DA3 /* MaoChatInputTextFieldView.swift in Sources */,
+				16FE2BC91E5D1FFE00BE717B /* Message.proto.swift in Sources */,
 				1641F1391E078ED300D852E2 /* MaoChatConversation.swift in Sources */,
 				16ADD6C31E276F1F00BF1667 /* MaoChatEmojiView.swift in Sources */,
-				16D354001E430B8F00275911 /* MaoTCPSocket.swift in Sources */,
 				1650BCD11E19231D006B0994 /* ChatViewController.swift in Sources */,
 				16D353FB1E430ADF00275911 /* MaoSocket.swift in Sources */,
 				1641F12A1E03EBD300D852E2 /* MaoChatBaseCollectionViewCell.swift in Sources */,
@@ -850,7 +927,7 @@
 				1864E1821D824E780042876C /* NetWork.swift in Sources */,
 				16703EC41E2BAF6A00260465 /* MaoScanImageView.swift in Sources */,
 				1864E17E1D824E4B0042876C /* MLImageDowloadManager.swift in Sources */,
-				16D353FE1E430B6F00275911 /* MaoUDPSocket.swift in Sources */,
+				16FE2BCD1E5D2E9200BE717B /* Awesome.proto.swift in Sources */,
 				1864E1661D824DB80042876C /* SrorageToSQLite.swift in Sources */,
 				1864E1301D824C430042876C /* AppDelegate.swift in Sources */,
 				167849861E121C10006BDC17 /* MaoAnchor.swift in Sources */,
@@ -878,6 +955,7 @@
 				16ADD6B51E24E17D00BF1667 /* MaoChatInputToolsCollectionViewCell.swift in Sources */,
 				1864E1941D826AA90042876C /* TopicsModel.swift in Sources */,
 				16ABEBEA1E1B8E3100BAFB8A /* MaoChatTextView.swift in Sources */,
+				1671246E1E5C8805003498C6 /* DataModel.proto.swift in Sources */,
 				166AAF051E0C08C600661C78 /* MaoPriority.swift in Sources */,
 				1641F13D1E07E2D500D852E2 /* MaoChatMessageModel.swift in Sources */,
 			);
@@ -1147,6 +1225,7 @@
 		};
 		1864E1551D824C430042876C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7B78A58AC4CA421CE5C5BC70 /* Pods-DataDriver.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1155,6 +1234,11 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+					"$(PROJECT_DIR)/Carthage/Checkouts/BlueSocket/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Carthage/Checkouts/BlueSocket/Carthage/Build/Mac",
+					"$(PROJECT_DIR)/Carthage/Checkouts/swift-protobuf/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Carthage/Checkouts/swift-protobuf/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = DataDriver/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1169,6 +1253,7 @@
 		};
 		1864E1561D824C430042876C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 75E1D341DB2B934735A78CC5 /* Pods-DataDriver.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1177,6 +1262,11 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+					"$(PROJECT_DIR)/Carthage/Checkouts/BlueSocket/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Carthage/Checkouts/BlueSocket/Carthage/Build/Mac",
+					"$(PROJECT_DIR)/Carthage/Checkouts/swift-protobuf/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Carthage/Checkouts/swift-protobuf/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = DataDriver/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
