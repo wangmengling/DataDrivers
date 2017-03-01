@@ -1,0 +1,12 @@
+PODS:
+  - ProtocolBuffers-Swift (3.0.9)
+
+DEPENDENCIES:
+  - ProtocolBuffers-Swift
+
+SPEC CHECKSUMS:
+  ProtocolBuffers-Swift: dad8725c6b497a91c9dff38f9035499d40f2c025
+
+PODFILE CHECKSUM: 2f26dd4ceb1e6c7b22d9bf26fecd32c92456986d
+
+COCOAPODS: 1.1.1

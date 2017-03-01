@@ -692,6 +692,9 @@ class MaoSocketUDP: MaoSocket {
 //        }
 //    }
     
+    fileprivate lazy var sendMessageUDPQueue: DispatchQueue = DispatchQueue(label: MaoSocketEnum.SocketConst.sendMessageUDPQueue.description)
+    fileprivate lazy var reciveMessageUDPQueue: DispatchQueue = DispatchQueue(label: MaoSocketEnum.SocketConst.reciveMessageUDPQueue.description)
+    
     class var instance: MaoSocketUDP {
         return maoSocketUDP
     }
@@ -825,6 +828,73 @@ class MaoSocketUDP: MaoSocket {
         return sent
     }
     
+}
+
+
+extension MaoSocketTcp {
+    func reciveMessageUDPQueue() -> Void {
+        if self.isConnect != true {
+            return
+        }
+        var reciveFlags: Int32 = 0
+        if (self.reciveData.length > 0) {
+            reciveFlags |= Int32(MSG_DONTWAIT)
+        }
+        reciveMessageQueue.async {
+            repeat {
+                var count: Int = 0
+                // Clear the buffer...
+                self.reciveData = NSMutableData(capacity: 0)!
+                
+                repeat{
+                    count = Darwin.recv(self.socketFd, self.reciveBuffer, self.reciveBufferSize, reciveFlags)
+                    
+                    self.reciveData.append(self.reciveBuffer, length: count)
+                    if count < self.reciveBufferSize {
+                        break
+                    }
+                } while count > 0
+                guard let socketDelegate = self.delegate else {
+                    return
+                }
+                socketDelegate.socketTCPDidReciveMessage(data: self.reciveData, socket: self)
+            } while self.reciveMessageKeepRunning
+        }
+    }
+    
+    func reciveMessageUDPQueue(fn: @escaping (NSMutableData) -> Void) {
+        if self.isConnect != true {
+            return
+        }
+        let keepRunning = true
+        var reciveFlags: Int32 = 0
+        if (self.reciveData.length > 0) {
+            reciveFlags |= Int32(MSG_DONTWAIT)
+        }
+        reciveMessageQueue.async {
+            repeat {
+                var count: Int = 0
+                // Clear the buffer...
+                //                self.reciveBuffer.initialize(to: 0x0)
+                self.reciveData = NSMutableData(capacity: 0)!
+                
+                repeat{
+//                    Darwin.recvmsg(self.socketFd, <#T##UnsafeMutablePointer<msghdr>!#>, <#T##Int32#>)
+                    count = Darwin.recv(self.socketFd, self.reciveBuffer, self.reciveBufferSize, reciveFlags)
+                    
+                    self.reciveData.append(self.reciveBuffer, length: count)
+                    if count < self.reciveBufferSize {
+                        break
+                    }
+                } while count > 0
+                fn(self.reciveData)
+                guard let socketDelegate = self.delegate else {
+                    return
+                }
+                socketDelegate.socketTCPDidReciveMessage(data: self.reciveData, socket: self)
+            } while keepRunning
+        }
+    }
 }
 
 
