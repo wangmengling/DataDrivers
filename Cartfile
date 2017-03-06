@@ -1,2 +1,2 @@
 #github "apple/swift-protobuf" "0.9.27"
-github "IBM-Swift/BlueSocket" ~> 0.12.29
+#github "IBM-Swift/BlueSocket" ~> 0.12.29

@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import Socket
 
-class ChatViewController: MaoChatCollectionViewController {
+class ChatViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
