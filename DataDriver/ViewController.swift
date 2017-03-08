@@ -101,38 +101,42 @@ class ViewController: UIViewController,MaoSocketTCPDelegate,MaoSocketUDPDelegate
 //        self.thread = Thread(target: self, selector: #selector(ViewController.startThread), object: nil)
 //        self.thread.start()
 //        MaoSocket.instance.connect(host: <#T##String#>, port: <#T##Int32#>)
-        do {
-            let address = MaoSocketAddress(hostname: "192.168.1.105", port: 6969)
-            
-            maoSocket = try MaoSocketTcp(address: address)
-            maoSocket.delegate = self
-            maoSocket.connect()
-            maoSocket.reciveMessage()
-        } catch let error {
-            print(error)
-        }
-        
 //        do {
-//            let address = MaoSocketAddress(hostname: "127.0.0.1", port: 8124)
-//            maoSocketUdp = try MaoSocketUDP(address: address)
-//            maoSocketUdp.delegate = self
-//            maoSocketUdp.reciveMessage()
+//            let address = MaoSocketAddress(hostname: "192.168.120.12", port: 6969)
+//            
+//            maoSocket = try MaoSocketTcp(address: address)
+//            maoSocket.keepLive = true
+//            maoSocket.delegate = self
+//            maoSocket.connect()
+//            maoSocket.reciveMessage()
+//            
+//            var maosocketHeartBeat = MaoSocketHeartBeat();
+//            maosocketHeartBeat.start(maoSocket: self.maoSocket);
 //        } catch let error {
 //            print(error)
 //        }
+        
+        do {
+            let address = MaoSocketAddress(hostname: "192.168.120.12", port: 8124)
+            maoSocketUdp = try MaoSocketUDP(address: address)
+            maoSocketUdp.delegate = self
+            maoSocketUdp.reciveMessage()
+        } catch let error {
+            print(error)
+        }
     }
 
     @IBAction func ceshiAction(_ sender: AnyObject) {
 //            maoSocket = try MaoSocket(family: .inet, socketType: .stream, socketProtocol: .tcp)
 //            try maoSocket.connect(host: "127.0.0.1", port: 6969)
 //            maoSocket.reciveMessage()
-        self.maoSocket.sendMessage(message: "ceshi") { (status) in
-            print(status)
-        }
-        
-//        self.maoSocketUdp.sendMessage(message: "udpceshi") { (status) in
+//        self.maoSocket.sendMessage(message: "ceshi") { (status) in
 //            print(status)
 //        }
+        
+        self.maoSocketUdp.sendMessage(message: "udpceshi") { (status) in
+            print(status)
+        }
 //        print("ceshi2")
 //        MaoUDPSocket.instance.sendMessage(params: params)
 //        MaoTCPSocket.instance.sendMessage()
@@ -298,9 +302,9 @@ extension ViewController {
 //        String(d)
         let string : String = NSString(data: data as Data, encoding: String.Encoding.utf8.rawValue)! as String
         
-        DispatchQueue.main.async {
-            self.textView.text = string
-        }
+//        DispatchQueue.main.async {
+//            self.textView.text = string
+//        }
         
     }
     

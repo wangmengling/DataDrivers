@@ -4,18 +4,14 @@
 //
 //  Created by jackWang on 2017/2/2.
 //  Copyright © 2017年 apple. All rights reserved.
-//
-//import Darwin
-//#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
-    import Darwin
-//#elseif os(Linux)
-//    import Glibc
-//#endif
+//  Just For Ios
+import Darwin
 import Foundation
 
 public typealias SocketFD = Int32
-public typealias Port = UInt16
+public typealias MaoSocketPort = UInt16
 
+//MARK: MaoSocket protocol
 protocol MaoSocketProtocol {
     var socketFd: SocketFD { get }
     var closed: Bool { get }
@@ -27,18 +23,22 @@ protocol MaoSocketProtocol {
 }
 
 extension MaoSocketProtocol {
+    //Close socketFD
     public func close() throws {
         if Darwin.close(self.socketFd) != 0 {
             throw MaoSocketError(.closeSocketFailed, "socket close faild")
         }
     }
     
+    //Create socketFD
     static func createNewSocket(signature: MaoSocketSignature) throws -> SocketFD {
         let socketFd = Darwin.socket(signature.family.value, signature.socketType.value, signature.socketProtocol.value)
         guard socketFd >= 0 else { throw MaoSocketError(.createSocketFailed, "create socket failed") }
         return socketFd
     }
 }
+
+//MARK: MaoSocket TCP delegate
 protocol MaoSocketTCPDelegate {
     func socketTCPDidConnect(socket: MaoSocketTcp)
     func socketTCPDisConnect(socket: MaoSocketTcp, error: MaoSocketError?)
@@ -46,30 +46,31 @@ protocol MaoSocketTCPDelegate {
     func socketTCPDidReciveMessage(data: NSMutableData,socket: MaoSocketTcp)
 }
 
+//MARK: MaoSocket UDP delegate
 protocol MaoSocketUDPDelegate {
-    func socketUDPDidConnect(socket: MaoSocketUDP)
-    func socketUDPDisConnect(socket: MaoSocketUDP, error: MaoSocketError?)
     func socketUDPDidSendMessage(socket: MaoSocketUDP, error: MaoSocketError)
     func socketUDPDidReciveMessage(data: NSMutableData,socket: MaoSocketUDP)
 }
 
+//MARK: MaoSocket enum
 struct MaoSocketEnum {
     
+    // Dispath queue name
     enum SocketConst: String, CustomStringConvertible {
         case sendMessagQueue                = "com.maoling.sendmessage.queue"
         case reciveMessageQueue             = "com.maoling.recivemessage.queue"
         case sendMessageUDPQueue            = "com.maoling.sendmessage.udp.queue"
         case reciveMessageUDPQueue          = "com.maoling.recivemessage.udp.queue"
-        
+        case heartBeatQueue                 = "com.maoling.heartBeatQueue.queue"
         public var description: String {
             return self.rawValue
         }
     }
     
+    // MARK: -- Socket Family
     enum Family {
         case inet
         case inet6
-        case unix
         case unspecified
         
         var value:Int32 {
@@ -80,8 +81,6 @@ struct MaoSocketEnum {
                 return AF_INET6
             case .unspecified:
                 return AF_UNSPEC
-            case .unix:
-                return AF_UNIX
             }
         }
         
@@ -91,6 +90,7 @@ struct MaoSocketEnum {
         
     }
     
+    // MARK: -- Socket DataType
     public enum SocketType {
         case stream
         case datagram
@@ -112,10 +112,10 @@ struct MaoSocketEnum {
         }
     }
     
+    // MARK: -- Socket Protocol
     enum SocketProtocol {
         case tcp
         case udp
-        case unix
         
         
         var value: Int32 {
@@ -124,22 +124,15 @@ struct MaoSocketEnum {
                 return IPPROTO_TCP
             case .udp:
                 return IPPROTO_UDP
-            case .unix:
-                return Int32(0)
             }
         }
         
         static func getProtocol(_ protocol: Int32) -> MaoSocketEnum.SocketProtocol? {
             return .tcp
         }
-        
     }
     
     // MARK: -- Socket Address
-    
-    ///
-    /// Socket Address
-    ///
     public enum Address {
         
         /// sockaddr_in
@@ -151,9 +144,7 @@ struct MaoSocketEnum {
         /// sockaddr_un
         case unix(sockaddr_un)
         
-        ///
-        /// Size of address. (Readonly)
-        ///
+        /// Size of address
         public var size: Int {
             
             switch self {
@@ -167,9 +158,7 @@ struct MaoSocketEnum {
             }
         }
         
-        ///
-        /// Cast as sockaddr. (Readonly)
-        ///
+        /// Cast as sockaddr.
         public var addr: sockaddr {
             
             switch self {
@@ -187,6 +176,7 @@ struct MaoSocketEnum {
         
     }
     
+    // MARK: -- Socket ErrorCode
     public enum ErrorCode: Int32 {
         case createSocketFailed         = -99999
         case closeSocketFailed          = -99998
@@ -198,21 +188,21 @@ struct MaoSocketEnum {
         case datagramUdp                = -9997
         case connectGetAddrinfo         = -9996
         case bufferZero                 = -9991
-        case connectionReset = -9990
-        case sendMessageFailed = -8999
-        case reciveMessageFailed = -8998
-        case invalidConnectAddress = -8997
+        case connectionReset            = -9990
+        case sendMessageFailed          = -8999
+        case reciveMessageFailed        = -8998
+        case invalidConnectAddress      = -8997
     }
     
+    // MARK: -- Recive Buffer Size
     public enum BufferSize: Int {
         case reciveMininum = 2014
         case reciveDefault = 4096
     }
 }
-// MARK: -- signatrMaoSocketErrorue
+// MARK: -- MaoSocketError
 public struct MaoSocketError: Swift.Error, CustomStringConvertible {
     
-//    public internal(set) var errorCode: Int32
     internal(set) var errorCode: MaoSocketEnum.ErrorCode
     
     public internal(set) var errorReason: String?
@@ -222,12 +212,6 @@ public struct MaoSocketError: Swift.Error, CustomStringConvertible {
         return "Error code: \(self.errorCode.rawValue)(0x\(String(self.errorCode.rawValue, radix: 16, uppercase: true))), \(reason)"
     }
     
-    
-//    init(_ code: Int, _ reason: String) {
-//        self.errorCode = Int32(code)
-//        self.errorReason = reason
-//    }
-    
     init(_ code: MaoSocketEnum.ErrorCode, _ reason: String = "no know reason") {
         self.errorCode = code
         self.errorReason = reason
@@ -236,33 +220,23 @@ public struct MaoSocketError: Swift.Error, CustomStringConvertible {
 
 // MARK: -- MaoSocketAddress
 struct MaoSocketAddress {
-    ///
-    /// Host name for connection. (Readonly)
-    ///
+    
+    /// Host name for connection
     public internal(set) var hostname: String?
     
-    ///
-    /// Port for connection. (Readonly)
-    ///
+    /// Port for connection
     public internal(set) var port: Int32?
-    
-    ///
-    /// Path for .unix type sockets. (Readonly)
-    //    public internal(set) var path: String? = nil
-    
-    ///
+
     /// Protocol Family
-    ///
     public internal(set) var family: MaoSocketEnum.Family = .unspecified
     
-    ///
-    /// Address info for socket. (Readonly)
-    ///
+    /// Address info for socket
     public internal(set) var address: MaoSocketEnum.Address? = nil
     
     public var description: String {
         return "MaoSocketAddress:  address: \(address as MaoSocketEnum.Address?), hostname: \(hostname as String?), port: \(port), family: \(String(describing: family))"
     }
+    
     
     init(hostname: String, port: Int32, family: MaoSocketEnum.Family = .inet) {
         self.hostname = hostname
@@ -271,6 +245,7 @@ struct MaoSocketAddress {
         self.address = self.createAddress(for: hostname, on: port)
     }
     
+    ///Create address and check host is valid
     func createAddress(for host: String, on port: Int32) -> MaoSocketEnum.Address? {
         
         var info: UnsafeMutablePointer<addrinfo>? = UnsafeMutablePointer<addrinfo>.allocate(capacity: 1)
@@ -278,21 +253,17 @@ struct MaoSocketAddress {
         // Retrieve the info on our target...
         var status: Int32 = getaddrinfo(host, String(port), nil, &info)
         if status != 0 {
-            
             return nil
         }
         
         // Defer cleanup of our target info...
-        defer {
-            
-            if info != nil {
+        defer {            if info != nil {
                 freeaddrinfo(info)
             }
         }
         
         var address: MaoSocketEnum.Address
         if info!.pointee.ai_family == Int32(AF_INET) {
-            
             var addr = sockaddr_in()
             memcpy(&addr, info!.pointee.ai_addr, Int(MemoryLayout<sockaddr_in>.size))
             address = .ipv4(addr)
@@ -304,7 +275,6 @@ struct MaoSocketAddress {
             address = .ipv6(addr)
             
         } else {
-            
             return nil
         }
         
@@ -312,61 +282,29 @@ struct MaoSocketAddress {
     }
 }
 
-// MARK: -- signatrue
+// MARK: -- MaoSocket Signatrue
 struct MaoSocketSignature {
-    // MARK: -- Public Properties
-    
-    ///
     /// Protocol Family
-    ///
     public internal(set) var family: MaoSocketEnum.Family
     
-    ///
-    /// Socket Type. (Readonly)
-    ///
+    /// Socket Type
     public internal(set) var socketType: MaoSocketEnum.SocketType
-    
-    ///
-    /// Socket Protocol. (Readonly)
-    ///
+   
+    /// Socket Protocol.
     public internal(set) var socketProtocol: MaoSocketEnum.SocketProtocol
     
     public var reuseAddress: Bool = true
     
-    
-    
-    ///
-    /// Flag to indicate whether `Socket` is secure or not. (Readonly)
-    ///
+    /// Flag to indicate whether `Socket` is secure or not
     public internal(set) var isSecure: Bool = false
     
-    ///
-    /// True is socket bound, false otherwise.
-    ///
-    public internal(set) var isBound: Bool = false
-    
-    ///
     /// Returns a string description of the error.
-    ///
     public var description: String {
         
-        return "MaoSocketSignature: family: \(self.family), type: \(socketType), protocol: \(socketProtocol), bound: \(isBound), secure: \(isSecure)"
+        return "MaoSocketSignature: family: \(self.family), type: \(socketType), protocol: \(socketProtocol), secure: \(isSecure)"
     }
     
     // MARK: -- Public Functions
-    
-    ///
-    /// Create a socket signature
-    ///
-    ///	- Parameters:
-    ///		- protocolFamily:	The protocol family to use (only `.inet` and `.inet6` supported by this `init` function).
-    ///		- socketType:		The type of socket to create.
-    ///		- proto:			The protocool to use for the socket.
-    /// 	- hostname:			Hostname for this signature.
-    /// 	- port:				Port for this signature.
-    ///
-    /// - Returns: New Signature instance
-    ///
     public init?(family: MaoSocketEnum.Family, socketType: MaoSocketEnum.SocketType, socketProtocol: MaoSocketEnum.SocketProtocol) throws {
         
         // Make sure we have what we need...
@@ -388,68 +326,59 @@ struct MaoSocketSignature {
                 throw MaoSocketError(.datagramUdp, "Datagram socket must use .udp or .unix for the protocol.")
             }
         }
-        
         self.family = family
         self.socketType = socketType
         self.socketProtocol = socketProtocol
-        
     }
 }
 
-
-//struct MaoSocketCode {
-//    public static let SOCKET_RECIVE_BUFFER_SIZE_MINIMUM		= 1024      //recive buffer min
-//    public static let SOCKET_RECIVE_BUFFER_SIZE_DEFAULT		= 4096      //recive buffer max
-//
-//    
-//    public static let SOCKET_INVALID_PORT					= Int32(0)
-//    public static let SOCKET_INVALID_DESCRIPTOR 			= Int32(-1)
-//    
-//    public static let SOCKET_ERR_SIGNATURE_FAMILY           = -9999
-//    public static let SOCKET_ERR_SIGNATURE_STREAM_TCP       = -9998
-//    public static let SOCKET_ERR_SIGNATURE_DATAGRAM_UDP     = -9997
-//    
-//    
-//    public static let SOCKET_ERR_SOCKET_INIT                = -9996
-//    public static let SOCKET_ERR_SOCKET_CONNECT_GETADDRINFO = -9995
-//    public static let SOCKET_ERR_INVALID_BUFFER             = -9994
-//    public static let SOCKET_ERR_BAD_DESCRIPTOR             = -9993
-//    public static let SOCKET_ERR_WRONG_PROTOCOL             = -9992
-//    public static let SOCKET_ERR_CONNECTION_RESET           = -9991
-//    public static let SOCKET_ERR_WRITE_FAILED               = -9990
-//}
-
+//MARK: MaoSocket TCP
 class MaoSocketTcp: MaoSocketProtocol {
-    //socket 套字节
-    //socket 套字节
+    /// Socket
     internal var socketFd: SocketFD = MaoSocketEnum.ErrorCode.invalidSocket.rawValue
+    
+    /// Socket signature
     internal var signature: MaoSocketSignature
+    
+    /// Socket address
     internal var address: MaoSocketAddress
+    
+    /// Socket is connect
     fileprivate var isConnect: Bool = false
+    
+    /// Socket is close
     internal var closed: Bool = false
     
-    fileprivate var reciveMessageKeepRunning: Bool = true
+    /// Recive message status , if status is false,will not recive message from server
+    var reciveMessageKeepRunning: Bool = true
     
+    /// Dispath queue for send message
     fileprivate lazy var sendMessageQueue: DispatchQueue = DispatchQueue(label: MaoSocketEnum.SocketConst.sendMessagQueue.description)
+    
+    /// Dispath queue for recive message
     fileprivate lazy var reciveMessageQueue: DispatchQueue = DispatchQueue(label: MaoSocketEnum.SocketConst.reciveMessageQueue.description)
     
+    /// MaoSocketTCPDelegate
     var delegate: MaoSocketTCPDelegate?
     
-    // MARK: -- Private
+    /// Check if the server status is abnormal， temporarily no use
+    var keepLive:Bool {
+        set {
+            try? self.setKeepLive(newValue)
+        }get {
+            let keepAlive:Bool? = try? self.getKeepLive()
+            return keepAlive ?? false
+        }
+    }
     
-    ///
+   
     /// Internal read buffer.
-    /// 	**Note:** The readBuffer is actually allocating unmanaged memory that'll
-    ///			be deallocated when we're done with it.
-    ///
-    
     fileprivate lazy var reciveBuffer: UnsafeMutablePointer<CChar> = UnsafeMutablePointer<CChar>.allocate(capacity: MaoSocketEnum.BufferSize.reciveDefault.rawValue)
-    ///
-    /// Internal Storage Buffer initially created with `Socket.SOCKET_DEFAULT_READ_BUFFER_SIZE`.
-    ///
-    //    var reciveData: Data = Data(capacity: MaoSocketCode.SOCKET_RECIVE_BUFFER_SIZE_DEFAULT)
+    
+    /// Create initially internal Storage Buffer
     var reciveData: NSMutableData = NSMutableData(capacity: MaoSocketEnum.BufferSize.reciveDefault.rawValue)!
     
+    /// Recive buffer size
     fileprivate var reciveBufferSize: Int = MaoSocketEnum.BufferSize.reciveDefault.rawValue {
         
         // If the buffer size changes we need to reallocate the buffer...
@@ -487,9 +416,15 @@ class MaoSocketTcp: MaoSocketProtocol {
 
     
     deinit {
-        // The socket needs to be closed (to close the underlying file descriptor).
-        // If descriptors aren't properly freed, the system will run out sooner or later.
         try? self.close()
+    }
+    
+    /// Reply connect
+    public func reConnect() throws -> Int {
+        if self.socketFd < 0 {
+        self.socketFd = try MaoSocketTcp.createNewSocket(signature: self.signature)
+        }
+        return try self.connect()
     }
     
     public func connect() {
@@ -559,6 +494,7 @@ class MaoSocketTcp: MaoSocketProtocol {
         status = Darwin.connect(self.socketFd, info.pointee.ai_addr, info.pointee.ai_addrlen)
         guard status != 0 else {
             isConnect = true
+            reciveMessageKeepRunning = true
             return Int(status)
         }
         _ = Darwin.close(self.socketFd)  // close socket
@@ -570,7 +506,7 @@ class MaoSocketTcp: MaoSocketProtocol {
 extension MaoSocketTcp {
     
     func sendMessage(data: Data, fn: @escaping(Int) -> Void ) {
-        if data.count == 0 {
+        if data.count == 0 || self.isConnect != true{
             fn(-1)
             return
         }
@@ -589,6 +525,10 @@ extension MaoSocketTcp {
     }
     
     func sendMessage(message: String , fn: @escaping(Int) -> Void) {
+        if self.isConnect != true {
+            fn(-1)
+            return
+        }
         let queue: DispatchQueue? = DispatchQueue.global(qos: .userInteractive)
         queue?.async {
             do {
@@ -628,12 +568,16 @@ extension MaoSocketTcp {
                 
                 repeat{
                     count = Darwin.recv(self.socketFd, self.reciveBuffer, self.reciveBufferSize, reciveFlags)
-                    
                     self.reciveData.append(self.reciveBuffer, length: count)
                     if count < self.reciveBufferSize {
                         break
                     }
                 } while count > 0
+                if self.reciveData.length == 0 {
+                    self.isConnect = false
+                    self.reciveMessageKeepRunning = false
+                    return
+                }
                 guard let socketDelegate = self.delegate else {
                     return
                 }
@@ -646,7 +590,6 @@ extension MaoSocketTcp {
         if self.isConnect != true {
             return
         }
-        let keepRunning = true
         var reciveFlags: Int32 = 0
         if (self.reciveData.length > 0) {
             reciveFlags |= Int32(MSG_DONTWAIT)
@@ -666,13 +609,62 @@ extension MaoSocketTcp {
                         break
                     }
                 } while count > 0
+                if self.reciveData.length == 0 {
+                    self.isConnect = false
+                    self.reciveMessageKeepRunning = false
+                    return
+                }
                 fn(self.reciveData)
                 guard let socketDelegate = self.delegate else {
                     return
                 }
                 socketDelegate.socketTCPDidReciveMessage(data: self.reciveData, socket: self)
-            } while keepRunning
+            } while self.reciveMessageKeepRunning
         }
+    }
+}
+
+
+extension MaoSocketTcp {
+    func setKeepLive<T>(_ value:T) throws -> Void {
+        var val = value
+        guard setsockopt(self.socketFd, SOL_SOCKET, SO_KEEPALIVE, &val, socklen_t(MemoryLayout<T>.stride)) != -1 else {
+            throw MaoSocketError(.invalidConnectAddress, "addrinfo error or nil")
+        }
+        
+        
+//        var  keepIdle:Int = 6;
+//        var  keepInterval = 5;
+//        var  keepCount = 3;
+//
+//
+//        guard setsockopt(self.socketFd, IPPROTO_TCP, TCP_KEEPIDLE, &keepIdle, socklen_t(MemoryLayout<T>.stride)) != -1 else {
+//            throw MaoSocketError(.invalidConnectAddress, "addrinfo error or nil")
+//        }
+//        
+//        
+//        guard setsockopt(self.socketFd, IPPROTO_TCP, TCP_KEEPCNT, &keepInterval, socklen_t(MemoryLayout<T>.stride)) != -1 else {
+//            throw MaoSocketError(.invalidConnectAddress, "addrinfo error or nil")
+//        }
+//        
+//        
+//        guard setsockopt(self.socketFd, IPPROTO_TCP, SO_KEEPALIVE, &keepCount, socklen_t(MemoryLayout<T>.stride)) != -1 else {
+//            throw MaoSocketError(.invalidConnectAddress, "addrinfo error or nil")
+//        }
+
+    }
+    
+    func getKeepLive<T>() throws -> T {
+        var length = socklen_t(MemoryLayout<T>.stride)
+        var val = UnsafeMutablePointer<T>.allocate(capacity: 1)
+        defer {
+            val.deinitialize()
+            val.deallocate(capacity: 1)
+        }
+        guard getsockopt(self.socketFd, SOL_SOCKET, SO_KEEPALIVE, val, &length) != -1 else {
+            throw MaoSocketError(.invalidConnectAddress, "addrinfo error or nil")
+        }
+        return val.pointee
     }
 }
 
@@ -785,11 +777,9 @@ class MaoSocketUDP: MaoSocketProtocol {
     }
     
     private func sendMessage(from buffer: UnsafeRawPointer, bufSize: Int, to address: MaoSocketEnum.Address) throws -> Int {
-//        Darwin.sendto(self.socketFd, buffer, bufSize, 0, address.addr, address.size)
 
         // Make sure the buffer is valid...
         if bufSize == 0 {
-            
             throw MaoSocketError(.bufferZero, "buffer is small to zero")
         }
         
@@ -838,6 +828,8 @@ class MaoSocketUDP: MaoSocketProtocol {
 
 
 extension MaoSocketUDP {
+    
+    //MARK: Recive message
     func reciveMessage() -> Void {
         if self.isConnect != true {
             return
