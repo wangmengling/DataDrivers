@@ -126,6 +126,11 @@ class ViewController: UIViewController,MaoSocketTCPDelegate,MaoSocketUDPDelegate
         }
     }
 
+    @IBAction func toChatMessageController(_ sender: Any) {
+        let chat:MaoChatCollectionViewController = MaoChatCollectionViewController();
+        self.navigationController?.pushViewController(chat, animated: true)
+    }
+    
     @IBAction func ceshiAction(_ sender: AnyObject) {
 //            maoSocket = try MaoSocket(family: .inet, socketType: .stream, socketProtocol: .tcp)
 //            try maoSocket.connect(host: "127.0.0.1", port: 6969)

@@ -491,20 +491,23 @@ class MaoSocketTcp: MaoSocketProtocol {
             return -1
         }
         
+        // Connect tcp server
         status = Darwin.connect(self.socketFd, info.pointee.ai_addr, info.pointee.ai_addrlen)
         guard status != 0 else {
             isConnect = true
             reciveMessageKeepRunning = true
             return Int(status)
         }
-        _ = Darwin.close(self.socketFd)  // close socket
+        // Close socket
+        _ = Darwin.close(self.socketFd)
         return Int(status)
     }
 }
 
-
+//MARK: Send message   -TCP
 extension MaoSocketTcp {
     
+    /// Send message, Data , Return block fn()
     func sendMessage(data: Data, fn: @escaping(Int) -> Void ) {
         if data.count == 0 || self.isConnect != true{
             fn(-1)
@@ -520,10 +523,12 @@ extension MaoSocketTcp {
             guard let socketDelegate = self.delegate else {
                 return
             }
+            // Send message faild
             socketDelegate.socketTCPDidSendMessage(socket: self, error: error as! MaoSocketError)
         }
     }
     
+    /// Send message of string , Return block fn()
     func sendMessage(message: String , fn: @escaping(Int) -> Void) {
         if self.isConnect != true {
             fn(-1)
@@ -541,16 +546,19 @@ extension MaoSocketTcp {
                 guard let socketDelegate = self.delegate else {
                     return
                 }
+                // Send message faild
                 socketDelegate.socketTCPDidSendMessage(socket: self, error: error as! MaoSocketError)
             }
         }
     }
     
+    /// Send message buffer
     func sendMessage(from buffer: UnsafeRawPointer, bufSize: Int) -> Int {
         return Darwin.send(self.socketFd, buffer, bufSize, 0)
     }
 }
 
+//MARK: Recive message -TCP
 extension MaoSocketTcp {
     func reciveMessage() -> Void {
         if self.isConnect != true {
@@ -684,23 +692,14 @@ class MaoSocketUDP: MaoSocketProtocol {
     fileprivate lazy var sendMessageQueue: DispatchQueue = DispatchQueue(label: MaoSocketEnum.SocketConst.sendMessagQueue.description)
     fileprivate lazy var reciveMessageQueue: DispatchQueue = DispatchQueue(label: MaoSocketEnum.SocketConst.reciveMessageQueue.description)
     
-    //    var delegate: MaoSocketDelegate?
-    
-    // MARK: -- Private
-    
-    ///
-    /// Internal read buffer.
-    /// 	**Note:** The readBuffer is actually allocating unmanaged memory that'll
-    ///			be deallocated when we're done with it.
-    ///
+    /// Internal recive buffer.
     
     fileprivate lazy var reciveBuffer: UnsafeMutablePointer<CChar> = UnsafeMutablePointer<CChar>.allocate(capacity: MaoSocketEnum.BufferSize.reciveDefault.rawValue)
-    ///
-    /// Internal Storage Buffer initially created with `Socket.SOCKET_DEFAULT_READ_BUFFER_SIZE`.
-    ///
-    //    var reciveData: Data = Data(capacity: MaoSocketCode.SOCKET_RECIVE_BUFFER_SIZE_DEFAULT)
+    
+    /// Storage Buffer
     var reciveData: NSMutableData = NSMutableData(capacity: MaoSocketEnum.BufferSize.reciveDefault.rawValue)!
     
+    /// Recive buffer size
     fileprivate var reciveBufferSize: Int = MaoSocketEnum.BufferSize.reciveDefault.rawValue {
         
         // If the buffer size changes we need to reallocate the buffer...
@@ -719,11 +718,11 @@ class MaoSocketUDP: MaoSocketProtocol {
             }
         }
     }
-    
+    /// Send message Dispatch Queue
     fileprivate lazy var sendMessageUDPQueue: DispatchQueue = DispatchQueue(label: MaoSocketEnum.SocketConst.sendMessageUDPQueue.description)
-    fileprivate lazy var reciveMessageUDPQueue: DispatchQueue = DispatchQueue(label: MaoSocketEnum.SocketConst.reciveMessageUDPQueue.description)
     
-
+    /// Recive message Dispatch Queue
+    fileprivate lazy var reciveMessageUDPQueue: DispatchQueue = DispatchQueue(label: MaoSocketEnum.SocketConst.reciveMessageUDPQueue.description)
     
     public required init(socketFd: SocketFD?, signature: MaoSocketSignature, address: MaoSocketAddress) throws {
         if let socketFd = socketFd {
@@ -740,6 +739,7 @@ class MaoSocketUDP: MaoSocketProtocol {
         try self.init(socketFd: nil, signature: signature, address: address)
     }
     
+    /// Send message of Data, return block fn()
     func sendMessage(data: Data, fn: @escaping(Int) -> Void ) {
         if data.count == 0 {
             fn(-1)
@@ -755,10 +755,12 @@ class MaoSocketUDP: MaoSocketProtocol {
             guard let socketDelegate = self.delegate else {
                 return
             }
+            // Send message faild
             socketDelegate.socketUDPDidSendMessage(socket: self, error: error as! MaoSocketError)
         }
     }
     
+    /// Send message of Data, return block fn()
     func sendMessage(message: String , fn: @escaping(Int) -> Void) {
         let queue: DispatchQueue? = DispatchQueue.global(qos: .userInteractive)
         queue?.async {
@@ -772,10 +774,12 @@ class MaoSocketUDP: MaoSocketProtocol {
                 guard let socketDelegate = self.delegate else {
                     return
                 }
+                // Send message faild
                 socketDelegate.socketUDPDidSendMessage(socket: self, error: error as! MaoSocketError)            }
         }
     }
     
+    /// Send message of buffer
     private func sendMessage(from buffer: UnsafeRawPointer, bufSize: Int, to address: MaoSocketEnum.Address) throws -> Int {
 
         // Make sure the buffer is valid...
@@ -790,7 +794,6 @@ class MaoSocketUDP: MaoSocketProtocol {
         
         // The socket must've been created for UDP...
         guard self.signature.socketType == .datagram else {
-                
                 throw MaoSocketError(.datagramUdp, "This is not a UDP socket.")
         }
         var sent = 0
@@ -806,7 +809,6 @@ class MaoSocketUDP: MaoSocketProtocol {
             if status <= 0 {
                 
                 if errno == EAGAIN {
-                    
                     // We have written out as much as we can...
                     return sent
                 }
@@ -849,6 +851,7 @@ extension MaoSocketUDP {
         }
     }
     
+    //MARK: Recive message , Return block fu()
     func reciveMessage(fn: @escaping (NSMutableData) -> Void) {
         if self.isConnect != true {
             return
@@ -870,6 +873,7 @@ extension MaoSocketUDP {
         }
     }
     
+    /// Recive Message
     func reciveMessageDetail() throws -> (bytesRead: Int, fromAddress: MaoSocketEnum.Address?) {
         if closed { throw MaoSocketError(.socketIsClosed,"socket is close") }
         self.reciveData = NSMutableData(capacity: 0)!

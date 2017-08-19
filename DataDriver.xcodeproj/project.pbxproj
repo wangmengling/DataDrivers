@@ -27,6 +27,7 @@
 		16434A981E0B833700DB72BB /* demoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16434A971E0B833700DB72BB /* demoTests.swift */; };
 		16434AA31E0B833800DB72BB /* demoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16434AA21E0B833800DB72BB /* demoUITests.swift */; };
 		16434AAF1E0B879600DB72BB /* MaoChatFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16434AAE1E0B879600DB72BB /* MaoChatFunctions.swift */; };
+		164712D81E714A4100C7C791 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164712D71E714A4100C7C791 /* MessageModel.swift */; };
 		1650BCD11E19231D006B0994 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1650BCD01E19231D006B0994 /* ChatViewController.swift */; };
 		16559C7A1E0A1A6A00317DA3 /* MaoChatInputBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16559C791E0A1A6A00317DA3 /* MaoChatInputBaseView.swift */; };
 		16559C7C1E0A1EA100317DA3 /* SIMChat.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16559C7B1E0A1EA100317DA3 /* SIMChat.xcassets */; };
@@ -78,6 +79,7 @@
 		16BE7AC21E6EAACD00046110 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BE7A861E6EAACD00046110 /* Types.swift */; };
 		16BE7AC31E6EAACD00046110 /* UDPSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BE7A871E6EAACD00046110 /* UDPSocket.swift */; };
 		16D353FB1E430ADF00275911 /* MaoSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D353FA1E430ADE00275911 /* MaoSocket.swift */; };
+		16EFA5821E7639AD006BCD5A /* MessageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16EFA5811E7639AD006BCD5A /* MessageTableViewController.swift */; };
 		16FE2BC71E5D1FD000BE717B /* Message.proto in Resources */ = {isa = PBXBuildFile; fileRef = 16FE2BC61E5D1FD000BE717B /* Message.proto */; };
 		16FE2BC91E5D1FFE00BE717B /* Message.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FE2BC81E5D1FFE00BE717B /* Message.proto.swift */; };
 		16FE2BCB1E5D2E7000BE717B /* awesome.proto in Resources */ = {isa = PBXBuildFile; fileRef = 16FE2BCA1E5D2E7000BE717B /* awesome.proto */; };
@@ -107,7 +109,6 @@
 		1864E17F1D824E4B0042876C /* String+MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1864E1791D824E4B0042876C /* String+MD5.swift */; };
 		1864E1821D824E780042876C /* NetWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1864E1811D824E780042876C /* NetWork.swift */; };
 		1864E18C1D8253430042876C /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1864E18B1D8253430042876C /* libsqlite3.0.tbd */; };
-		1864E18E1D8262350042876C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1864E18D1D8262350042876C /* libsqlite3.tbd */; };
 		1864E1941D826AA90042876C /* TopicsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1864E1931D826AA90042876C /* TopicsModel.swift */; };
 		18AE2AD51DD55A1500CA92BD /* DataToJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AE2AD41DD55A1500CA92BD /* DataToJSON.swift */; };
 		18BFE71D1DD5C6060088AF50 /* DataFieldType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BFE71C1DD5C6060088AF50 /* DataFieldType.swift */; };
@@ -172,6 +173,7 @@
 		16434AA21E0B833800DB72BB /* demoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = demoUITests.swift; sourceTree = "<group>"; };
 		16434AA41E0B833800DB72BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		16434AAE1E0B879600DB72BB /* MaoChatFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoChatFunctions.swift; sourceTree = "<group>"; };
+		164712D71E714A4100C7C791 /* MessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
 		1650BCD01E19231D006B0994 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		16559C791E0A1A6A00317DA3 /* MaoChatInputBaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoChatInputBaseView.swift; sourceTree = "<group>"; };
 		16559C7B1E0A1EA100317DA3 /* SIMChat.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SIMChat.xcassets; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 		16BE7A861E6EAACD00046110 /* Types.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
 		16BE7A871E6EAACD00046110 /* UDPSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UDPSocket.swift; sourceTree = "<group>"; };
 		16D353FA1E430ADE00275911 /* MaoSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaoSocket.swift; sourceTree = "<group>"; };
+		16EFA5811E7639AD006BCD5A /* MessageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTableViewController.swift; sourceTree = "<group>"; };
 		16FE2BC61E5D1FD000BE717B /* Message.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Message.proto; sourceTree = SOURCE_ROOT; };
 		16FE2BC81E5D1FFE00BE717B /* Message.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.proto.swift; sourceTree = SOURCE_ROOT; };
 		16FE2BCA1E5D2E7000BE717B /* awesome.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = awesome.proto; sourceTree = SOURCE_ROOT; };
@@ -295,7 +298,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1864E18E1D8262350042876C /* libsqlite3.tbd in Frameworks */,
 				1864E18C1D8253430042876C /* libsqlite3.0.tbd in Frameworks */,
 				847F79B5EC2BA6CA23001CB6 /* Pods_DataDriver.framework in Frameworks */,
 			);
@@ -539,6 +541,8 @@
 				1864E1311D824C430042876C /* ViewController.swift */,
 				1650BCD01E19231D006B0994 /* ChatViewController.swift */,
 				1864E1931D826AA90042876C /* TopicsModel.swift */,
+				164712D71E714A4100C7C791 /* MessageModel.swift */,
+				16EFA5811E7639AD006BCD5A /* MessageTableViewController.swift */,
 				1630563B1E6E4D7A00CC8993 /* ViewModelProtocol */,
 				1864E15D1D824D7B0042876C /* Compents */,
 				1864E1331D824C430042876C /* Main.storyboard */,
@@ -1039,6 +1043,7 @@
 				1641F1351E078AD700D852E2 /* MaoUserModel.swift in Sources */,
 				1864E1671D824DB80042876C /* Storage.swift in Sources */,
 				16BE7AB81E6EAACD00046110 /* Conversions.swift in Sources */,
+				16EFA5821E7639AD006BCD5A /* MessageTableViewController.swift in Sources */,
 				16BE7AB01E6EAACD00046110 /* Socks.swift in Sources */,
 				1864E16F1D824DE20042876C /* DataMap.swift in Sources */,
 				16ADD6B91E25DF0B00BF1667 /* KeyboardStore.swift in Sources */,
@@ -1075,6 +1080,7 @@
 				166AAF051E0C08C600661C78 /* MaoPriority.swift in Sources */,
 				16BE7AC01E6EAACD00046110 /* SocketOptions.swift in Sources */,
 				1641F13D1E07E2D500D852E2 /* MaoChatMessageModel.swift in Sources */,
+				164712D81E714A4100C7C791 /* MessageModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -39,8 +39,9 @@ struct MaoChatContentModel: DataConversionProtocol {
     var sentTime:Double!
     var reciveTime:Double!
     var isMe:MaoChatIsMe = .True
-    var contentType:MaoChatType!
-    var userModel:MaoChatUserModel!
+    var contentType: MaoChatType!
+    var userModel: MaoChatUserModel!
+    var reciveUserModel: MaoChatUserModel!
     
     func primaryKey() -> String {
         return "userId"

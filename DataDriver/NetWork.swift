@@ -17,19 +17,19 @@ enum Method: String {
  *  网络请求
  */
 struct NetWork {
-    static func request(_ method: Method, url: String, params: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>(), callback: @escaping (_ data: AnyObject?, _ response: URLResponse?, _ error: NSError?) -> Void) {
+    static func request(_ method: Method, url: String, params: Dictionary<String, Any> = Dictionary<String, Any>(), callback: @escaping (_ data: AnyObject?, _ response: URLResponse?, _ error: NSError?) -> Void) {
         let manager = NetWorkManager(method: method, url: url, params: params, callback: callback)
         manager.resume()
     }
     
-    static func requestDataConversion<T:DataConversionProtocol>(_ method: Method, url: String,modelType:T.Type, params: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>(), callback: @escaping (_ data: T?, _ response: URLResponse?, _ error: NSError?) -> Void) {
+    static func requestDataConversion<T:DataConversionProtocol>(_ method: Method, url: String,modelType:T.Type, params: Dictionary<String, Any> = Dictionary<String, Any>(), callback: @escaping (_ data: T?, _ response: URLResponse?, _ error: NSError?) -> Void) {
         NetWork.request(method, url: url, params: params){ (data, response, error) in
             let dataConversionModel = DataConversion<T>().map(data)
             callback(dataConversionModel,response,error)
         }
     }
     
-    static func requestDataConversionArray<T:DataConversionProtocol>(_ method: Method, url: String,modelType:T.Type, params: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>(), callback: @escaping (_ data: [T]?, _ response: URLResponse?, _ error: NSError?) -> Void) {
+    static func requestDataConversionArray<T:DataConversionProtocol>(_ method: Method, url: String,modelType:T.Type, params: Dictionary<String, Any> = Dictionary<String, Any>(), callback: @escaping (_ data: [T]?, _ response: URLResponse?, _ error: NSError?) -> Void) {
         NetWork.request(method, url: url, params: params){ (data, response, error) in
             let JSON = data?.object(forKey: "data") as AnyObject
             let dataConversionModelArray = DataConversion<T>().mapArray(JSON)
@@ -37,7 +37,7 @@ struct NetWork {
         }
     }
     
-    static func requestStorageArray<T:DataConversionProtocol>(_ method: Method, url: String,modelType:T.Type, params: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>(), callback: @escaping (_ data: [T]?, _ response: URLResponse?, _ error: NSError?) -> Void){
+    static func requestStorageArray<T:DataConversionProtocol>(_ method: Method, url: String,modelType:T.Type, params: Dictionary<String, Any> = Dictionary<String, Any>(), callback: @escaping (_ data: [T]?, _ response: URLResponse?, _ error: NSError?) -> Void){
         NetWork.request(method, url: url, params: params){ (data, response, error) in
             let JSON = data?.object(forKey: "data") as AnyObject
             let dataConversionModelArray = DataConversion<T>().mapArray(JSON)
@@ -47,7 +47,7 @@ struct NetWork {
         }
     }
     
-    static func requestStorage<T:DataConversionProtocol>(_ method: Method, url: String,modelType:T.Type, params: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>(), callback: @escaping (_ data: T?, _ response: URLResponse?, _ error: NSError?) -> Void){
+    static func requestStorage<T:DataConversionProtocol>(_ method: Method, url: String,modelType:T.Type, params: Dictionary<String, Any> = Dictionary<String, Any>(), callback: @escaping (_ data: T?, _ response: URLResponse?, _ error: NSError?) -> Void){
         NetWork.request(method, url: url, params: params){ (data, response, error) in
             let JSON = data?.object(forKey: "data") as AnyObject
             let dataConversionModel = DataConversion<T>().map(JSON)
@@ -63,7 +63,7 @@ class NetWorkManager {
     
     //NSMutableURLRequest
     let method: Method!
-    let params: Dictionary<String, AnyObject>
+    let params: Dictionary<String, Any>
     let url:String!
     var request:NSMutableURLRequest!
     
@@ -73,7 +73,7 @@ class NetWorkManager {
     var task: URLSessionTask!
     
     
-    init(method:Method, url:String, params:Dictionary<String, AnyObject> = Dictionary<String, AnyObject>(), callback: @escaping (_ data: AnyObject?, _ response: URLResponse?, _ error: NSError?) -> Void) {
+    init(method:Method, url:String, params:Dictionary<String, Any> = Dictionary<String, Any>(), callback: @escaping (_ data: AnyObject?, _ response: URLResponse?, _ error: NSError?) -> Void) {
         self.method = method
         self.params = params
         self.url = url
@@ -109,7 +109,7 @@ class NetWorkManager {
 extension NetWorkManager {
     func buildRequest() {
         if self.method == .GET && self.params.count > 0 {
-            self.request = NSMutableURLRequest(url: URL(string: url + "?" + buildParams(self.params))!)
+            self.request = NSMutableURLRequest(url: URL(string: url + "?" + buildParams(self.params as [String : AnyObject]))!)
         }
          
         request.httpMethod = self.method.rawValue
@@ -124,7 +124,7 @@ extension NetWorkManager {
     //非GET
     func buildBody() {
         if self.params.count > 0 && self.method != .GET {
-            request.httpBody = buildParams(self.params).data(using: String.Encoding.utf8)
+            request.httpBody = buildParams(self.params as [String : AnyObject]).data(using: String.Encoding.utf8)
         }
     }
 }

@@ -29,7 +29,7 @@ class MaoChatCollectionViewController: UIViewController, UICollectionViewDelegat
     
     lazy var maoChatInputTextFieldView: MaoChatInputTextFieldView = {
         let maoChatInputTextFieldView = MaoChatInputTextFieldView(frame: .zero)
-//        maoChatInputTextFieldView.backgroundColor = UIColor.red
+        maoChatInputTextFieldView.backgroundColor = UIColor.white
         return maoChatInputTextFieldView
     }()
     
